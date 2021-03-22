@@ -1,6 +1,7 @@
 const seriesCollection = document.querySelectorAll(".series-collapsible");
 const gameColl = document.querySelectorAll(".game-collapsible");
 
+
 seriesCollection.forEach(el => {
 	el.addEventListener('click', e => {
 		e.target.classList.toggle("active");
@@ -21,7 +22,8 @@ gameColl.forEach(gameBtn => {
 		e.target.classList.toggle("active");
 		const seriesContent = e.target.parentElement.parentElement.parentElement;
 		const gameContent = e.target.nextElementSibling;
-	
+		gameContent.classList.toggle('hide')
+		
 		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
 		let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
 	
