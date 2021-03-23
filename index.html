@@ -16,7 +16,7 @@
   		<p>Active Series</p>
   		<!-- - -->
   		<div class="series-list">
-  			<div class="series-container">
+  			<div class="series-container" data-series="1">
   				<button class="collapsible series-collapsible">Open Series</button>
   				<div class="series-content content">
   					<div class="series-header">series header</div>
@@ -24,21 +24,25 @@
   						<div class="game-container">
   							<button class="collapsible game-collapsible">Open Game1</button>
   							<div class="content game-content hide">
-  								<div class="game-map" data-game="1" data-series="1">
-  									Map: Fruit Islands
+  								<div class="game-details">
+  									<div class="game-map-name" data-game="1" data-series="1">
+  										Map: Fruit Islands
+  									</div>
+  									<div class="game-date" data-game="1" data-series="1">
+  										03/20/2021
+  									</div>
   								</div>
-  								<div class="game-date" data-game="1" data-series="1">
-  									03/20/2021
-  								</div>
-  								<div class="game-player" data-player="1" data-game="1" data-series="1">
-  									<div>Player 1: Jake</div>
-  									<div>Character: Peach</div>
-  									<div>Rank: 1st</div>
-  								</div>
-  								<div class="game-player" data-player="1" data-game="1" data-series="1">
-  									<div>Player 2: Kit</div>
-  									<div>Character: Boo</div>
-  									<div>Rank: 2nd</div>
+  								<div class="player-list">
+  									<div class="player-container" data-player="1" data-game="1" data-series="1">
+  										<div class="player-name">Player 1: Jake</div>
+  										<div class="player-character-name">Character: Peach</div>
+  										<div class="player-rank">Rank: 1st</div>
+  									</div>
+  									<div class="player-container" data-player="2" data-game="2" data-series="2">
+  										<div class="player-name">Player 1: Jake</div>
+  										<div class="player-character-name">Character: Peach</div>
+  										<div class="player-rank">Rank: 1st</div>
+  									</div>
   								</div>
   							</div>
   						</div>
@@ -49,7 +53,7 @@
   							</div>
   						</div>
   					</div>
-  				<div class="add-game-button">Add Game</div>
+  					<div class="add-game-button">Add Game</div>
   				</div>
   			</div>
   			<!-- - -->
