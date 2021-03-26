@@ -22,12 +22,12 @@ const gameColl = document.querySelectorAll(".game-collapsible");
 // });
 
 const calculateSeriesHeight = (seriesContent) => {
-		// seriesContent.style.maxHeight = null;
+	// seriesContent.style.maxHeight = null;
 	// if (seriesContent.style.maxHeight) {
 	// 	seriesContent.style.zIndex = 0;
 	// } else {
-		seriesContent.style.zIndex = 30;
-		seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
+	seriesContent.style.zIndex = 30;
+	seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
 	// }
 }
 
@@ -35,29 +35,31 @@ const calculateSeriesHeight = (seriesContent) => {
 seriesButtons.forEach(el => {
 	el.addEventListener('click', e => {
 		e.target.classList.toggle("active");
-		let content = e.target.nextElementSibling;
-	if (content.style.maxHeight) {
-			content.style.maxHeight = null;
-		content.style.zIndex = 0;
-	} else {
-		// seriesContent.style.zIndex = 30;
-		// seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
-		calculateSeriesHeight(content)
-	console.log('suk');
 		
-	}
-
+		let content = e.target.nextElementSibling;
 	
+		if (content.style.maxHeight) {
+			const childContents = [...content.querySelectorAll('.content')];
+		
+			childContents.forEach(ch => {
+				ch.style.maxHeight = null
+				ch.style.zIndex = 0
+				ch.classList.add('hide')
+			});
+
+			content.style.maxHeight = null;
+			content.style.zIndex = 0;
+		} else {
+			calculateSeriesHeight(content)
+		}
 	});
 });
 
-
-
 gameColl.forEach(gameBtn => {
 	gameBtn.addEventListener('click', e => {
-		e.target.classList.toggle("active");
 		const seriesContent = e.target.parentElement.parentElement.parentElement;
 		const gameContent = e.target.nextElementSibling;
+		gameBtn.classList.toggle("active");
 		gameContent.classList.toggle('hide')
 
 		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
@@ -65,13 +67,13 @@ gameColl.forEach(gameBtn => {
 
 		if (gameHeight) {
 			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
-			seriesContent.style.maxHeight = `${parseInt(seriesHeight) - parseInt(gameHeight)}px`;
+			calculateSeriesHeight(seriesContent)
 			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
 		} else {
 			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
 			gameContent.style.zIndex = 30;
 			seriesContent.style.zIndex = 30;
-			seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight) + 10}px`;
+			seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
 		}
 	})
 })
@@ -90,8 +92,7 @@ document.querySelector('.add-series-button')
 //TODO When a new game is added, recalculate series height!	
 document.querySelector('.add-game-button')
 	.addEventListener('click', e => {
-		let content = e.target.parentElement;
-		
+		const content = e.target.parentElement;
 		const gameList = document.querySelector('.game-list')
 		const gameContainer = document.createElement('div');
 

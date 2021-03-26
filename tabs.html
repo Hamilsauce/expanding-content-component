@@ -74,6 +74,7 @@
 	<script>
 		const resetContentDisplay = contentArray => {
 			contentArray.forEach(el => {
+				el.dataset.active == 'false' 
 				el.classList.remove('active')
 			})
 		}
@@ -96,6 +97,8 @@
 					matchedContent.dataset.active = 'true'
 					matchedContent.classList.add('active');
 				} else {
+					console.log('in active false')
+				
 					matchedContent.dataset.active = 'false'
 					matchedContent.classList.remove('active');
 
@@ -103,6 +106,7 @@
 			})
 
 		})
+		calculateSeriesHeight(content)
 	</script>
 </body>
 
