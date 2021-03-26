@@ -1,53 +1,42 @@
-const seriesContainers = document.querySelectorAll(".series-content");
+const seriesContainers = document.querySelectorAll(".series-container");
 const seriesButtons = document.querySelectorAll(".series-collapsible");
 const gameColl = document.querySelectorAll(".game-collapsible");
 
-
-// seriesContainers.forEach(elm => {
-// 	elm.addEventListener('click', e => {
-// 		console.log('curtar');
-// 		console.log(e.currentTarget);
-// 		let el = e.currentTarget
-// 		e.target.classList.toggle("active");
-// 		let content = e.target.nextElementSibling;
-// 		if (el.style.maxHeight) {
-// 			// el.style.maxHeight = null;
-// 			el.style.zIndex = 30;
-// 			el.style.maxHeight = content.scrollHeight + "px";
-// 		} else {
-// 			el.style.zIndex = 30;
-// 			el.style.maxHeight = content.scrollHeight + "px";
-// 		}
-// 	});
-// });
-
-const calculateSeriesHeight = (seriesContent) => {
-		// seriesContent.style.maxHeight = null;
-	// if (seriesContent.style.maxHeight) {
-	// 	seriesContent.style.zIndex = 0;
-	// } else {
-		seriesContent.style.zIndex = 30;
-		seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
-	// }
+const calcHeights = el => {
+	
 }
+
+
+seriesContainers.forEach(elm => {
+	elm.addEventListener('click', e => {
+		console.log('curtar');
+		console.log(e.currentTarget);
+		let el = e.currentTarget
+		// e.target.classList.toggle("active");
+		// let content = e.target.nextElementSibling;
+		if (el.style.maxHeight) {
+			// el.style.maxHeight = null;
+			el.style.zIndex = 30;
+			el.style.maxHeight = content.scrollHeight + "px";
+		} else {
+			el.style.zIndex = 30;
+			el.style.maxHeight = content.scrollHeight + "px";
+		}
+	});
+});
 
 
 seriesButtons.forEach(el => {
 	el.addEventListener('click', e => {
 		e.target.classList.toggle("active");
 		let content = e.target.nextElementSibling;
-	if (content.style.maxHeight) {
+		if (content.style.maxHeight) {
 			content.style.maxHeight = null;
-		content.style.zIndex = 0;
-	} else {
-		// seriesContent.style.zIndex = 30;
-		// seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
-		calculateSeriesHeight(content)
-	console.log('suk');
-		
-	}
-
-	
+			content.style.zIndex = 0;
+		} else {
+			content.style.zIndex = 30;
+			content.style.maxHeight = content.scrollHeight + "px";
+		}
 	});
 });
 
@@ -69,9 +58,8 @@ gameColl.forEach(gameBtn => {
 			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
 		} else {
 			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
-			gameContent.style.zIndex = 30;
 			seriesContent.style.zIndex = 30;
-			seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight) + 10}px`;
+			seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
 		}
 	})
 })
@@ -90,14 +78,12 @@ document.querySelector('.add-series-button')
 //TODO When a new game is added, recalculate series height!	
 document.querySelector('.add-game-button')
 	.addEventListener('click', e => {
-		let content = e.target.parentElement;
-		
 		const gameList = document.querySelector('.game-list')
 		const gameContainer = document.createElement('div');
 
 		gameContainer.innerText = 'new container'
+
 		gameList.appendChild(gameContainer)
-		calculateSeriesHeight(content)
 	})
 
 const createSeries = () => {

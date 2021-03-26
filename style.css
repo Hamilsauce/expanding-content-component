@@ -115,7 +115,7 @@ body {}
 }
 
 .series-container {
-	z-index: 20;
+	z-index: 30;
 	margin-bottom: 5px;
 	padding: 5px;
 	height: fit-content;
@@ -125,14 +125,24 @@ body {}
 	padding: 5px;
 }
 
-.game-container {
+.game-list {
+	margin-bottom: 5px;
 	/* height: fit-content; */
 	/* max-height: 0; */
-	/* z-index: 20; */
+	z-index: 30;
+}
+
+.game-container {
+	
+	/* height: fit-content; */
+	/* max-height: 0; */
+	z-index: 30;
 }
 
 .add-game-button {
+	margin: auto 0px auto auto;
 	padding: 5px;
+	text-align: right;
 }
 
 .player-container {
@@ -140,7 +150,7 @@ body {}
 	flex-direction: row;
 	height: 100%;
 	padding: 5px;
-	margin-bottom: 10px;
+	/* margin-bottom: 10px; */
 	/* padding: 20px; */
 }
 .player-list {

@@ -1,0 +1,14 @@
+render flow
+ - function to create 
+ - 
+ 
+event handlers needed:
+ - on add series button (one button)
+ - on add game button (one per series)
+ - on series collapsible
+ - on game collapsible
+ 
+ need func to create series element (container, header, add game button)
+ need func to create 1 series collapse/event handler and content per series el
+ need func to create 1 series collapse/event handler and content per series el
+ 
