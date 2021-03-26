@@ -78,6 +78,7 @@ gameColl.forEach(gameBtn => {
 	})
 })
 
+
 document.querySelector('.add-series-button')
 	.addEventListener('click', e => {
 		const seriesList = document.querySelector('.series-list')
