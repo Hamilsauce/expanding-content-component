@@ -40,12 +40,13 @@ const calculateSeriesHeight = (seriesContent) => {
 seriesButtons.forEach(el => {
 	el.addEventListener('click', e => {
 		e.target.classList.toggle("active");
-		
-		let content = e.target.nextElementSibling;
-	
+		const menubutton = el.parentElement.querySelector('.series-menu')
+		menubutton.classList.add('hide')
+		let content = el.nextElementSibling;
+
 		if (content.style.maxHeight) {
 			const childContents = [...content.querySelectorAll('.content')];
-		
+
 			childContents.forEach(ch => {
 				ch.style.maxHeight = null
 				ch.style.zIndex = 0
@@ -65,7 +66,10 @@ gameColl.forEach(gameBtn => {
 		const seriesContent = e.target.parentElement.parentElement.parentElement;
 		const gameContent = e.target.nextElementSibling;
 		gameBtn.classList.toggle("active");
-		gameContent.classList.toggle('hide')
+		gameContent.classList.toggle('hide');
+
+		const menubutton = seriesContent.querySelector('.series-menu')
+		menubutton.classList.add('hide')
 
 		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
 		let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
@@ -94,15 +98,15 @@ document.querySelector('.add-series-button')
 
 		seriesList.appendChild(gameContainer)
 	})
-	
+
 document.querySelector('.delete-series-button')
 	.addEventListener('click', e => {
 		const content = [...document.querySelectorAll('.series-container')]
-				.find(cont => {
-					return e.target.dataset.series == cont.dataset.series
-				})
+			.find(cont => {
+				return e.target.dataset.series == cont.dataset.series
+			})
 		// const gameContainer = document.createElement('div');
-  	content.remove()
+		content.remove()
 		// gameContainer.innerText = 'new container'
 
 		// seriesList.appendChild(gameContainer)
@@ -113,11 +117,13 @@ document.querySelector('.delete-series-button')
 document.querySelector('.add-game-button')
 	.addEventListener('click', e => {
 		// const content = e.target.parentElement;
-		
+
 		const content = [...document.querySelectorAll('.series-content')]
 			.find(cont => {
 				return e.target.dataset.series == cont.dataset.series
 			})
+
+		e.target.parentElement.classList.add('hide')
 		const gameList = document.querySelector('.game-list')
 		const gameContainer = document.createElement('div');
 
@@ -126,6 +132,87 @@ document.querySelector('.add-game-button')
 		gameList.appendChild(gameContainer)
 		calculateSeriesHeight(content)
 	})
+
+const getRelatedElement = (el, className) => {
+	const relatedEl = [...document.querySelectorAll(`.{className}`)]
+		.find(rel => {
+			return el.dataset.series == relatedEl.dataset.series
+		})
+}
+
+document.querySelector('.edit-series-button')
+	.addEventListener('click', e => {
+		const targ = e.target
+		const menuList = targ.parentElement;
+		// const menuList = targ.parentElement;
+		const seriesBtn = [...document.querySelectorAll('.series-collapsible')]
+			.find(btn => {
+				return menuList.dataset.series == btn.dataset.series
+			})
+		menuList.classList.add('hide')
+		const title = seriesBtn.firstElementChild
+		title.style.textDecoration = 'underline'
+		title.contentEditable = true;
+		title.style.backgroundColor = 'white';
+		title.style.color = 'black';
+		title.dataset.editing = 'true'
+		title.focus()
+		document.querySelector('.submit-series-name').classList.remove('hide')
+
+		let sel = window.getSelection();
+		if (sel.toString() == '') { //no text selection
+			window.setTimeout(function() {
+				let range = document.createRange(); //range object
+				range.selectNodeContents(title); //sets Range
+				sel.removeAllRanges(); //remove all ranges from selection
+				sel.addRange(range); //add Range to a Selection.
+			}, 1);
+		}
+
+
+	})
+	
+document.querySelector('.series-title')
+		.addEventListener('click', e => {
+	if (e.target.dataset.editing == 'true') {
+		
+		e.stopPropagation()
+		e.preventDefault()
+	}
+
+
+	})
+
+document.querySelector('.submit-series-name')
+	.addEventListener('click', e => {
+		
+		e.stopPropagation()
+		e.preventDefault()
+
+		const saveBtn = e.target;
+		const seriesBtn = saveBtn.parentElement;
+		console.log(seriesBtn);
+		saveBtn.classList.add('hide')
+		const title = seriesBtn.firstElementChild
+		title.style.textDecoration = 'none'
+		title.contentEditable = false;
+		title.style.backgroundColor = '#ffffff00';
+		title.style.color = 'white';
+		title.dataset.editing = 'false'
+	
+		let range = document.createRange(); //range object
+		range.detach()
+		let sel = window.getSelection();
+
+		sel.removeAllRanges(); //remove all ranges from selection
+		// saveBtn.classList.add('hide')
+		// seriesBtn.unfocus()
+
+
+		document.querySelector('.submit-series-name')
+
+	})
+
 
 const createSeries = () => {
 	const seriesList = document.querySelector('.series-list')
