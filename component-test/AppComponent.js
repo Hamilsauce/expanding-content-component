@@ -10,9 +10,10 @@ export class App {
 		return `
 			<h1>${props.heading}</h1>
 			<ul>
-				${props.todos.map((todo) => {
-					return `<li>${todo}</li>`;
-				}).join('')}
+				${props.todos
+					.map((todo, i) => {
+						return `<li data-id="${i}" class="todo-item">${todo} ${i}</li>`;
+					}).join('')}
 			</ul>`;
 	}
 
