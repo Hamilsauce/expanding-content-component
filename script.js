@@ -8,11 +8,9 @@ const $ = (targetEl, selector, selectAll) => {
 	}
 }
 
-// const seriesContainers = document.querySelectorAll(".series-content");
 const seriesContainers = $(document, '.series-content', true)
-console.log(seriesContainers);
-const seriesButtons = document.querySelectorAll(".series-collapsible");
-const gameColl = document.querySelectorAll(".game-collapsible");
+const seriesButtons = $(document, '.series-collapsible', true)
+const gameColl = $(document, '.game-collapsible', true)
 
 const seriesMenuButton = document.querySelector(".series-menu-button");
 const seriesMenu = document.querySelector(".series-menu");
@@ -21,24 +19,22 @@ seriesMenuButton.addEventListener('click', e => {
 	e.target.nextElementSibling.classList.toggle('hide')
 })
 
-const expandSeries = (seriesContent) => {
-	// if (seriesContent.style.maxHeight) {
-		// seriesContent.style.maxHeight = null;
-		// seriesContent.style.zIndex = 0;
-	// } else {
-		seriesContent.style.zIndex = 30;
+const expandSeries = (seriesContent, childScrollHeight) => {
+	seriesContent.style.zIndex = 30;
+	if (childScrollHeight) {
+		seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(childScrollHeight)}px`;
+	} else {
 		seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
-	// }
+	}
 }
-
 
 seriesButtons.forEach(el => {
 	el.addEventListener('click', e => {
 		e.target.classList.toggle("active");
 		const menubutton = el.parentElement.querySelector('.series-menu')
 		menubutton.classList.add('hide')
-		let content = el.nextElementSibling;
 
+		let content = el.nextElementSibling;
 		if (content.style.maxHeight) {
 			const childContents = [...content.querySelectorAll('.content')];
 
@@ -71,14 +67,13 @@ gameColl.forEach(gameBtn => {
 
 		if (gameHeight) {
 			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
-			expandSeries(seriesContent)
+			// expandSeries(seriesContent)
 			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
 		} else {
 			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
 			gameContent.style.zIndex = 30;
 			seriesContent.style.zIndex = 30;
-			seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
-			// expandSeries(seriesContent)
+			expandSeries(seriesContent, gameContent.scrollHeight)
 		}
 	})
 })
@@ -100,19 +95,13 @@ document.querySelector('.delete-series-button')
 			.find(cont => {
 				return e.target.dataset.series == cont.dataset.series
 			})
-		// const gameContainer = document.createElement('div');
 		content.remove()
-		// gameContainer.innerText = 'new container'
-
-		// seriesList.appendChild(gameContainer)
 	})
 
 
 //TODO When a new game is added, recalculate series height!	
 document.querySelector('.add-game-button')
 	.addEventListener('click', e => {
-		// const content = e.target.parentElement;
-
 		const content = [...document.querySelectorAll('.series-content')]
 			.find(cont => {
 				return e.target.dataset.series == cont.dataset.series
@@ -121,7 +110,6 @@ document.querySelector('.add-game-button')
 		e.target.parentElement.classList.add('hide')
 		const gameList = document.querySelector('.game-list')
 		const gameContainer = document.createElement('div');
-
 
 		gameContainer.innerText = 'new container'
 		gameList.appendChild(gameContainer)
