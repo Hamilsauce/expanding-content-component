@@ -8,37 +8,43 @@
   </head>
 
   <body>
+  	<!-- App Component -->
   	<div class="app">
   		<header class="app-header">
   			<h2 class="header-title">Mario Tracker</h2>
   			<div class="add-series-button">+</div>
   		</header>
   		<p>Active Series</p>
-  		<!-- - -->
+  		<!-- Series List Component -->
   		<div class="series-list">
+  			<!-- Series Component -->
   			<div class="series-container" data-series="1">
   				<div class="collapsible series-collapsible" data-series="1">
-  					<div class="series-title">
-  					Series 1</div>
-  				<div class="submit-series-name hide">
-  					ok
-  				</div>
+  					<div class="title-container">
+  						<div class="series-title">Series 1</div>
+  						<div class="submit-series-name hide">
+  							ok
+  						</div>
+  					</div>
   				</div>
   				<div class="series-content content" data-series="1">
-  					<div class="series-header">
+  					<header class="series-header">
   						<div class="series-players-button">03/21/2021</div>
   						<div class="game-count-display">Games: 2</div>
+  						<!-- Menu Component -->
   						<div class="series-menu-container">
   							<div class="series-menu-button">Menu</div>
   							<ul class="series-menu hide" data-series="1">
   								<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
   								<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
   								<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
+  								<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
   							</ul>
   						</div>
-  					</div>
-  					<!-- <div class="add-game-button">Add Game</div> -->
+  					</header>
+  					<!-- GameList Component -->
   					<div class="game-list">
+  						<!-- Game Component -->
   						<div class="game-container">
   							<button class="collapsible game-collapsible">Open Game1</button>
   							<div class="content game-content hide">
@@ -50,7 +56,9 @@
   										03/20/2021
   									</div>
   								</div>
+  								<!-- PlayerList Component -->
   								<div class="player-list">
+  									<!-- Player Component -->
   									<div class="player-container" data-player="1" data-game="1" data-series="1">
   										<div class="player-name">Player 1: Jake</div>
   										<div class="player-character-name">Character: Peach</div>

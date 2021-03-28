@@ -1,4 +1,16 @@
-const seriesContainers = document.querySelectorAll(".series-content");
+const $ = (targetEl, selector, selectAll) => {
+	if (selectAll) {
+		const selectedEls = targetEl.querySelectorAll(selector)
+		return selectedEls;
+	} else {
+		const selectedEl = targetEl.querySelector(selector)
+		return selectedEl;
+	}
+}
+
+// const seriesContainers = document.querySelectorAll(".series-content");
+const seriesContainers = $(document, '.series-content', true)
+console.log(seriesContainers);
 const seriesButtons = document.querySelectorAll(".series-collapsible");
 const gameColl = document.querySelectorAll(".game-collapsible");
 
@@ -8,31 +20,14 @@ const seriesMenu = document.querySelector(".series-menu");
 seriesMenuButton.addEventListener('click', e => {
 	e.target.nextElementSibling.classList.toggle('hide')
 })
-// seriesContainers.forEach(elm => {
-// 	elm.addEventListener('click', e => {
-// 		console.log('curtar');
-// 		console.log(e.currentTarget);
-// 		let el = e.currentTarget
-// 		e.target.classList.toggle("active");
-// 		let content = e.target.nextElementSibling;
-// 		if (el.style.maxHeight) {
-// 			// el.style.maxHeight = null;
-// 			el.style.zIndex = 30;
-// 			el.style.maxHeight = content.scrollHeight + "px";
-// 		} else {
-// 			el.style.zIndex = 30;
-// 			el.style.maxHeight = content.scrollHeight + "px";
-// 		}
-// 	});
-// });
 
-const calculateSeriesHeight = (seriesContent) => {
-	// seriesContent.style.maxHeight = null;
+const expandSeries = (seriesContent) => {
 	// if (seriesContent.style.maxHeight) {
-	// 	seriesContent.style.zIndex = 0;
+		// seriesContent.style.maxHeight = null;
+		// seriesContent.style.zIndex = 0;
 	// } else {
-	seriesContent.style.zIndex = 30;
-	seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
+		seriesContent.style.zIndex = 30;
+		seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
 	// }
 }
 
@@ -56,7 +51,7 @@ seriesButtons.forEach(el => {
 			content.style.maxHeight = null;
 			content.style.zIndex = 0;
 		} else {
-			calculateSeriesHeight(content)
+			expandSeries(content)
 		}
 	});
 });
@@ -76,14 +71,14 @@ gameColl.forEach(gameBtn => {
 
 		if (gameHeight) {
 			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
-			calculateSeriesHeight(seriesContent)
+			expandSeries(seriesContent)
 			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
 		} else {
 			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
 			gameContent.style.zIndex = 30;
 			seriesContent.style.zIndex = 30;
 			seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
-			// calculateSeriesHeight(seriesContent)
+			// expandSeries(seriesContent)
 		}
 	})
 })
@@ -130,7 +125,7 @@ document.querySelector('.add-game-button')
 
 		gameContainer.innerText = 'new container'
 		gameList.appendChild(gameContainer)
-		calculateSeriesHeight(content)
+		expandSeries(content)
 	})
 
 const getRelatedElement = (el, className) => {
@@ -150,14 +145,20 @@ document.querySelector('.edit-series-button')
 				return menuList.dataset.series == btn.dataset.series
 			})
 		menuList.classList.add('hide')
-		const title = seriesBtn.firstElementChild
-		title.style.textDecoration = 'underline'
+		// const title = seriesBtn.firstElementChild
+		const title = $(seriesBtn, '.series-title')
+		title.classList.add('editing')
+		seriesBtn.classList.add('editing')
+		// title.style.textDecoration = 'underline'
 		title.contentEditable = true;
-		title.style.backgroundColor = 'white';
-		title.style.color = 'black';
+		// title.style.backgroundColor = 'white';
+		// title.style.color = 'black';
 		title.dataset.editing = 'true'
-		title.focus()
-		document.querySelector('.submit-series-name').classList.remove('hide')
+		// title.focus()
+		const submitButton = $(seriesBtn, '.submit-series-name')
+		submitButton.classList.remove('hide')
+
+		// document.querySelector('.submit-series-name').classList.remove('hide')
 
 		let sel = window.getSelection();
 		if (sel.toString() == '') { //no text selection
@@ -171,35 +172,38 @@ document.querySelector('.edit-series-button')
 
 
 	})
-	
+
 document.querySelector('.series-title')
-		.addEventListener('click', e => {
-	if (e.target.dataset.editing == 'true') {
-		
-		e.stopPropagation()
-		e.preventDefault()
-	}
+	.addEventListener('click', e => {
+		if (e.target.dataset.editing == 'true') {
+
+			e.stopPropagation()
+			e.preventDefault()
+		}
 
 
 	})
 
 document.querySelector('.submit-series-name')
 	.addEventListener('click', e => {
-		
+
 		e.stopPropagation()
 		e.preventDefault()
 
 		const saveBtn = e.target;
-		const seriesBtn = saveBtn.parentElement;
-		console.log(seriesBtn);
+		const seriesBtn = saveBtn.parentElement.parentElement;
+		const title = $(seriesBtn, '.series-title')
 		saveBtn.classList.add('hide')
-		const title = seriesBtn.firstElementChild
-		title.style.textDecoration = 'none'
+		title.classList.remove('editing')
+		seriesBtn.classList.remove('editing')
+
+		// const title = seriesBtn.firstElementChild
+		// title.style.textDecoration = 'none'
+		// title.style.backgroundColor = '#ffffff00';
+		// title.style.color = 'white';
 		title.contentEditable = false;
-		title.style.backgroundColor = '#ffffff00';
-		title.style.color = 'white';
 		title.dataset.editing = 'false'
-	
+
 		let range = document.createRange(); //range object
 		range.detach()
 		let sel = window.getSelection();
