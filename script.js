@@ -1,19 +1,40 @@
-const $ = (targetEl, selector, selectAll) => {
-	if (selectAll) {
-		const selectedEls = targetEl.querySelectorAll(selector)
-		return selectedEls;
-	} else {
-		const selectedEl = targetEl.querySelector(selector)
-		return selectedEl;
-	}
+import {
+	PlayerList
+} from './components/PlayerList.js'
+import {
+	seriesArray
+} from './series-data.js'
+import {
+	Game
+} from './components/Game.js'
+
+//UTILS
+const $ = (targetEl, selector) => {
+	const selectedEl = targetEl.querySelector(selector)
+	return selectedEl;
+}
+const $$ = (targetEl, selector) => {
+	const selectedEls = targetEl.querySelectorAll(selector)
+	return selectedEls;
 }
 
-const seriesContainers = $(document, '.series-content', true)
-const seriesButtons = $(document, '.series-collapsible', true)
-const gameColl = $(document, '.game-collapsible', true)
 
-const seriesMenuButton = document.querySelector(".series-menu-button");
-const seriesMenu = document.querySelector(".series-menu");
+
+const findRelatedElement = (el, className) => {
+	const relatedEl = [...$(document, `.${className}`)]
+		.find(rel => {
+			return el.dataset.series == relatedEl.dataset.series
+		})
+}
+
+const scont = $(document, '.series-container')
+
+const seriesContainers = $$(document, '.series-content')
+const seriesButtons = $$(document, '.series-collapsible')
+const gameColl = $$(document, '.game-collapsible')
+const seriesMenuButton = $(document, ".series-menu-button");
+const seriesMenu = $(document, ".series-menu");
+
 
 seriesMenuButton.addEventListener('click', e => {
 	e.target.nextElementSibling.classList.toggle('hide')
@@ -30,20 +51,19 @@ const expandSeries = (seriesContent, childScrollHeight) => {
 
 seriesButtons.forEach(el => {
 	el.addEventListener('click', e => {
-		e.target.classList.toggle("active");
-		const menubutton = el.parentElement.querySelector('.series-menu')
+		el.classList.toggle('active');
+		const menubutton = $(el.parentElement, '.series-menu')
 		menubutton.classList.add('hide')
 
 		let content = el.nextElementSibling;
 		if (content.style.maxHeight) {
-			const childContents = [...content.querySelectorAll('.content')];
+			const childContents = [...$$(content, '.content')];
 
 			childContents.forEach(ch => {
 				ch.style.maxHeight = null
 				ch.style.zIndex = 0
 				ch.classList.add('hide')
 			});
-
 			content.style.maxHeight = null;
 			content.style.zIndex = 0;
 		} else {
@@ -52,46 +72,46 @@ seriesButtons.forEach(el => {
 	});
 });
 
-gameColl.forEach(gameBtn => {
-	gameBtn.addEventListener('click', e => {
-		const seriesContent = e.target.parentElement.parentElement.parentElement;
-		const gameContent = e.target.nextElementSibling;
-		gameBtn.classList.toggle("active");
-		gameContent.classList.toggle('hide');
+// gameColl.forEach(gameBtn => {
+// 	gameBtn.addEventListener('click', e => {
+// 		e.target.classList.add('active')
 
-		const menubutton = seriesContent.querySelector('.series-menu')
-		menubutton.classList.add('hide')
+// 		const seriesContent = e.target.parentElement.parentElement.parentElement;
+// 		const gameContent = e.target.nextElementSibling;
+// 		gameBtn.classList.toggle("active");
+// 		gameContent.classList.toggle('hide');
 
-		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
-		let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
+// 		const menubutton = $(seriesContent, '.series-menu')
+// 		menubutton.classList.add('hide')
 
-		if (gameHeight) {
-			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
-			// expandSeries(seriesContent)
-			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
-		} else {
-			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
-			gameContent.style.zIndex = 30;
-			seriesContent.style.zIndex = 30;
-			expandSeries(seriesContent, gameContent.scrollHeight)
-		}
-	})
-})
+// 		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
+// 		let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
+
+// 		if (gameHeight) {
+// 			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
+// 			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
+// 		} else {
+// 			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
+// 			gameContent.style.zIndex = 30;
+// 			seriesContent.style.zIndex = 30;
+// 			expandSeries(seriesContent, gameContent.scrollHeight)
+// 		}
+// 	})
+// })
 
 
-document.querySelector('.add-series-button')
+$(document, '.add-series-button')
 	.addEventListener('click', e => {
-		const seriesList = document.querySelector('.series-list')
+		const seriesList = $(document, '.series-list')
 		const gameContainer = document.createElement('div');
 
 		gameContainer.innerText = 'new container'
-
 		seriesList.appendChild(gameContainer)
 	})
 
-document.querySelector('.delete-series-button')
+$(document, '.delete-series-button')
 	.addEventListener('click', e => {
-		const content = [...document.querySelectorAll('.series-container')]
+		const content = [...$$(document, '.series-container')]
 			.find(cont => {
 				return e.target.dataset.series == cont.dataset.series
 			})
@@ -100,15 +120,15 @@ document.querySelector('.delete-series-button')
 
 
 //TODO When a new game is added, recalculate series height!	
-document.querySelector('.add-game-button')
+$(document, '.add-game-button')
 	.addEventListener('click', e => {
-		const content = [...document.querySelectorAll('.series-content')]
+		const content = [...$$(document, '.series-content')]
 			.find(cont => {
 				return e.target.dataset.series == cont.dataset.series
 			})
 
 		e.target.parentElement.classList.add('hide')
-		const gameList = document.querySelector('.game-list')
+		const gameList = $(document, '.game-list')
 		const gameContainer = document.createElement('div');
 
 		gameContainer.innerText = 'new container'
@@ -116,37 +136,27 @@ document.querySelector('.add-game-button')
 		expandSeries(content)
 	})
 
-const getRelatedElement = (el, className) => {
-	const relatedEl = [...document.querySelectorAll(`.{className}`)]
-		.find(rel => {
-			return el.dataset.series == relatedEl.dataset.series
-		})
-}
 
-document.querySelector('.edit-series-button')
+$(document, '.edit-series-button')
 	.addEventListener('click', e => {
 		const targ = e.target
 		const menuList = targ.parentElement;
-		// const menuList = targ.parentElement;
-		const seriesBtn = [...document.querySelectorAll('.series-collapsible')]
+		const seriesBtn = [...$$(document, '.series-collapsible')]
 			.find(btn => {
 				return menuList.dataset.series == btn.dataset.series
-			})
-		menuList.classList.add('hide')
-		// const title = seriesBtn.firstElementChild
+			});
+
+		menuList.classList.add('hide');
+
 		const title = $(seriesBtn, '.series-title')
 		title.classList.add('editing')
-		seriesBtn.classList.add('editing')
-		// title.style.textDecoration = 'underline'
 		title.contentEditable = true;
-		// title.style.backgroundColor = 'white';
-		// title.style.color = 'black';
 		title.dataset.editing = 'true'
-		// title.focus()
+		seriesBtn.classList.add('editing')
+		title.focus()
+		
 		const submitButton = $(seriesBtn, '.submit-series-name')
 		submitButton.classList.remove('hide')
-
-		// document.querySelector('.submit-series-name').classList.remove('hide')
 
 		let sel = window.getSelection();
 		if (sel.toString() == '') { //no text selection
@@ -155,26 +165,26 @@ document.querySelector('.edit-series-button')
 				range.selectNodeContents(title); //sets Range
 				sel.removeAllRanges(); //remove all ranges from selection
 				sel.addRange(range); //add Range to a Selection.
-			}, 1);
+			}, 100);
 		}
-
-
 	})
 
-document.querySelector('.series-title')
+// $(document, '.series-title')
+// 	.addEventListener('click', e => {
+// 		const targ = e.target;
+// 		const parent = e.target.parentElement;
+
+// 		if (targ.dataset.editing == 'true') {
+// 			e.stopPropagation()
+// 			e.preventDefault()
+// 			parent.classList.toggle('active')
+// 		} else {
+// 			parent.classList.toggle('active')
+// 		}
+// 	})
+
+$(document, '.submit-series-name')
 	.addEventListener('click', e => {
-		if (e.target.dataset.editing == 'true') {
-
-			e.stopPropagation()
-			e.preventDefault()
-		}
-
-
-	})
-
-document.querySelector('.submit-series-name')
-	.addEventListener('click', e => {
-
 		e.stopPropagation()
 		e.preventDefault()
 
@@ -185,10 +195,6 @@ document.querySelector('.submit-series-name')
 		title.classList.remove('editing')
 		seriesBtn.classList.remove('editing')
 
-		// const title = seriesBtn.firstElementChild
-		// title.style.textDecoration = 'none'
-		// title.style.backgroundColor = '#ffffff00';
-		// title.style.color = 'white';
 		title.contentEditable = false;
 		title.dataset.editing = 'false'
 
@@ -196,19 +202,26 @@ document.querySelector('.submit-series-name')
 		range.detach()
 		let sel = window.getSelection();
 
-		sel.removeAllRanges(); //remove all ranges from selection
-		// saveBtn.classList.add('hide')
-		// seriesBtn.unfocus()
-
-
-		document.querySelector('.submit-series-name')
-
+		// sel.removeAllRanges(); //remove all ranges from selection
 	})
 
-
 const createSeries = () => {
-	const seriesList = document.querySelector('.series-list')
+	const seriesList = $(document, '.series-list')
 	const newSeriesContainer = document.createElement('div');
 	const newSeriesCollapsible = document.createElement('button');
 	const newSeriesContent = document.createElement('div');
 }
+
+
+const newGame = new Game($(document, '.game-list'), seriesArray[0].games[0])
+$(document, '.game-list').appendChild(newGame.render())
+$$(document, '.player-container')
+	.forEach((pl, i, pls) => {
+		// pl.addEventListener('click', e => {
+		// 	pl.classList.add('selected')
+
+		// 	if (e.target != pls[i]) {
+		// 		p.classList.remove('selected')
+		// 	}
+		// })
+	})

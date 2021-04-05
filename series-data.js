@@ -1,17 +1,17 @@
-const seriesArray = [
+export const seriesArray = [
 	{
 		id: 1,
 		seriesLength: 7,
-		playedCount: 2,
+		playedCount: 3,
 		players: [
 			{
 				id: 1,
-				name: Jake,
+				name: 'Jake',
 				wins: 4
 					},
 			{
 				id: 2,
-				name: Kit,
+				name: 'Kit',
 				wins: 1
 			}
 		],
@@ -23,14 +23,56 @@ const seriesArray = [
 				winner: 'Jake',
 				playerRanks: [
 					{
-						player: 'Jake',
+						name: 'Jake',
 						rank: 1,
-						stars: 5
+						stars: 5,
+						character: 'Peach'
+					},
+					{
+						name: 'Kit',
+						rank: 2,
+						stars: 0,
+						character: 'Mario'
+					}
+				]
+			},
+			{
+				id: 2,
+				map: 'Whomp Land',
+				date: '03/23/2021',
+				winner: 'Jake',
+				playerRanks: [
+					{
+						name: 'Jake',
+						rank: 1,
+						stars: 3,
+						character: 'Luigi'
+					},
+					{
+						name: 'Kit',
+						rank: 2,
+						stars: 1,
+						character: 'Goomba'
+					}
+				]
+			},
+			{
+				id: 3,
+				map: 'Gold Map',
+				date: '03/25/2021',
+				winner: 'Kit',
+				playerRanks: [
+					{
+						player: 'Jake',
+						rank: 2,
+						stars: 0,
+						character: 'Daisy'
 					},
 					{
 						player: 'Kit',
-						rank: 2,
-						stars: 0
+						rank: 1,
+						stars: 8,
+						character: 'Hammer Bro'
 					}
 				]
 			}
@@ -43,3 +85,7 @@ const seriesArray = [
 		archived: false
 	}
 ]
+
+{
+	seriesArray
+}
