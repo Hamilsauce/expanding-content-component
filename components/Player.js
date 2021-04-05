@@ -5,8 +5,6 @@ export class Player {
 		this.props = props;
 		this.data = {
 			isSelected: false,
-			heading: 'My Todos',
-			todos: ['Swim', 'Climb', 'Jump', 'Play']
 		}
 	}
 
@@ -21,9 +19,8 @@ export class Player {
 
 	handleClick() {
 		this.root.addEventListener('click', e => {
-
+// e.path.contains()
 			this.data.isSelected = !this.data.isSelected;
-console.log(this.data.isSelected);
 			if (this.data.isSelected) {
 				this.root.classList.add('active')
 			} else {
@@ -38,8 +35,9 @@ console.log(this.data.isSelected);
 		const playerHTML = this.template(this.props)
 		this.root.classList.add(this.className)
 		this.root.dataset.playerName = this.props.name
+		this.root.dataset.id = this.props.id
 		this.root.insertAdjacentHTML('beforeend', playerHTML)
-		this.handleClick();
+		// this.handleClick();
 		// this.rootElement.dataset.gameId = prop.id
 		// console.log(this.props);
 		// this.root.innerHTML = playerHTML

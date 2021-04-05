@@ -23,12 +23,14 @@ export const seriesArray = [
 				winner: 'Jake',
 				playerRanks: [
 					{
+						id: 1,
 						name: 'Jake',
 						rank: 1,
 						stars: 5,
 						character: 'Peach'
 					},
 					{
+						id: 2,
 						name: 'Kit',
 						rank: 2,
 						stars: 0,

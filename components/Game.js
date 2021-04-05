@@ -13,9 +13,32 @@ export class Game {
 			id: this.props.id,
 			seriesId: this.parent.dataset.series,
 			players: this.props.playerRanks,
-			isExpanded: false
-
+			isExpanded: false,
+			selectedPlayerId: null
 		};
+	}
+
+	handlePlayerSelect() {
+		this.root.addEventListener('click', e => {
+			console.log(e);
+			if (e.target.classList.contains('player-container')) {
+				let targ = e.target;
+				this.data.selectedPlayerId = this.data.selectedPlayerId == targ.dataset.id ? null : targ.dataset.id;
+			} else if (e.target.parentElement.classList.contains('player-container')) {
+				let targ = e.target.parentElement;
+				this.data.selectedPlayerId = this.data.selectedPlayerId == targ.dataset.id ? null : targ.dataset.id;
+				// this.selectedPlayerId = targ.dataset.id || null;
+			}
+			[...this.root.querySelectorAll('.player-container')]
+				.forEach(pl => {
+					if (pl.dataset.id == this.data.selectedPlayerId) {
+						pl.classList.add('active')
+					} else {
+						pl.classList.remove('active')
+					}
+				})
+		})
+
 	}
 
 	template(props) {
@@ -71,7 +94,7 @@ export class Game {
 			}
 		})
 	}
-	
+
 	createPlayerElement(listEl, player) {
 		const pl = new Player(listEl, player).render()
 		return pl;
@@ -86,14 +109,15 @@ export class Game {
 		this.root.insertAdjacentHTML('beforeend', this.template(this.props))
 
 		let list = this.root.querySelector('.player-list')
-		
+
 		this.data.players
 			.forEach(player => {
 				list.appendChild(this.createPlayerElement(list, player))
 			})
-		
+
 		const gameBtn = this.root.querySelector('.game-collapsible')
 		this.handleBtnClick(gameBtn)
+		this.handlePlayerSelect()
 		return this.root;
 	}
 }
