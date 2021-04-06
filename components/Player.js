@@ -3,9 +3,25 @@ export class Player {
 		this.className = 'player-container';
 		this.root = document.createElement('div');
 		this.props = props;
+		this._isSelected = false;
+		this.count = 0
 		this.data = {
 			isSelected: false,
 		}
+	}
+	
+	set isSelected(val) {
+		this.data.isSelected = val
+		if (this.isSelected == true) {
+			this.root.classList.add('active')
+		} else {
+			this.root.classList.remove('active')
+		
+		}
+	}
+	
+	get isSelected() {
+		return this.data.isSelected;
 	}
 
 	template(props) {
@@ -20,13 +36,8 @@ export class Player {
 	handleClick() {
 		this.root.addEventListener('click', e => {
 // e.path.contains()
-			this.data.isSelected = !this.data.isSelected;
-			if (this.data.isSelected) {
-				this.root.classList.add('active')
-			} else {
-				this.root.classList.remove('active')
-
-			}
+			this.isSelected = !this.isSelected;
+			// console.log(this.isSelected);
 		})
 	}
 
@@ -37,7 +48,7 @@ export class Player {
 		this.root.dataset.playerName = this.props.name
 		this.root.dataset.id = this.props.id
 		this.root.insertAdjacentHTML('beforeend', playerHTML)
-		// this.handleClick();
+		this.handleClick();
 		// this.rootElement.dataset.gameId = prop.id
 		// console.log(this.props);
 		// this.root.innerHTML = playerHTML

@@ -318,6 +318,7 @@ border-right: 1px solid white;
 }
 .player-container.active {
 	font-weight: 500;
+	background: #C2B684;
 }
 .player-list {
 	display: flex;

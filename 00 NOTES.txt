@@ -1,3 +1,7 @@
+TODO 4/5/21: use getter/setters w/ proxies to react to data changes,
+	Also, call render functions in getter/setters
+
+
 render flow
  - function to create 
  - 
@@ -11,4 +15,6 @@ event handlers needed:
  need func to create series element (container, header, add game button)
  need func to create 1 series collapse/event handler and content per series el
  need func to create 1 series collapse/event handler and content per series el
+ 
+ 
  
