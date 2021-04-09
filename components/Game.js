@@ -33,13 +33,13 @@ export class Game {
 
 	template(props) {
 		return `
-			<button class="collapsible game-collapsible" data-game="1" data-series="1">Open Game1</button>
+			<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Open Game1</div>
 			<div class="content game-content hide">
 				<div class="game-details">
-					<div class="game-map-name" data-game="1" data-series="1">
+					<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
 						Map: Fruit Islands
 					</div>
-					<div class="game-date" data-game="1" data-series="1">
+					<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
 						03/20/2021
 					</div>
 				</div>
@@ -55,8 +55,7 @@ export class Game {
 		gameBtn.addEventListener('click', e => {
 			const seriesContent = e.target.parentElement.parentElement.parentElement;
 			const gameContent = e.target.nextElementSibling;
-			e.target.classList.add('active')
-			gameBtn.classList.toggle("active");
+			gameBtn.classList.toggle('active');
 			gameContent.classList.toggle('hide');
 
 			const menubutton = seriesContent.querySelector('.series-menu');

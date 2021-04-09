@@ -16,9 +16,119 @@
   			<h2 class="header-title">Mario Tracker</h2>
   			<div class="add-series-button">+</div>
   		</header>
-  		<p>Active Series</p>
   		<!-- Series List Component -->
-  		<div class="series-list">
+  		<div class="series-list active-series-list">
+  			<div class="series-list-title">Active Series</div>
+  			<!-- Series Component -->
+  			<div class="series-container" data-series="1">
+  				<div class="collapsible series-collapsible" data-series="1">
+  					<div class="title-container">
+  						<div class="series-title" data-series="false">Series 1</div>
+  						<div class="submit-series-name hide">
+  							ok
+  						</div>
+  					</div>
+  				</div>
+  				<div class="series-content content" data-series="1">
+  					<header class="series-header">
+  						<div class="series-players-button">03/21/2021</div>
+  						<div class="game-count-display">Games: 2</div>
+  						<!-- Menu Component -->
+  						<div class="series-menu-container">
+  							<div class="series-menu-button">Menu</div>
+  							<ul class="series-menu hide" data-series="1">
+  								<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
+  								<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
+  								<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
+  								<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+  							</ul>
+  						</div>
+  					</header>
+  					<!-- GameList Component -->
+  					<div class="game-list" data-series="1">
+  						<!-- Game Component -->
+  						<!-- <div class="game-container">
+  							<button class="collapsible game-collapsible" data-game="1" data-series="1">Open Game1</button>
+  							<div class="content game-content hide">
+  								<div class="game-details">
+  									<div class="game-map-name" data-game="1" data-series="1">
+  										Map: Fruit Islands
+  									</div>
+  									<div class="game-date" data-game="1" data-series="1">
+  										03/20/2021
+  									</div>
+  								</div>
+  								PlayerList Component
+  								<div class="player-list">
+  									Player Component
+  									<div class="player-container" data-player="1" data-game="1" data-series="1">
+  										<div class="player-name">Player 1: Jake</div>
+  										<div class="player-character-name">Character: Peach</div>
+  										<div class="player-rank">Rank: 1st</div>
+  									</div>
+  									<div class="player-container" data-player="2" data-game="2" data-series="2">
+  										<div class="player-name">Player 1: Jake</div>
+  										<div class="player-character-name">Character: Peach</div>
+  										<div class="player-rank">Rank: 1st</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div> -->
+  						<!-- </div> -->
+  						<!-- <div class="game-container">
+  							<button class="collapsible game-collapsible">Open Game1</button>
+  							<div class="content game-content hide">
+  								<div class="game-details">
+  									<div class="game-map-name" data-game="1" data-series="1">
+  										Map: Fruit Islands
+  									</div>
+  									<div class="game-date" data-game="1" data-series="1">
+  										03/20/2021
+  									</div>
+  								</div>
+  								<div class="player-list">
+  									<div class="player-container" data-player="1" data-game="1" data-series="1">
+  										<div class="player-name">Player 1: Jake</div>
+  										<div class="player-character-name">Character: Peach</div>
+  										<div class="player-rank">Rank: 1st</div>
+  									</div>
+  									<div class="player-container" data-player="2" data-game="2" data-series="2">
+  										<div class="player-name">Player 1: Jake</div>
+  										<div class="player-character-name">Character: Peach</div>
+  										<div class="player-rank">Rank: 1st</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div> -->
+  					</div>
+  					<!-- <div class="add-game-button">Add Game</div> -->
+  				</div>
+  			</div>
+  			<!-- - -->
+  			<div class="series-container">
+  				<button class="collapsible series-collapsible">Open Series</button>
+  				<div class="series-content content">
+  					<div class="series-header">series header</div>
+  					<div class="game-list">
+  						<div class="game-container">
+  							<button class="collapsible game-collapsible">Open Game</button>
+  							<div class="content internal-content game-content">
+  								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  							</div>
+  						</div>
+  						<div class="game-container">
+  							<button class="collapsible game-collapsible">Open Game</button>
+  							<div class="content internal-content game-content">
+  								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  							</div>
+  						</div>
+  					</div>
+  					<div class="add-game-button">Add Game</div>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="series-list archived-series-list">
+  			<div class="series-list-title">Archived Series</div>
   			<!-- Series Component -->
   			<div class="series-container" data-series="1">
   				<div class="collapsible series-collapsible" data-series="1">
