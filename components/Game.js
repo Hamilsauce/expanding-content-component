@@ -22,7 +22,7 @@ export class Game {
 
 	playerSelected(e) {
 		this.root.addEventListener('playerSelected', e => {
-			this.data.selectedPlayerId = e.detail.playerId;
+			this.data.selectedPlayerId = this.data.selectedPlayerId == e.detail.playerId ? null : e.detail.playerId;
 			
 			this.components.players
 				.forEach(pl => {
@@ -43,9 +43,9 @@ export class Game {
 						03/20/2021
 					</div>
 				</div>
-		<!-- PlayerList Component -->
+					<!-- PlayerList Component -->
 				<div class="player-list">
-		<!-- Player Component -->
+					<!-- Player Component -->
 				</div>
 			</div>
 		`;
@@ -76,7 +76,7 @@ export class Game {
 				if (gameContent.scrollHeight) {
 					seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
 				} else {
-					seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
+					seriesContent.style.maxHeight = `${seriesContent.scrollHeight}px`;
 				}
 			}
 		})
@@ -94,7 +94,7 @@ export class Game {
 		this.root.dataset.series = this.data.seriesId;
 		this.root.insertAdjacentHTML('beforeend', this.template(this.props))
 
-		let list = this.root.querySelector('.player-list')
+		const list = this.root.querySelector('.player-list')
 		const gameBtn = this.root.querySelector('.game-collapsible')
 
 		this.data.players

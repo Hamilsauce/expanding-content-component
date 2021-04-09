@@ -17,17 +17,12 @@ export class Player {
 			this.root.classList.add('active')
 		} else {
 			this.root.classList.remove('active')
-
 		}
-		console.log(this);
 	}
 
-	set isSelected(val) {
+	set isSelected(val) { //Deprecated
 		this.data.isSelected = val
-		if (this.isSelected == true) {
-		} else {
-			// this.root.classList.remove('active')
-		}
+		if (this.isSelected == true) {} else {}
 	}
 
 	get isSelected() {
@@ -44,11 +39,16 @@ export class Player {
 	}
 
 	handleClick() {
-
-		this.root.addEventListener('click', e => {
-			const selectEvent = new CustomEvent('playerSelected', { bubbles: true, detail: { playerId: this.props.id } })
-			this.root.dispatchEvent(selectEvent)
-		})
+		this.root
+			.addEventListener('click', e => {
+				const selectEvent = new CustomEvent('playerSelected', {
+					bubbles: true,
+					detail: {
+						playerId: this.props.id
+					}
+				})
+				this.root.dispatchEvent(selectEvent)
+			})
 	}
 
 	render() {
