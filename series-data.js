@@ -45,12 +45,14 @@ export const seriesArray = [
 				winner: 'Jake',
 				playerRanks: [
 					{
+						id: 1,
 						name: 'Jake',
 						rank: 1,
 						stars: 3,
 						character: 'Luigi'
 					},
 					{
+						id: 2,
 						name: 'Kit',
 						rank: 2,
 						stars: 1,
@@ -65,12 +67,14 @@ export const seriesArray = [
 				winner: 'Kit',
 				playerRanks: [
 					{
+						id: 1,
 						player: 'Jake',
 						rank: 2,
 						stars: 0,
 						character: 'Daisy'
 					},
 					{
+						id: 2,
 						player: 'Kit',
 						rank: 1,
 						stars: 8,

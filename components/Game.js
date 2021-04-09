@@ -4,11 +4,13 @@ import {
 
 export class Game {
 	constructor(parent, props) {
+		this.props = props;
 		this.className = 'game-container';
 		this.parent = parent;
-		// this.rootElement = root;
 		this.root = document.createElement('div');
-		this.props = props;
+		this.components = {
+			players: []
+		};
 		this.data = {
 			id: this.props.id,
 			seriesId: this.parent.dataset.series,
@@ -18,57 +20,42 @@ export class Game {
 		};
 	}
 
-	handlePlayerSelect() {
-		this.root.addEventListener('click', e => {
-			console.log(e);
-			if (e.target.classList.contains('player-container')) {
-				let targ = e.target;
-				this.data.selectedPlayerId = this.data.selectedPlayerId == targ.dataset.id ? null : targ.dataset.id;
-			} else if (e.target.parentElement.classList.contains('player-container')) {
-				let targ = e.target.parentElement;
-				this.data.selectedPlayerId = this.data.selectedPlayerId == targ.dataset.id ? null : targ.dataset.id;
-				// this.selectedPlayerId = targ.dataset.id || null;
-			}
-			[...this.root.querySelectorAll('.player-container')]
+	playerSelected(e) {
+		this.root.addEventListener('playerSelected', e => {
+			this.data.selectedPlayerId = e.detail.playerId;
+			
+			this.components.players
 				.forEach(pl => {
-					if (pl.dataset.id == this.data.selectedPlayerId) {
-						pl.classList.add('active')
-					} else {
-						pl.classList.remove('active')
-					}
+					pl.selectedPlayerId = this.data.selectedPlayerId
 				})
 		})
-
 	}
 
 	template(props) {
-		// <div class="game-container" data-game="${this.data.id}" data-series="${this.data.seriesId}">
 		return `
-				<button class="collapsible game-collapsible" data-game="1" data-series="1">Open Game1</button>
-				<div class="content game-content hide">
-					<div class="game-details">
-						<div class="game-map-name" data-game="1" data-series="1">
-							Map: Fruit Islands
-						</div>
-						<div class="game-date" data-game="1" data-series="1">
-							03/20/2021
-						</div>
+			<button class="collapsible game-collapsible" data-game="1" data-series="1">Open Game1</button>
+			<div class="content game-content hide">
+				<div class="game-details">
+					<div class="game-map-name" data-game="1" data-series="1">
+						Map: Fruit Islands
 					</div>
-			<!-- PlayerList Component -->
-					<div class="player-list">
-			<!-- Player Component -->
-			
+					<div class="game-date" data-game="1" data-series="1">
+						03/20/2021
 					</div>
 				</div>
+		<!-- PlayerList Component -->
+				<div class="player-list">
+		<!-- Player Component -->
+				</div>
+			</div>
 		`;
-		// </div>
 	}
 
 	handleBtnClick(gameBtn) {
 		gameBtn.addEventListener('click', e => {
-			e.target.classList.add('active')
 			const seriesContent = e.target.parentElement.parentElement.parentElement;
 			const gameContent = e.target.nextElementSibling;
+			e.target.classList.add('active')
 			gameBtn.classList.toggle("active");
 			gameContent.classList.toggle('hide');
 
@@ -96,28 +83,27 @@ export class Game {
 	}
 
 	createPlayerElement(listEl, player) {
-		const pl = new Player(listEl, player).render()
-		return pl;
+		const pl = new Player(listEl, player);
+		this.components.players.push(pl)
+		return pl.render()
 	}
 
 	render() {
-		console.log('this.props');
-		console.log(this.props);
 		this.root.classList.add(this.className)
 		this.root.dataset.id = this.data.id;
 		this.root.dataset.series = this.data.seriesId;
 		this.root.insertAdjacentHTML('beforeend', this.template(this.props))
 
 		let list = this.root.querySelector('.player-list')
+		const gameBtn = this.root.querySelector('.game-collapsible')
 
 		this.data.players
 			.forEach(player => {
 				list.appendChild(this.createPlayerElement(list, player))
 			})
 
-		const gameBtn = this.root.querySelector('.game-collapsible')
 		this.handleBtnClick(gameBtn)
-		this.handlePlayerSelect()
+		this.playerSelected()
 		return this.root;
 	}
 }

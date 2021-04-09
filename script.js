@@ -154,7 +154,7 @@ $(document, '.edit-series-button')
 		title.dataset.editing = 'true'
 		seriesBtn.classList.add('editing')
 		title.focus()
-		
+
 		const submitButton = $(seriesBtn, '.submit-series-name')
 		submitButton.classList.remove('hide')
 
@@ -212,16 +212,21 @@ const createSeries = () => {
 	const newSeriesContent = document.createElement('div');
 }
 
+console.log('games');
+seriesArray[0].games
+	.forEach(game => {
 
-const newGame = new Game($(document, '.game-list'), seriesArray[0].games[0])
-$(document, '.game-list').appendChild(newGame.render())
-$$(document, '.player-container')
-	.forEach((pl, i, pls) => {
-		// pl.addEventListener('click', e => {
-		// 	pl.classList.add('selected')
 
-		// 	if (e.target != pls[i]) {
-		// 		p.classList.remove('selected')
-		// 	}
-		// })
+		const newGame = new Game($(document, '.game-list'), game)
+		$(document, '.game-list').appendChild(newGame.render())
+		$$(document, '.player-container')
+			.forEach((pl, i, pls) => {
+				// pl.addEventListener('click', e => {
+				// 	pl.classList.add('selected')
+
+				// 	if (e.target != pls[i]) {
+				// 		p.classList.remove('selected')
+				// 	}
+				// })
+			})
 	})
