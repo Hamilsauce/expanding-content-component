@@ -19,6 +19,45 @@ const $$ = (targetEl, selector) => {
 }
 
 
+// console.log(JSON.stringify(seriesArray, false, 2));
+let url = 'http://localhost:3000/'
+// fetch(url)
+// 	.then(response => response.json())
+// 	.then(data => {
+// 		console.log('data');
+// 		console.log(data);
+// 	})
+// 	.catch(err => {
+// 		console.log(err);
+// 		console.error(err);
+// 	});
+
+
+const fetchJson = () => {
+	const myHeaders = new Headers({
+		"Content-Type": "application/json",
+		Accept: "application/json"
+	});
+
+
+//FETCH
+
+	fetch("http://localhost:3000", {
+			headers: myHeaders,
+		})
+		.then(response => {
+			console.log('res');
+			console.log(response);
+			// return response.json();
+		})
+		.then(data => {
+			console.log(data);
+			// this.setState({ data });
+		});
+};
+fetchJson()
+
+
 
 const findRelatedElement = (el, className) => {
 	const relatedEl = [...$(document, `.${className}`)]

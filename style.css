@@ -39,7 +39,7 @@ body {}
 .add-series-button {
 	display: block;
 	color: green;
-	font-size: 2em;
+	font-size: 1.2em;
 	font-weight: 300;
 	text-align: center;
 	justify-content: center;
@@ -234,7 +234,7 @@ border-right: 1px solid white;
 	position: absolute;
 	display: grid;
 	grid-gap: 1px;
-	width: 145px;
+	width: 175px;
 	top: 0;
 	/* left: 0; */
 	right: 0;
@@ -268,8 +268,8 @@ border-right: 1px solid white;
 }
 
 .series-menu li {
-	padding: 6px 6px;
-	font-size: 0.8em;
+	padding: 10px 12px;
+	/* font-size: 0.8em; */
 	border-radius: 2.5px;
 	border: 1px solid#00000099;
 	background: #FFFFFF;
@@ -292,6 +292,7 @@ border-right: 1px solid white;
 	/* height: fit-content; */
 	/* max-height: 0; */
 	padding: 0px 2px 0px 5px;
+	transition: opacity 0.07s ease-in-out, height 0.4s;
 	z-index: 0;
 }
 
@@ -299,7 +300,19 @@ border-right: 1px solid white;
 
 	/* height: fit-content; */
 	/* max-height: 0; */
+	transition: opacity 0.07s ease-in-out, height 0.4s;
 	z-index: 0;
+}
+
+.game-collapsible {
+	padding: 15px 10px 5px 10px;
+	background: #FFFFFF00;
+	/* background: #EAEAEA; */
+	color: #585858;
+}
+
+.game-collapsible:after {
+	color: #585858;
 }
 
 .add-game-button {
@@ -327,4 +340,5 @@ border-right: 1px solid white;
 	padding: 5px;
 	margin-bottom: 10px;
 	/* padding: 20px; */
+	transition: opacity 0.0ease-in-out, height 0.4s;
 }

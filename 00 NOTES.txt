@@ -1,6 +1,10 @@
 TODO 4/5/21: use getter/setters w/ proxies to react to data changes,
 	Also, call render functions in getter/setters
 
+FEATURES:
+ - let user save players to use in multi games
+ - 
+
 
 render flow
  - function to create 
