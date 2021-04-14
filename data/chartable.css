@@ -6,7 +6,7 @@
 }
 
 table {
-	width: fit-content;
+	width: 100%;
 	border-collapse: collapse;
 	text-align: center;
 }
@@ -25,10 +25,22 @@ th {
 	text-align: center;
 }
 
+.smp-character-table {
+	width: 100%;
+}
+.smp-char-table.hide {
+	display: none;
+}
+
+
 .character-name-cell {
 	display: grid;
 	flex-direction: row;
 	justify-content: left;
 	align-items: center;
 	text-align: left;
+}
+
+.json-output.hide {
+	display: none;
 }
