@@ -175,7 +175,6 @@ $(document, '.add-game-button')
 		expandSeries(content)
 	})
 
-
 $(document, '.edit-series-button')
 	.addEventListener('click', e => {
 		const targ = e.target
@@ -254,8 +253,6 @@ const createSeries = () => {
 console.log('games');
 seriesArray[0].games
 	.forEach(game => {
-
-
 		const newGame = new Game($(document, '.game-list'), game)
 		$(document, '.game-list').appendChild(newGame.render())
 		$$(document, '.player-container')

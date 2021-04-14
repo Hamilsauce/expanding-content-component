@@ -14,7 +14,20 @@
   	<div class="app">
   		<header class="app-header">
   			<h2 class="header-title">Mario Tracker</h2>
+  		<div class="add-series-container">
   			<div class="add-series-button">+ Series</div>
+  			<div class="add-series-content">
+  				<div class="add-series-title"></div>
+  				<form class="add-series-form">
+  					<div class="control-container">
+  						<label for="player-name-input">Player</label>
+  						<input type="text" class="player-name-input" name="player-name-input" id="player-name-input" value="" />
+  					</div>
+  					<button type="button">Add Player</button>
+  				</form>
+  			</div>
+  			
+  		</div>
   		</header>
   		<!-- Series List Component -->
   		<div class="series-list active-series-list">
@@ -45,63 +58,7 @@
   						</div>
   					</header>
   					<!-- GameList Component -->
-  					<div class="game-list" data-series="1">
-  						<!-- Game Component -->
-  						<!-- <div class="game-container">
-  							<button class="collapsible game-collapsible" data-game="1" data-series="1">Open Game1</button>
-  							<div class="content game-content hide">
-  								<div class="game-details">
-  									<div class="game-map-name" data-game="1" data-series="1">
-  										Map: Fruit Islands
-  									</div>
-  									<div class="game-date" data-game="1" data-series="1">
-  										03/20/2021
-  									</div>
-  								</div>
-  								PlayerList Component
-  								<div class="player-list">
-  									Player Component
-  									<div class="player-container" data-player="1" data-game="1" data-series="1">
-  										<div class="player-name">Player 1: Jake</div>
-  										<div class="player-character-name">Character: Peach</div>
-  										<div class="player-rank">Rank: 1st</div>
-  									</div>
-  									<div class="player-container" data-player="2" data-game="2" data-series="2">
-  										<div class="player-name">Player 1: Jake</div>
-  										<div class="player-character-name">Character: Peach</div>
-  										<div class="player-rank">Rank: 1st</div>
-  									</div>
-  								</div>
-  							</div>
-  						</div> -->
-  						<!-- </div> -->
-  						<!-- <div class="game-container">
-  							<button class="collapsible game-collapsible">Open Game1</button>
-  							<div class="content game-content hide">
-  								<div class="game-details">
-  									<div class="game-map-name" data-game="1" data-series="1">
-  										Map: Fruit Islands
-  									</div>
-  									<div class="game-date" data-game="1" data-series="1">
-  										03/20/2021
-  									</div>
-  								</div>
-  								<div class="player-list">
-  									<div class="player-container" data-player="1" data-game="1" data-series="1">
-  										<div class="player-name">Player 1: Jake</div>
-  										<div class="player-character-name">Character: Peach</div>
-  										<div class="player-rank">Rank: 1st</div>
-  									</div>
-  									<div class="player-container" data-player="2" data-game="2" data-series="2">
-  										<div class="player-name">Player 1: Jake</div>
-  										<div class="player-character-name">Character: Peach</div>
-  										<div class="player-rank">Rank: 1st</div>
-  									</div>
-  								</div>
-  							</div>
-  						</div> -->
-  					</div>
-  					<!-- <div class="add-game-button">Add Game</div> -->
+  					<div class="game-list" data-series="1"></div>
   				</div>
   			</div>
   			<!-- - -->

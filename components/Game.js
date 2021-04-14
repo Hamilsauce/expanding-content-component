@@ -22,8 +22,10 @@ export class Game {
 
 	playerSelected(e) {
 		this.root.addEventListener('playerSelected', e => {
-			this.data.selectedPlayerId = this.data.selectedPlayerId == e.detail.playerId ? null : e.detail.playerId;
-			
+			this.data.selectedPlayerId =
+				this.data.selectedPlayerId == e.detail.playerId ?
+				null : e.detail.playerId;
+
 			this.components.players
 				.forEach(pl => {
 					pl.selectedPlayerId = this.data.selectedPlayerId
@@ -33,14 +35,14 @@ export class Game {
 
 	template(props) {
 		return `
-			<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Open Game1</div>
+			<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Game ${this.data.id}</div>
 			<div class="content game-content hide">
 				<div class="game-details">
 					<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-						Map: Fruit Islands
+						Map: ${this.props.map}
 					</div>
 					<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-						03/20/2021
+						${this.props.date}
 					</div>
 				</div>
 					<!-- PlayerList Component -->

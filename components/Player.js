@@ -48,6 +48,7 @@ export class Player {
 					}
 				})
 				this.root.dispatchEvent(selectEvent)
+				console.log(selectEvent);
 			})
 	}
 
