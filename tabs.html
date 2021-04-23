@@ -78,6 +78,7 @@
 				el.classList.remove('active')
 			})
 		}
+		
 		const tablinks = document.querySelectorAll('.tablinks');
 		const tabContainer = document.querySelector('.tab');
 
@@ -92,20 +93,17 @@
 					.find(tCon => {
 						return tCon.dataset.city == tabValue
 					})
+					
 				if (matchedContent.dataset.active != 'true') {
-					console.log(matchedContent)
 					matchedContent.dataset.active = 'true'
 					matchedContent.classList.add('active');
 				} else {
-					console.log('in active false')
-				
 					matchedContent.dataset.active = 'false'
 					matchedContent.classList.remove('active');
-
 				}
 			})
-
 		})
+		
 		calculateSeriesHeight(content)
 	</script>
 </body>

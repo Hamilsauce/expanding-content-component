@@ -1,0 +1,21 @@
+.add-series-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: right;
+	text-align: right;
+}
+.add-series-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: right;
+	background: #A3A4B1;
+	overflow-y: hidden;
+}
+.add-series-title {
+	text-align: right;
+	width: fit-content;
+}
+.add-series-content.hide {
+	height: 0px;
+}

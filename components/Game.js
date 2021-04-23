@@ -10,22 +10,30 @@ export class Game {
 		this.root = document.createElement('div');
 		this.components = {
 			players: []
-		};
-		this.data = {
+		}
+		this._data = {
 			id: this.props.id,
 			seriesId: this.parent.dataset.series,
 			players: this.props.playerRanks,
 			isExpanded: false,
 			selectedPlayerId: null
-		};
+		}
 	}
+
+	get data() {
+		// console.log(this._data);
+		return this._data;
+	}
+
+
 
 	playerSelected(e) {
 		this.root.addEventListener('playerSelected', e => {
 			this.data.selectedPlayerId =
-				this.data.selectedPlayerId == e.detail.playerId ?
-				null : e.detail.playerId;
-
+				this.data.selectedPlayerId == e.detail.playerId 
+				? null 
+				: e.detail.playerId;
+			// console.log(this.data.selectedPlayerId);
 			this.components.players
 				.forEach(pl => {
 					pl.selectedPlayerId = this.data.selectedPlayerId

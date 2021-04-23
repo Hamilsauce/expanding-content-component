@@ -40,7 +40,7 @@ const fetchJson = () => {
 	});
 
 
-//FETCH
+	//FETCH
 
 	fetch("http://localhost:3000", {
 			headers: myHeaders,
@@ -103,6 +103,7 @@ seriesButtons.forEach(el => {
 				ch.style.zIndex = 0
 				ch.classList.add('hide')
 			});
+			
 			content.style.maxHeight = null;
 			content.style.zIndex = 0;
 		} else {
@@ -111,38 +112,11 @@ seriesButtons.forEach(el => {
 	});
 });
 
-// gameColl.forEach(gameBtn => {
-// 	gameBtn.addEventListener('click', e => {
-// 		e.target.classList.add('active')
-
-// 		const seriesContent = e.target.parentElement.parentElement.parentElement;
-// 		const gameContent = e.target.nextElementSibling;
-// 		gameBtn.classList.toggle("active");
-// 		gameContent.classList.toggle('hide');
-
-// 		const menubutton = $(seriesContent, '.series-menu')
-// 		menubutton.classList.add('hide')
-
-// 		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
-// 		let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
-
-// 		if (gameHeight) {
-// 			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
-// 			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
-// 		} else {
-// 			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
-// 			gameContent.style.zIndex = 30;
-// 			seriesContent.style.zIndex = 30;
-// 			expandSeries(seriesContent, gameContent.scrollHeight)
-// 		}
-// 	})
-// })
-
-
 $(document, '.add-series-button')
 	.addEventListener('click', e => {
 		const seriesList = $(document, '.series-list')
 		const gameContainer = document.createElement('div');
+		$(document, '.add-series-content').classList.toggle('hide')
 
 		gameContainer.innerText = 'new container'
 		seriesList.appendChild(gameContainer)
@@ -156,8 +130,7 @@ $(document, '.delete-series-button')
 			})
 		content.remove()
 	})
-
-
+	
 //TODO When a new game is added, recalculate series height!	
 $(document, '.add-game-button')
 	.addEventListener('click', e => {
@@ -250,7 +223,7 @@ const createSeries = () => {
 	const newSeriesContent = document.createElement('div');
 }
 
-console.log('games');
+
 seriesArray[0].games
 	.forEach(game => {
 		const newGame = new Game($(document, '.game-list'), game)

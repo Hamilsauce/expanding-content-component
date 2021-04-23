@@ -54,7 +54,8 @@ body {}
 	flex-direction: row;
 	justify-content: space-between;
 	background: #5c7178;
-	;
+	text-align: right;
+	
 	/* background-color: #777; */
 	color: white;
 	cursor: pointer;
@@ -197,6 +198,8 @@ border-right: 1px solid white;
 }
 
 .series-container {
+	/* display: flex; */
+	/* flex-direction: column; */
 	z-index: 30;
 	margin-bottom: 5px;
 	padding: 5px;
@@ -226,7 +229,9 @@ border-right: 1px solid white;
 }
 
 .series-menu-button {
+	/* width: 100%; */
 	z-index: 31;
+	/* text-align: right; */
 	/* background: white; */
 }
 
