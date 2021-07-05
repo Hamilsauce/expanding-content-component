@@ -112,6 +112,9 @@ body {}
 	width: fit-content;
 	max-width: 185px;
 	border: 0px solid #FFFFFF00;
+	white-space: nowrap;
+
+	
 }
 
 .series-title.editing {

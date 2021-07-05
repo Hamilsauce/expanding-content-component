@@ -38,8 +38,7 @@ const fetchJson = () => {
 		"Content-Type": "application/json",
 		Accept: "application/json"
 	});
-
-
+	
 	//FETCH
 
 	fetch("http://localhost:3000", {
