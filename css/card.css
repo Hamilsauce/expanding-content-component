@@ -1,0 +1,180 @@
+.card {
+	position: relative;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-areas:
+		'date head'
+		'date hrs'
+		'date det ';
+	grid-template-columns: 90px 1fr;
+	grid-template-rows: 30px 30px 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	justify-content: space-between;
+	height: fit-content;
+	max-height: 160px;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	padding: 0px 10px 0px 0px;
+	background: #FFFFFF;
+	border: 1px solid #B3B3B3BD;
+	border-radius: 2px;
+	box-shadow: 0 2px 5px 0px #60606050;
+	transition: 0.2s;
+	/* overflow: hidden; */
+	/* transition-delay: 0.2s; */
+}
+
+.card.activeCard {
+	box-shadow: 0 2px 5px #60606070;
+	border: 1px solid #727272;
+	min-height: 120px;
+	max-height: fit-content;
+	/* height: 100%; */
+	transition: 0.2s;
+	/* transition-delay: 0.0s; */
+}
+
+.card-right-column {
+	display: grid;
+	grid-template-areas:
+		'head head'
+		'hrs hrs'
+		'det det';
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 2fr;
+	justify-content: space-between;
+	grid-row-gap: 5px;
+	padding: 0px 5px 5px 0px;
+	background: #FFFFFF;
+	border: 1px solid #B3B3B3BD;
+	border-radius: 2px;
+	box-shadow: 0 2px 5px 0px #60606050;
+	transition: 0.2s;
+}
+
+.card:hover {}
+
+.card-header-container {
+	grid-area: head;
+	transition: 0.4s ease-out;
+}
+
+.activeCard>.card-header-container {}
+
+.card-header {
+	display: flex;
+	flex-direction: row;
+	column-gap: 10px;
+	justify-content: flex-end;
+	border-bottom: 2px solid #DDDDDD;
+}
+
+.card-edit-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.header-button {
+	padding: 2px 10px 2px 10px;
+}
+
+.card-date {
+	grid-area: date;
+	display: flex;
+	flex-direction: column;
+	grid-column: 1;
+	align-items: flex-end;
+	justify-content: center;
+	padding-right: 10px;
+	padding-left: 10px;
+	border-right: 2px solid #E6E6E6;
+	background: #F0F0F0;
+	font-size: 1.5em;
+	font-weight: 700;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.activeCard>.card-date {
+	background: #727AD6;
+	box-shadow: 0px 0px 100px 10px inset #4D57C8;
+	color: white;
+	transition: 0.3s ease;
+	transition-delay: 0.0s;
+}
+
+.card-date>.month {
+	font-size: 0.8em;
+	font-weight: 300;
+	letter-spacing: 1px;
+	line-height: 0.8;
+}
+
+.card-hours-container {
+	grid-area: hrs;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-column-gap: 5px;
+	justify-content: space-between;
+	max-width: 100%;
+	padding: 0px 5px 0px 5px;
+	padding: 0px 0px 0px 0px;
+	font-size: 1.2em;
+	font-weight: 500;
+	text-align: left;
+}
+
+.card-hours-container.editing {
+	grid-template-columns: 1fr;
+	border: 1px solid #DDDDDD;
+	border-radius: 3px;
+}
+
+.card-hours-value {
+	max-width: 100px;
+	padding: 0px 0px 0px 5px;
+	font-weight: 500;
+	overflow: hidden;
+	text-align: right;
+}
+
+.card-hours-value.editing {
+	max-width: 100%;
+	padding: 0px 5px 0px 5px;
+	font-weight: 500;
+	overflow: hidden;
+	text-align: right;
+}
+
+.card-details {
+	grid-area: det;
+	/* height: 100%; */
+	max-height: 80px;
+	padding: 5px 5px 0px 5px;
+	overflow: hidden;
+	margin: 0px 0px 10px 0px;
+	border-radius: 3px;
+	transition: 0.2s;
+}
+
+.activeCard>.card-details {
+	max-height: 100%;
+	
+	/* overflow: hidden; */
+}
+
+.card-details.editing {
+	border: 1px solid #DDDDDD;
+}
+
+.collapsed>.card {
+	height: 0;
+	max-height: 0;
+	min-zoom: 0;
+	overflow: hidden;
+	padding: 0;
+	border: none;
+	transition: 0.2s;
+}
