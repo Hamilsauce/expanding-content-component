@@ -4,7 +4,6 @@ let charData;
 let selectedOption;
 const charSelect = ham.qs('#character-select')
 
-console.log(charSelect);
 const charSelectTemplate = `
 	<select name="character-select" class="character-select" id="character-select">
 		<option value="wario" class="character-select-option">Wario</option>
@@ -18,7 +17,6 @@ const charSelectOptionTemplate = `
 const createSelectOptions = chars => {
 	const optionElements = chars
 		.map((char, i) => {
-			console.log(char);
 			const opt = ham.createNewElement('option', `${char.id}-option`, ['character-option'], { id: char.id });
 			opt.value = char.name;
 			opt.textContent = char.name;
@@ -26,7 +24,37 @@ const createSelectOptions = chars => {
 		});
 
 	optionElements.forEach(opt => charSelect.appendChild(opt))
-	console.log(optionElements);
+}
+
+const generateDieElements = char => {
+
+	
+} 
+
+const updateCharDisplay = char => {
+	const displayEl = ham.qs('.character-selection-display');
+	const nameEl = ham.qs('.character-name');
+	const imgEl = ham.qs('.character-image');
+	const dieContainter = ham.qs('.character-die-container');
+
+
+
+	const dieSideElements = char.die
+		.map((side, i) => {
+	//	<div class="die-side die-1" id="die-1" data-die-side-value="-3">-3</div>
+			
+			const sideEls = 
+			ham.createNewElement(
+				'div', 
+				`die-${i}`, 
+				['die-side'], 
+				{ dieSideValue: side}
+			);
+			sideEl.textContent = side;
+			return opt
+		});
+
+	sideEls.forEach(el => dieContainter.appendChild(el))
 }
 
 
@@ -35,7 +63,6 @@ fetch('../data/character-data.json')
 	.then(data => {
 		charData = data;
 		createSelectOptions(charData)
-		// this.setState({ data });
 	});
 
 charSelect.addEventListener('change', e => {
@@ -43,4 +70,19 @@ charSelect.addEventListener('change', e => {
 
 	const targetChar = charData.find(_ => _.id === +selectedOption.dataset.id)
 	const evt = new CustomEvent('charSelectionChange', { bubbles: true, detail: { char: targetChar } })
+	e.target.dispatchEvent(evt);
+});
+
+
+
+ham.qs('.app').addEventListener('charSelectionChange', e => {
+	console.log(e.detail.char);
+	//get char display container ref
+	//get char name ref, update 
+	//get img ref, update img src
+	//get dieside container ref, 
+	//	create new dieside for each in char die
+
+
+
 })
