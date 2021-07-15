@@ -17,7 +17,9 @@ const charSelectOptionTemplate = `
 const createSelectOptions = chars => {
 	const optionElements = chars
 		.map((char, i) => {
-			const opt = ham.createNewElement('option', `${char.id}-option`, ['character-option'], { id: char.id });
+			const opt = ham.createNewElement('option', `${char.id}-option`, ['character-option'], {
+				id: char.id
+			});
 			opt.value = char.name;
 			opt.textContent = char.name;
 			return opt
@@ -26,10 +28,18 @@ const createSelectOptions = chars => {
 	optionElements.forEach(opt => charSelect.appendChild(opt))
 }
 
-const generateDieElements = char => {
-
-	
-} 
+const generateDieSideElement = (side, index) => {
+	const sideEl =
+		ham.createNewElement(
+			'div',
+			`die-${index}`,
+			['die-side'], {
+				dieSideValue: side
+			}
+		);
+	sideEl.textContent = side;
+	return sideEl
+}
 
 const updateCharDisplay = char => {
 	const displayEl = ham.qs('.character-selection-display');
@@ -37,24 +47,12 @@ const updateCharDisplay = char => {
 	const imgEl = ham.qs('.character-image');
 	const dieContainter = ham.qs('.character-die-container');
 
-
-
-	const dieSideElements = char.die
-		.map((side, i) => {
-	//	<div class="die-side die-1" id="die-1" data-die-side-value="-3">-3</div>
-			
-			const sideEls = 
-			ham.createNewElement(
-				'div', 
-				`die-${i}`, 
-				['die-side'], 
-				{ dieSideValue: side}
-			);
-			sideEl.textContent = side;
-			return opt
-		});
-
-	sideEls.forEach(el => dieContainter.appendChild(el))
+	const dieSideElements = char.die.map((side, i) =>  generateDieSideElement(side, i));
+	imgEl.src = char.imgsrc;
+	nameEl.textContent = char.name;
+	// empty container and create new die sides
+	while (dieContainter.firstChild) dieContainter.removeChild(dieContainter.firstChild);
+	dieSideElements.forEach(el => dieContainter.appendChild(el))
 }
 
 
@@ -69,7 +67,12 @@ charSelect.addEventListener('change', e => {
 	selectedOption = e.target.selectedOptions[0]
 
 	const targetChar = charData.find(_ => _.id === +selectedOption.dataset.id)
-	const evt = new CustomEvent('charSelectionChange', { bubbles: true, detail: { char: targetChar } })
+	const evt = new CustomEvent('charSelectionChange', {
+		bubbles: true,
+		detail: {
+			char: targetChar
+		}
+	})
 	e.target.dispatchEvent(evt);
 });
 
@@ -77,12 +80,13 @@ charSelect.addEventListener('change', e => {
 
 ham.qs('.app').addEventListener('charSelectionChange', e => {
 	console.log(e.detail.char);
+
 	//get char display container ref
-	//get char name ref, update 
+	//get char name ref, update
 	//get img ref, update img src
-	//get dieside container ref, 
+	//get dieside container ref,
 	//	create new dieside for each in char die
 
-
+	updateCharDisplay(e.detail.char)
 
 })
