@@ -17,17 +17,15 @@ const charSelectOptionTemplate = `
 
 const createSelectOptions = chars => {
 	const optionElements = chars
-	.map((char, i) => {
-		console.log(char);
-		const opt = ham.createNewElement('option', `${char.id}-option`, ['character-option']);
-		// const opt = document.createElement('div');
-		opt.value = char.name;
-		opt.textContent = char.name;
-		return opt
-		
-	});
+		.map((char, i) => {
+			console.log(char);
+			const opt = ham.createNewElement('option', `${char.id}-option`, ['character-option'], { id: char.id });
+			opt.value = char.name;
+			opt.textContent = char.name;
+			return opt
+		});
+
 	optionElements.forEach(opt => charSelect.appendChild(opt))
-	
 	console.log(optionElements);
 }
 
@@ -39,10 +37,10 @@ fetch('../data/character-data.json')
 		createSelectOptions(charData)
 		// this.setState({ data });
 	});
-	
+
 charSelect.addEventListener('change', e => {
-	console.log(e);
-	console.log(e.target);
 	selectedOption = e.target.selectedOptions[0]
-	console.log(selectedOption);
+
+	const targetChar = charData.find(_ => _.id === +selectedOption.dataset.id)
+	const evt = new CustomEvent('charSelectionChange', { bubbles: true, detail: { char: targetChar } })
 })
