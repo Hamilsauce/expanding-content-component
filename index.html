@@ -33,56 +33,26 @@
   		<footer class="footer"></footer>
   		<modal-dimmer></modal-dimmer>
   	</div>
-  
   	<!-- App Component -->
   	<!-- <script src="script.js" type="module" charset="utf-8"></script> -->
-  	 <template id="app2">
-  	<div class="app">
-  		<app-header></app-header>
-  		<series-list>
-  			<series>
-  				<series-menu></series-menu>
-  				<game></game>
-  			</series>
-  		</series-list>
-  		<series-list></series-list>
-  	</div>
-  </template>
-  <template id="series-list">
-  	<div class="series-list active-series-list">
-  		<div class="series-list-title">Active Series</div>
-  	</div>
-  </template>
-  <template id="collapsible">
-  	<div class="collapsible series-collapsible" data-series="1">
-  		<div class="title-container">
-  			<div class="series-title" data-series="false">Series 1</div>
-  			<div class="submit-series-name hide">
-  				ok
-  			</div>
+  	<template id="app2">
+  		<div class="app">
+  			<app-header></app-header>
+  			<series-list>
+  				<series>
+  					<series-menu></series-menu>
+  					<game></game>
+  				</series>
+  			</series-list>
+  			<series-list></series-list>
   		</div>
-  	</div>
-  </template>
-  <template id="app-header">
-  	<header class="app-header">
-  		<h2 class="header-title">{{title}}</h2>
-  		<div class="add-series-container">
-  			<div class="add-series-button">+ Series</div>
-  			<div class="add-series-content hide">
-  				<div class="add-series-title"></div>
-  				<form class="add-series-form">
-  					<div class="control-container">
-  						<label for="player-name-input">Player</label>
-  						<input type="text" class="player-name-input" name="player-name-input" id="player-name-input" value="" />
-  					</div>
-  					<button type="button">Add Player</button>
-  				</form>
-  			</div>
+  	</template>
+  	<template id="series-list">
+  		<div class="series-list active-series-list">
+  			<div class="series-list-title">Active Series</div>
   		</div>
-  	</header>
-  </template>
-  <template id="series">
-  	<div class="series-container" data-series="1">
+  	</template>
+  	<template id="collapsible">
   		<div class="collapsible series-collapsible" data-series="1">
   			<div class="title-container">
   				<div class="series-title" data-series="false">Series 1</div>
@@ -91,57 +61,85 @@
   				</div>
   			</div>
   		</div>
-  		<div class="series-content content" data-series="1">
-  			<header class="series-header">
-  				<div class="series-players-button">03/21/2021</div>
-  				<div class="game-count-display">Games: 2</div>
-  				<!-- Menu Component -->
-  				<div class="series-menu-container">
-  					<div class="series-menu-button">Menu</div>
-  					<ul class="series-menu hide" data-series="1">
-  						<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-  						<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-  						<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-  						<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
-  					</ul>
+  	</template>
+  	<template id="app-header">
+  		<header class="app-header">
+  			<h2 class="header-title">{{title}}</h2>
+  			<div class="add-series-container">
+  				<div class="add-series-button">+ Series</div>
+  				<div class="add-series-content hide">
+  					<div class="add-series-title"></div>
+  					<form class="add-series-form">
+  						<div class="control-container">
+  							<label for="player-name-input">Player</label>
+  							<input type="text" class="player-name-input" name="player-name-input" id="player-name-input" value="" />
+  						</div>
+  						<button type="button">Add Player</button>
+  					</form>
   				</div>
-  			</header>
-  			<!-- GameList Component -->
-  			<div class="game-list" data-series="1"></div>
-  		</div>
-  	</div>
-  </template>
-  <template id="series-menu">
-  	<div class="series-menu-container">
-  		<div class="series-menu-button">Menu</div>
-  		<ul class="series-menu hide" data-series="1">
-  			<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-  			<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-  			<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-  			<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
-  		</ul>
-  	</div>
-  </template>
-  <template id="game">
-  	<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Game ${this.data.id}</div>
-  	<div class="content game-content hide">
-  		<div class="game-details">
-  			<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-  				Map: ${this.props.map}
   			</div>
-  			<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-  				${this.props.date}
+  		</header>
+  	</template>
+  	<template id="series">
+  		<div class="series-container" data-series="1">
+  			<div class="collapsible series-collapsible" data-series="1">
+  				<div class="title-container">
+  					<div class="series-title" data-series="false">Series 1</div>
+  					<div class="submit-series-name hide">
+  						ok
+  					</div>
+  				</div>
+  			</div>
+  			<div class="series-content content" data-series="1">
+  				<header class="series-header">
+  					<div class="series-players-button">03/21/2021</div>
+  					<div class="game-count-display">Games: 2</div>
+  					<!-- Menu Component -->
+  					<div class="series-menu-container">
+  						<div class="series-menu-button">Menu</div>
+  						<ul class="series-menu hide" data-series="1">
+  							<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
+  							<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
+  							<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
+  							<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+  						</ul>
+  					</div>
+  				</header>
+  				<!-- GameList Component -->
+  				<div class="game-list" data-series="1"></div>
   			</div>
   		</div>
-  		<!-- PlayerList Component -->
-  		<div class="player-list">
-  			<!-- Player Component -->
+  	</template>
+  	<template id="series-menu">
+  		<div class="series-menu-container">
+  			<div class="series-menu-button">Menu</div>
+  			<ul class="series-menu hide" data-series="1">
+  				<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
+  				<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
+  				<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
+  				<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+  			</ul>
   		</div>
-  	</div>
-  </template>
+  	</template>
+  	<template id="game">
+  		<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Game ${this.data.id}</div>
+  		<div class="content game-content hide">
+  			<div class="game-details">
+  				<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+  					Map: ${this.props.map}
+  				</div>
+  				<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+  					${this.props.date}
+  				</div>
+  			</div>
+  			<!-- PlayerList Component -->
+  			<div class="player-list">
+  				<!-- Player Component -->
+  			</div>
+  		</div>
+  	</template>
   	<script src="script.js" type="module" charset="utf-8"></script>
   </body>
 
   </html>
   <!-- - -->
-  <!-- - --><ul></ul>

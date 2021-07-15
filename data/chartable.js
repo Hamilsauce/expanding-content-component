@@ -1,7 +1,18 @@
+import ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js'
 const charTable = document.querySelector('.smp-char-table')
-const jsonDisplay = document.querySelector('.json-output')
+const jsonDisplay = document.querySelector('.json-output');
 
+class TableRow {
+	constructor() {
+		this.rowElement = ham.createNewElement('tr', '',['table-row'])
+		console.log('row', this.row);
+	}
+}
+
+console.log(new TableRow);
+console.log('b4 sp', charTable.rows);
 const tRows = [...charTable.rows];
+console.log('after sp', tRows);
 const tableHeaders = [...tRows.shift().cells]
 
 //* col names
