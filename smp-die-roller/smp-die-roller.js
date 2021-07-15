@@ -2,6 +2,7 @@ import ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js'
 
 let charData;
 let selectedOption;
+let selectedChar;
 const charSelect = ham.qs('#character-select')
 
 const charSelectTemplate = `
@@ -47,13 +48,34 @@ const updateCharDisplay = char => {
 	const imgEl = ham.qs('.character-image');
 	const dieContainter = ham.qs('.character-die-container');
 
-	const dieSideElements = char.die.map((side, i) =>  generateDieSideElement(side, i));
+	const dieSideElements = char.die.map((side, i) => generateDieSideElement(side, i));
 	imgEl.src = char.imgsrc;
 	nameEl.textContent = char.name;
+
 	// empty container and create new die sides
 	while (dieContainter.firstChild) dieContainter.removeChild(dieContainter.firstChild);
 	dieSideElements.forEach(el => dieContainter.appendChild(el))
 }
+
+const rollDie = dieSides => {
+	console.log(dieSides);
+	const getRandomNumber = (min, max) => {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	// this.game.toggleRollClasses(die);
+	let dieSideIndex = getRandomNumber(0, 5);
+	console.log('rando', dieSideIndex);
+	console.log('dieindex',dieSides[dieSideIndex]);
+	return dieSides[dieSideIndex]
+
+
+}
+
+
+
 
 
 fetch('../data/character-data.json')
@@ -63,14 +85,17 @@ fetch('../data/character-data.json')
 		createSelectOptions(charData)
 	});
 
+
+
+
 charSelect.addEventListener('change', e => {
 	selectedOption = e.target.selectedOptions[0]
 
-	const targetChar = charData.find(_ => _.id === +selectedOption.dataset.id)
+	selectedChar = charData.find(_ => _.id === +selectedOption.dataset.id)
 	const evt = new CustomEvent('charSelectionChange', {
 		bubbles: true,
 		detail: {
-			char: targetChar
+			char: selectedChar
 		}
 	})
 	e.target.dispatchEvent(evt);
@@ -79,14 +104,14 @@ charSelect.addEventListener('change', e => {
 
 
 ham.qs('.app').addEventListener('charSelectionChange', e => {
-	console.log(e.detail.char);
-
-	//get char display container ref
-	//get char name ref, update
-	//get img ref, update img src
-	//get dieside container ref,
-	//	create new dieside for each in char die
-
 	updateCharDisplay(e.detail.char)
+	
 
+})
+
+ham.qs('.roll-submit-button').addEventListener('click', e => {
+	const roll = rollDie(selectedChar.die)
+ham.qs('.roll-result').textContent = roll
+
+	
 })
