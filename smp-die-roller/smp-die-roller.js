@@ -47,9 +47,10 @@ const generateDieSideElement = (side, index) => {
 	const sideEl =
 		ham.createNewElement(
 			'div',
-			`die-${index}`,
+			`side-${index}`,
 			['die-side'], {
-				dieSideValue: side
+			dieSideValue: side,
+			id: index
 			}
 		);
 	sideEl.textContent = side;
@@ -72,15 +73,22 @@ const updateCharacterDisplay = char => {
 }
 
 const rollDie = dieSides => {
+	const dieContainter = ham.qs('.character-die-container');
 	const getRandomNumber = (min, max) => {
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	let resultSide = dieSides[getRandomNumber(0, 5)];
+	let randomIndex =getRandomNumber(0, 5)
+	
+	let resultSide = dieSides[randomIndex];
 	resultSide.timesRolled++;
+	resultSide.id = randomIndex;
+	
+	
+	
 	handleLocalStorage('set', 'smpCharacterData', charData);
-	return resultSide;
+	return [resultSide, randomIndex];
 }
 
 charSelect.addEventListener('change', e => {
@@ -102,8 +110,15 @@ ham.qs('.app').addEventListener('charSelectionChange', e => {
 })
 
 ham.qs('.roll-submit-button').addEventListener('click', e => {
-	const roll = rollDie(selectedChar.die)
+	const dieContainter = ham.qs('.character-die-container');
+const children =	[...dieContainter.children]
+children.forEach(c => c.classList.remove('rolled'));
+	
 
+	const roll = rollDie(selectedChar.die)
+	const rolledSideEl = children.find((c, i) =>  +c.dataset.id == roll[1] );
+	rolledSideEl.classList.add('rolled')
+console.log(rolledSideEl);
 	chart('bar', selectedChar.die)
-	ham.qs('.roll-result').textContent = roll.value
+	ham.qs('.roll-result').textContent = roll[0].value
 })
