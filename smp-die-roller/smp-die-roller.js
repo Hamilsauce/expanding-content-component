@@ -4,6 +4,7 @@ import chart from './roll-chart.js';
 let charData;
 let selectedOption;
 let selectedChar;
+let totalRollsCount;
 const charSelect = ham.qs('#character-select');
 
 const handleLocalStorage = (action, key, data) => {
@@ -25,7 +26,8 @@ const createSelectOptions = chars => {
 	optionElements.forEach(opt => charSelect.appendChild(opt))
 }
 
-;(() => {
+;
+(() => {
 	if (handleLocalStorage('get', 'smpCharacterData')) {
 		charData = handleLocalStorage('get', 'smpCharacterData')
 
@@ -49,8 +51,8 @@ const generateDieSideElement = (side, index) => {
 			'div',
 			`side-${index}`,
 			['die-side'], {
-			dieSideValue: side,
-			id: index
+				dieSideValue: side,
+				id: index
 			}
 		);
 	sideEl.textContent = side;
@@ -62,10 +64,12 @@ const updateCharacterDisplay = char => {
 	const nameEl = ham.qs('.character-name');
 	const imgEl = ham.qs('.character-image');
 	const dieContainter = ham.qs('.character-die-container');
+	const rollTotal = ham.qs('.total-rolls-display');
 	const dieSideElements = char.die.map((side, i) => generateDieSideElement(side.value, i));
 
 	imgEl.src = char.imgsrc;
 	nameEl.textContent = char.name;
+	rollTotal.textContent = `Total Rolls: ${totalRollsCount}`
 
 	// empty container and create new die sides
 	while (dieContainter.firstChild) dieContainter.removeChild(dieContainter.firstChild);
@@ -79,14 +83,14 @@ const rollDie = dieSides => {
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	let randomIndex =getRandomNumber(0, 5)
-	
+	let randomIndex = getRandomNumber(0, 5)
+
 	let resultSide = dieSides[randomIndex];
 	resultSide.timesRolled++;
 	resultSide.id = randomIndex;
-	
-	
-	
+
+
+
 	handleLocalStorage('set', 'smpCharacterData', charData);
 	return [resultSide, randomIndex];
 }
@@ -94,7 +98,9 @@ const rollDie = dieSides => {
 charSelect.addEventListener('change', e => {
 	selectedOption = e.target.selectedOptions[0]
 	selectedChar = charData.find(_ => _.id === +selectedOption.dataset.id)
-
+	totalRollsCount = selectedChar.die.reduce((sum, curr) => {
+		return sum += +curr.timesRolled
+	}, 0);
 	const evt = new CustomEvent('charSelectionChange', {
 		bubbles: true,
 		detail: {
@@ -111,14 +117,22 @@ ham.qs('.app').addEventListener('charSelectionChange', e => {
 
 ham.qs('.roll-submit-button').addEventListener('click', e => {
 	const dieContainter = ham.qs('.character-die-container');
-const children =	[...dieContainter.children]
-children.forEach(c => c.classList.remove('rolled'));
-	
+	const children = [...dieContainter.children]
+	const rollTotal = ham.qs('.total-rolls-display');
+
+	children.forEach(c => c.classList.remove('rolled'));
+
 
 	const roll = rollDie(selectedChar.die)
-	const rolledSideEl = children.find((c, i) =>  +c.dataset.id == roll[1] );
-	rolledSideEl.classList.add('rolled')
-console.log(rolledSideEl);
+	totalRollsCount = selectedChar.die.reduce((sum, curr) => {
+		return sum += +curr.timesRolled
+	}, 0);
+	rollTotal.textContent = `Total Rolls: ${totalRollsCount}`
+	
+	// updateCharacterDisplay(selectedChar)
+	const rolledSideEl = children.find((c, i) => +c.dataset.id == roll[1]);
+	console.log(rolledSideEl);
 	chart('bar', selectedChar.die)
 	ham.qs('.roll-result').textContent = roll[0].value
+	rolledSideEl.classList.add('rolled')
 })
