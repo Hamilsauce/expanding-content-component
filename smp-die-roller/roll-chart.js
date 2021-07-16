@@ -2,15 +2,16 @@ import ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js';
 
 
 export default (chartType = 'bar', die) => {
+	console.log(die);
 	const ctx = ham.qs('canvas').getContext('2d');
 	const chart = new Chart(ctx, {
 		type: chartType,
 		data: {
-			labels: die,
+			labels: die.map(side => side.value),
 			datasets: [{
 				label: 'Totals',
 				//TODO replace w dynamic data
-				data: [1, 2, 3, 4, 5, 6],
+				data: die.map(side => +side.timesRolled),
 				backgroundColor: ['#473876 ', '#AC4F46', '#358246', '#AC9A46', '#287670', '#A5754A'],
 				borderColor: ['#ffffffe0 ', '#ffffffe0', '#ffffffe0', '#ffffffe0', '#ffffffe0', '#ffffffe0'],
 				borderWidth: 1
@@ -48,7 +49,9 @@ export default (chartType = 'bar', die) => {
 					},
 						ticks: {
 						fontColor: '#ffffff',
-						stepSize: 1,
+							stepSize: 1,
+							beginAtZero: true,
+
 						fontSize: 14
 					}
 				}]

@@ -4,7 +4,12 @@ import chart from './roll-chart.js';
 let charData;
 let selectedOption;
 let selectedChar;
-const charSelect = ham.qs('#character-select')
+const charSelect = ham.qs('#character-select');
+
+const handleLocalStorage = (action, key, data) => {
+	if (action === 'set') localStorage.setItem('smpCharacterData', JSON.stringify(data))
+	else return JSON.parse(localStorage.getItem(key))
+}
 
 const createSelectOptions = chars => {
 	const optionElements = chars
@@ -19,6 +24,24 @@ const createSelectOptions = chars => {
 
 	optionElements.forEach(opt => charSelect.appendChild(opt))
 }
+
+;(() => {
+	if (handleLocalStorage('get', 'smpCharacterData')) {
+		charData = handleLocalStorage('get', 'smpCharacterData')
+
+		createSelectOptions(charData)
+	} else {
+		fetch('../data/character-data.json')
+			.then(response => response.json())
+			.then(data => {
+				handleLocalStorage('set', 'smpCharacterData', data)
+				charData = handleLocalStorage('get', 'smpCharacterData')
+
+				createSelectOptions(charData)
+			});
+	}
+})()
+
 
 const generateDieSideElement = (side, index) => {
 	const sideEl =
@@ -38,7 +61,7 @@ const updateCharacterDisplay = char => {
 	const nameEl = ham.qs('.character-name');
 	const imgEl = ham.qs('.character-image');
 	const dieContainter = ham.qs('.character-die-container');
-	const dieSideElements = char.die.map((side, i) => generateDieSideElement(side, i));
+	const dieSideElements = char.die.map((side, i) => generateDieSideElement(side.value, i));
 
 	imgEl.src = char.imgsrc;
 	nameEl.textContent = char.name;
@@ -54,21 +77,16 @@ const rollDie = dieSides => {
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	let dieSideIndex = getRandomNumber(0, 5);
-	return dieSides[dieSideIndex]
+	let resultSide = dieSides[getRandomNumber(0, 5)];
+	resultSide.timesRolled++;
+	handleLocalStorage('set', 'smpCharacterData', charData);
+	return resultSide;
 }
-
-fetch('../data/character-data.json')
-	.then(response => response.json())
-	.then(data => {
-		charData = data;
-		createSelectOptions(charData)
-	});
 
 charSelect.addEventListener('change', e => {
 	selectedOption = e.target.selectedOptions[0]
 	selectedChar = charData.find(_ => _.id === +selectedOption.dataset.id)
-	
+
 	const evt = new CustomEvent('charSelectionChange', {
 		bubbles: true,
 		detail: {
@@ -79,6 +97,7 @@ charSelect.addEventListener('change', e => {
 });
 
 ham.qs('.app').addEventListener('charSelectionChange', e => {
+	console.log('detail', e.detail.char);
 	updateCharacterDisplay(e.detail.char)
 })
 
@@ -86,6 +105,5 @@ ham.qs('.roll-submit-button').addEventListener('click', e => {
 	const roll = rollDie(selectedChar.die)
 
 	chart('bar', selectedChar.die)
-	ham.qs('.roll-result').textContent = roll
+	ham.qs('.roll-result').textContent = roll.value
 })
-

@@ -1,282 +1,642 @@
 [
-	{
-		"name": "Donkey Kong",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-dk-1.png",
-		"die": [
-			{ "timesRolled": 0,"value": "+5c" },
-			{ "timesRolled": 0,"value": "0" },
-			{ "timesRolled": 0,"value": "0" },
-			{ "timesRolled": 0,"value": "0" },
-			{ "timesRolled": 0,"value": "10" },
-			{ "timesRolled": 0,"value": "10"} 
+  {
+    "name": "Donkey Kong",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-dk-1.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "+5c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "10"
+      },
+      {
+        "timesRolled": 0,
+        "value": "10"
+      }
     ],
-		"rank": "S",
-		"id": 1
+    "rank": "S",
+    "id": 1
   },
-	{
-		"name": "Bowser",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-bowser.png",
-		"die": [
-      "-3c",
-      "-3c",
-      "1",
-      "8",
-      "9",
-      "10"
+  {
+    "name": "Bowser",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-bowser.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "-3c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "-3c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "8"
+      },
+      {
+        "timesRolled": 0,
+        "value": "9"
+      },
+      {
+        "timesRolled": 0,
+        "value": "10"
+      }
     ],
-		"rank": "S",
-		"id": 2
+    "rank": "S",
+    "id": 2
   },
-	{
-		"name": "Boo",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-boo.png",
-		"die": [
-      "-2c",
-      "-2c",
-      "5",
-      "5",
-      "7",
-      "7"
+  {
+    "name": "Boo",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-boo.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "-2c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "-2c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      }
     ],
-		"rank": "S",
-		"id": 3
+    "rank": "S",
+    "id": 3
   },
-	{
-		"name": "Wario",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-wario.png",
-		"die": [
-      "6",
-      "6",
-      "6",
-      "6",
-      "-2c",
-      "-2c"
+  {
+    "name": "Wario",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-wario.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "6"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      },
+      {
+        "timesRolled": 0,
+        "value": "-2c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "-2c"
+      }
     ],
-		"rank": "S",
-		"id": 4
+    "rank": "S",
+    "id": 4
   },
-	{
-		"name": "Peach",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-peach.png",
-		"die": [
-      "0",
-      "2",
-      "4",
-      "4",
-      "4",
-      "6"
+  {
+    "name": "Peach",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-peach.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "2"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      }
     ],
-		"rank": "A",
-		"id": 5
+    "rank": "A",
+    "id": 5
   },
-	{
-		"name": "Daisy",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-daisy-1.png",
-		"die": [
-      "3",
-      "3",
-      "3",
-      "3",
-      "4",
-      "4"
+  {
+    "name": "Daisy",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-daisy-1.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      }
     ],
-		"rank": "A",
-		"id": 6
+    "rank": "A",
+    "id": 6
   },
-	{
-		"name": "Dry Bones",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-drybones.png",
-		"die": [
-      "1",
-      "1",
-      "1",
-      "6",
-      "6",
-      "6"
+  {
+    "name": "Dry Bones",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-drybones.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      }
     ],
-		"rank": "A",
-		"id": 7
+    "rank": "A",
+    "id": 7
   },
-	{
-		"name": "Pom Pom",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-pompom.png",
-		"die": [
-      "0",
-      "3",
-      "3",
-      "3",
-      "3",
-      "8"
+  {
+    "name": "Pom Pom",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-pompom.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "8"
+      }
     ],
-		"rank": "A",
-		"id": 8
+    "rank": "A",
+    "id": 8
   },
-	{
-		"name": "Mario",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-mario.png",
-		"die": [
-      "1",
-      "3",
-      "3",
-      "3",
-      "5",
-      "6"
+  {
+    "name": "Mario",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-mario.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      }
     ],
-		"rank": "B",
-		"id": 9
+    "rank": "B",
+    "id": 9
   },
-	{
-		"name": "Luigi",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-luigi.png",
-		"die": [
-      "1",
-      "1",
-      "1",
-      "5",
-      "6",
-      "7"
+  {
+    "name": "Luigi",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-luigi.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      }
     ],
-		"rank": "B",
-		"id": 10
+    "rank": "B",
+    "id": 10
   },
-	{
-		"name": "Waluigi",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-waluigi.png",
-		"die": [
-      "-3c",
-      "1",
-      "3",
-      "5",
-      "5",
-      "7"
+  {
+    "name": "Waluigi",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-waluigi.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "-3c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      }
     ],
-		"rank": "B",
-		"id": 11
+    "rank": "B",
+    "id": 11
   },
-	{
-		"name": "Goomba",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-goomba.png",
-		"die": [
-      "+2c",
-      "+2c",
-      "3",
-      "4",
-      "5",
-      "6"
+  {
+    "name": "Goomba",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-goomba.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "+2c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "+2c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      }
     ],
-		"rank": "B",
-		"id": 12
+    "rank": "B",
+    "id": 12
   },
-	{
-		"name": "Bowser Jr.",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-bowserjr.png",
-		"die": [
-      "1",
-      "1",
-      "1",
-      "4",
-      "4",
-      "9"
+  {
+    "name": "Bowser Jr.",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-bowserjr.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "9"
+      }
     ],
-		"rank": "B",
-		"id": 13
+    "rank": "B",
+    "id": 13
   },
-	{
-		"name": "Rosalina",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-rosalina.png",
-		"die": [
-      "+2c",
-      "+2c",
-      "2",
-      "3",
-      "4",
-      "8"
+  {
+    "name": "Rosalina",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-rosalina.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "+2c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "+2c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "2"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "8"
+      }
     ],
-		"rank": "C",
-		"id": 14
+    "rank": "C",
+    "id": 14
   },
-	{
-		"name": "Diddy Kong",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-diddy.png",
-		"die": [
-      "0",
-      "0",
-      "0",
-      "7",
-      "7",
-      "7"
+  {
+    "name": "Diddy Kong",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-diddy.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      }
     ],
-		"rank": "C",
-		"id": 15
+    "rank": "C",
+    "id": 15
   },
-	{
-		"name": "MontyMole",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-monty.png",
-		"die": [
-      "+1c",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6"
+  {
+    "name": "MontyMole",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-monty.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "+1c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "2"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "6"
+      }
     ],
-		"rank": "D",
-		"id": 16
+    "rank": "D",
+    "id": 16
   },
-	{
-		"name": "Shy Guy",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-shyguy.png",
-		"die": [
-      "0",
-      "4",
-      "4",
-      "4",
-      "4",
-      "4"
+  {
+    "name": "Shy Guy",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-shyguy.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      },
+      {
+        "timesRolled": 0,
+        "value": "4"
+      }
     ],
-		"rank": "D",
-		"id": 17
+    "rank": "D",
+    "id": 17
   },
-	{
-		"name": "Yoshi",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-yoshi.png",
-		"die": [
-      "0",
-      "1",
-      "3",
-      "3",
-      "5",
-      "7"
+  {
+    "name": "Yoshi",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-yoshi.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "0"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "7"
+      }
     ],
-		"rank": "F",
-		"id": 18
+    "rank": "F",
+    "id": 18
   },
-	{
-		"name": "Hammer Bro",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-hammer.png",
-		"die": [
-      "+3c",
-      "1",
-      "1",
-      "5",
-      "5",
-      "5"
+  {
+    "name": "Hammer Bro",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-hammer.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "+3c"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      },
+      {
+        "timesRolled": 0,
+        "value": "5"
+      }
     ],
-		"rank": "F",
-		"id": 19
+    "rank": "F",
+    "id": 19
   },
-	{
-		"name": "Koopa",
-		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-koopa.png",
-		"die": [
-      "1",
-      "1",
-      "2",
-      "3",
-      "3",
-      "10"
+  {
+    "name": "Koopa",
+    "imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-koopa.png",
+    "die": [
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "1"
+      },
+      {
+        "timesRolled": 0,
+        "value": "2"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "3"
+      },
+      {
+        "timesRolled": 0,
+        "value": "10"
+      }
     ],
-		"rank": "F",
-		"id": 20
+    "rank": "F",
+    "id": 20
   }
 ]
