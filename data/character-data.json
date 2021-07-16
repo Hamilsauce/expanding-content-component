@@ -3,12 +3,12 @@
 		"name": "Donkey Kong",
 		"imgsrc": "https://img.rankedboost.com/wp-content/uploads/2018/06/thumb-dk-1.png",
 		"die": [
-      "+5c",
-      "0",
-      "0",
-      "0",
-      "10",
-      "10"
+			{ "timesRolled": 0,"value": "+5c" },
+			{ "timesRolled": 0,"value": "0" },
+			{ "timesRolled": 0,"value": "0" },
+			{ "timesRolled": 0,"value": "0" },
+			{ "timesRolled": 0,"value": "10" },
+			{ "timesRolled": 0,"value": "10"} 
     ],
 		"rank": "S",
 		"id": 1

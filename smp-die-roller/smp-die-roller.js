@@ -1,4 +1,5 @@
-import ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js'
+import ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js';
+import chart from './roll-chart.js';
 
 let charData;
 let selectedOption;
@@ -32,7 +33,7 @@ const generateDieSideElement = (side, index) => {
 	return sideEl
 }
 
-const updateCharDisplay = char => {
+const updateCharacterDisplay = char => {
 	const displayEl = ham.qs('.character-selection-display');
 	const nameEl = ham.qs('.character-name');
 	const imgEl = ham.qs('.character-image');
@@ -67,6 +68,7 @@ fetch('../data/character-data.json')
 charSelect.addEventListener('change', e => {
 	selectedOption = e.target.selectedOptions[0]
 	selectedChar = charData.find(_ => _.id === +selectedOption.dataset.id)
+	
 	const evt = new CustomEvent('charSelectionChange', {
 		bubbles: true,
 		detail: {
@@ -77,67 +79,13 @@ charSelect.addEventListener('change', e => {
 });
 
 ham.qs('.app').addEventListener('charSelectionChange', e => {
-	updateCharDisplay(e.detail.char)
+	updateCharacterDisplay(e.detail.char)
 })
 
 ham.qs('.roll-submit-button').addEventListener('click', e => {
 	const roll = rollDie(selectedChar.die)
+
 	chart('bar', selectedChar.die)
 	ham.qs('.roll-result').textContent = roll
 })
 
-const chart = (chartType = 'bar', die) => {
-	const ctx = ham.qs('canvas').getContext('2d');
-	const chart = new Chart(ctx, {
-		type: chartType,
-		data: {
-			labels: die,
-			datasets: [{
-				label: 'Totals',
-				//TODO replace w dynamic data
-				data: [1, 2, 3, 4, 5, 6],
-				backgroundColor: ['#473876 ', '#AC4F46', '#358246', '#AC9A46', '#287670', '#A5754A'],
-				borderColor: ['#ffffffe0 ', '#ffffffe0', '#ffffffe0', '#ffffffe0', '#ffffffe0', '#ffffffe0'],
-				borderWidth: 1
-			}]
-		},
-		options: {
-			legend: {
-				display: false,
-				position: 'bottom',
-				labels: {
-					boxWidth: 0,
-					boxHeight: 0,
-					color: '#ffffff00'
-				}
-			},
-			scales: {
-				xAxes: [{
-					display: true,
-					scaleLabel: {
-						display: true,
-						labelString: 'Die Side Value',
-						fontColor: '#ffffff',
-						fontSize: 12
-					},
-					ticks: {
-						fontColor: '#ffffff',
-						fontSize: 12
-					},gridLines: {
-						color: '#ffffff00'
-					},
-				}],
-				yAxes: [{
-					gridLines: {
-						color: '#B9C7B090'
-					},
-						ticks: {
-						fontColor: '#ffffff',
-						stepSize: 1,
-						fontSize: 14
-					}
-				}]
-			},
-		}
-	});
-}
