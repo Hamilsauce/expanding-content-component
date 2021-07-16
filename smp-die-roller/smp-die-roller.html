@@ -6,6 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SMP Die Roller</title>
 	<link rel="stylesheet" href="smp-die-roller.css" type="text/css" media="all" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet">
+	<script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
 </head>
 
 <body>
@@ -41,8 +45,9 @@
 				</div>
 			</div>
 			<div class="roll-result-container">
-				<div class="roll-result">
-					
+				<div class="roll-result"></div>
+				<div class="chart-container" :class="{ collapse: collapse }">
+					<canvas class="chart" width="300" height="200" ref="chart" id="chart"></canvas>
 				</div>
 			</div>
 		</main>

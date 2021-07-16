@@ -3,42 +3,35 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
-	/* width: 100%; */
 }
 
 html,
 body {
 	height: 100%;
 	width: 100%;
+	font-family: 'Roboto', sans-serif;
 }
 
 .app {
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 50px 1fr;
-	/* justify-content: center; */
-	/* align-items: center; */
 	height: 100%;
 	min-height: 100vh;
 	width: 100vw;
 	background: #B9C7B0;
-
 }
 
 .app-header {
 	background: #91A882;
-
 }
 
 .app-body {
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 50px 1fr 2fr;
-	/* justify-content: center;
-	align-items: center; */
 	height: 100%;
 	width: 100%;
-	/* max-width: 350px; */
 	margin: auto;
 }
 
@@ -46,8 +39,6 @@ body {
 	width: 100%;
 	padding: 10px;
 	background: #91A882;
-	/* background-blend-mode: darken(100%); */
-	/* backdrop-filter: brighten(59%); */
 }
 
 .options-form {
@@ -69,38 +60,26 @@ body {
 	padding: 5px;
 	border: 1px solid #787878;
 	background: #EFEFEF;
-
 }
 
 .character-selection-display {
 	display: grid;
-	/* flex-direction: column; */
-	/* grid-template-areas:
-		'img'
-		'name'
-		'die'; */
 	grid-template-columns: 1fr;
 	grid-template-rows: 75px 20px 1fr;
-
 	justify-content: space-around;
 	align-items: flex-start;
 	width: 100%;
 	max-width: 350px;
 	margin: 0 auto;
 	text-align: center;
-
 }
 
 .character-name {
-	grid-area: 'name';
 	text-align: center;
-
 }
 
 .character-image-container {
 	text-align: center;
-	grid-area: 'img';
-
 }
 
 .character-image {
@@ -108,8 +87,6 @@ body {
 }
 
 .character-die-container {
-	grid-area: 'die';
-	/* grid-column: 1 / span 2; */
 	display: grid;
 	grid-template-columns: repeat(6, 48px);
 	grid-template-rows: 1fr;
@@ -132,11 +109,11 @@ body {
 
 .roll-result-container {
 	width: 100%;
-	height: 100%;
-	padding: 15px;
+	height: fit-content;
+	padding: 15px 5px;
 	border-radius: 5px;
 	border: 1px solid #787878;
-	/* background: #EFEFEF; */
+	background: #91A882;
 	max-width: 350px;
 	margin: 0 auto;
 	text-align: center;
@@ -144,9 +121,22 @@ body {
 
 .roll-result {
 	width: 100%;
-	height: 100%;
-	padding: 15px;
+	padding: 0px 15px 15px 15px;
 	border-radius: 5px;
-	background: #EFEFEF;
 	text-align: center;
+	color: white;
+	font-size: 1.2em;
+	font-weight: 500;
+}
+
+canvas {
+	z-index: 500;
+	background: #91A882;
+}
+
+.chart-container {
+	top: 40%;
+	left: 0;
+	transition: 0.5s;
+	z-index: 500;
 }
