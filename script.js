@@ -1,12 +1,12 @@
 import {
 	PlayerList
-} from './components/PlayerList.js'
+} from './components1/PlayerList.js'
 import {
 	seriesArray
 } from './series-data.js'
 import {
 	Game
-} from './components/Game.js'
+} from './components1/Game.js'
 
 //UTILS
 const $ = (targetEl, selector) => {
