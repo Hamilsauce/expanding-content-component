@@ -18,27 +18,14 @@ const $$ = (targetEl, selector) => {
 	return selectedEls;
 }
 
-
-// console.log(JSON.stringify(seriesArray, false, 2));
 let url = 'http://localhost:3000/'
-// fetch(url)
-// 	.then(response => response.json())
-// 	.then(data => {
-// 		console.log('data');
-// 		console.log(data);
-// 	})
-// 	.catch(err => {
-// 		console.log(err);
-// 		console.error(err);
-// 	});
-
 
 const fetchJson = () => {
 	const myHeaders = new Headers({
 		"Content-Type": "application/json",
 		Accept: "application/json"
 	});
-	
+
 	//FETCH
 
 	fetch("http://localhost:3000", {
@@ -47,16 +34,12 @@ const fetchJson = () => {
 		.then(response => {
 			console.log('res');
 			console.log(response);
-			// return response.json();
 		})
 		.then(data => {
 			console.log(data);
-			// this.setState({ data });
 		});
 };
 fetchJson()
-
-
 
 const findRelatedElement = (el, className) => {
 	const relatedEl = [...$(document, `.${className}`)]
@@ -102,7 +85,7 @@ seriesButtons.forEach(el => {
 				ch.style.zIndex = 0
 				ch.classList.add('hide')
 			});
-			
+
 			content.style.maxHeight = null;
 			content.style.zIndex = 0;
 		} else {
@@ -129,7 +112,7 @@ $(document, '.delete-series-button')
 			})
 		content.remove()
 	})
-	
+
 //TODO When a new game is added, recalculate series height!	
 $(document, '.add-game-button')
 	.addEventListener('click', e => {
@@ -179,20 +162,6 @@ $(document, '.edit-series-button')
 		}
 	})
 
-// $(document, '.series-title')
-// 	.addEventListener('click', e => {
-// 		const targ = e.target;
-// 		const parent = e.target.parentElement;
-
-// 		if (targ.dataset.editing == 'true') {
-// 			e.stopPropagation()
-// 			e.preventDefault()
-// 			parent.classList.toggle('active')
-// 		} else {
-// 			parent.classList.toggle('active')
-// 		}
-// 	})
-
 $(document, '.submit-series-name')
 	.addEventListener('click', e => {
 		e.stopPropagation()
@@ -211,8 +180,6 @@ $(document, '.submit-series-name')
 		let range = document.createRange(); //range object
 		range.detach()
 		let sel = window.getSelection();
-
-		// sel.removeAllRanges(); //remove all ranges from selection
 	})
 
 const createSeries = () => {
@@ -229,12 +196,5 @@ seriesArray[0].games
 		$(document, '.game-list').appendChild(newGame.render())
 		$$(document, '.player-container')
 			.forEach((pl, i, pls) => {
-				// pl.addEventListener('click', e => {
-				// 	pl.classList.add('selected')
-
-				// 	if (e.target != pls[i]) {
-				// 		p.classList.remove('selected')
-				// 	}
-				// })
 			})
 	})
