@@ -190,6 +190,8 @@ const createSeries = () => {
 }
 
 
+
+
 seriesArray[0].games
 	.forEach(game => {
 		const newGame = new Game($(document, '.game-list'), game)

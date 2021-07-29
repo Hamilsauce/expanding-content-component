@@ -1,5 +1,5 @@
 import ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js';
-import chart from './roll-chart.js';
+import {createChart, updateChart} from './roll-chart.js';
 
 let charData;
 let selectedOption;
@@ -95,6 +95,8 @@ const rollDie = dieSides => {
 	return [resultSide, randomIndex];
 }
 
+// @Change Select
+
 charSelect.addEventListener('change', e => {
 	selectedOption = e.target.selectedOptions[0]
 	selectedChar = charData.find(_ => _.id === +selectedOption.dataset.id)
@@ -110,9 +112,13 @@ charSelect.addEventListener('change', e => {
 	e.target.dispatchEvent(evt);
 });
 
+let chart;
 ham.qs('.app').addEventListener('charSelectionChange', e => {
 	console.log('detail', e.detail.char);
 	updateCharacterDisplay(e.detail.char)
+	chart = createChart('bar', selectedChar.die)
+	console.log('chart after changr', chart);
+	ham.qs('.roll-result').textContent = ' '
 })
 
 ham.qs('.roll-submit-button').addEventListener('click', e => {
@@ -132,7 +138,9 @@ ham.qs('.roll-submit-button').addEventListener('click', e => {
 	// updateCharacterDisplay(selectedChar)
 	const rolledSideEl = children.find((c, i) => +c.dataset.id == roll[1]);
 	console.log(rolledSideEl);
-	chart('bar', selectedChar.die)
+	console.log('chart after roll', chart);
+	
+	updateChart(chart, selectedChar.die)
 	ham.qs('.roll-result').textContent = roll[0].value
 	rolledSideEl.classList.add('rolled')
 })
