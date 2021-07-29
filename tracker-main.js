@@ -18,29 +18,6 @@ const $$ = (targetEl, selector) => {
 	return selectedEls;
 }
 
-let url = 'http://localhost:3000/'
-
-const fetchJson = () => {
-	const myHeaders = new Headers({
-		"Content-Type": "application/json",
-		Accept: "application/json"
-	});
-
-	//FETCH
-
-	fetch("http://localhost:3000", {
-			headers: myHeaders,
-		})
-		.then(response => {
-			console.log('res');
-			console.log(response);
-		})
-		.then(data => {
-			console.log(data);
-		});
-};
-fetchJson()
-
 const findRelatedElement = (el, className) => {
 	const relatedEl = [...$(document, `.${className}`)]
 		.find(rel => {
@@ -48,14 +25,26 @@ const findRelatedElement = (el, className) => {
 		})
 }
 
-const scont = $(document, '.series-container')
+// END UTILS
 
 const seriesContainers = $$(document, '.series-content')
 const seriesButtons = $$(document, '.series-collapsible')
 const gameColl = $$(document, '.game-collapsible')
 const seriesMenuButton = $(document, ".series-menu-button");
 const seriesMenu = $(document, ".series-menu");
+const app = $(document, ".app");
 
+let appData;
+
+let seriesJsonUrl = './data/series-data.json';
+let appJsonUrl = './data/app-data.json';
+
+const fetchJson = async (url) => {
+	const res = await fetch(url)
+	appData = await res.json();
+};
+
+fetchJson(appJsonUrl)
 
 seriesMenuButton.addEventListener('click', e => {
 	e.target.nextElementSibling.classList.toggle('hide')
@@ -70,6 +59,8 @@ const expandSeries = (seriesContent, childScrollHeight) => {
 	}
 }
 
+
+// Contains menu hide logic
 seriesButtons.forEach(el => {
 	el.addEventListener('click', e => {
 		el.classList.toggle('active');
@@ -197,6 +188,5 @@ seriesArray[0].games
 		const newGame = new Game($(document, '.game-list'), game)
 		$(document, '.game-list').appendChild(newGame.render())
 		$$(document, '.player-container')
-			.forEach((pl, i, pls) => {
-			})
+			.forEach((pl, i, pls) => {})
 	})
