@@ -28,7 +28,7 @@ const findRelatedElement = (el, className) => {
 // END UTILS
 
 const seriesContainers = $$(document, '.series-content')
-const seriesButtons = $$(document, '.series-collapsible')
+const seriesCollapsibles = $$(document, '.series-collapsible')
 const gameColl = $$(document, '.game-collapsible')
 const seriesMenuButton = $(document, ".series-menu-button");
 const seriesMenu = $(document, ".series-menu");
@@ -51,18 +51,12 @@ fetchJson(appJsonUrl)
 
 // APP CLICK LISTENER
 app.addEventListener('click', e => {
-	if (e.target.classList.contains('series-menu-button')) return
-
-	// seriesMenus.forEach(menu => {
-	// 	console.log('el', el.classList.contains('series-menu-button'));
-	// 	return el.classList.contains('series-menu-button')
-	// })
-	seriesMenus.forEach(m => m.classList.add('hide'))
-
+	if (e.target.classList.contains('series-menu-button')) return;
+	seriesMenus.forEach(m => m.classList.add('hide'));
 })
 
 seriesMenuButton.addEventListener('click', e => {
-	e.target.nextElementSibling.classList.toggle('hide')
+	e.target.nextElementSibling.classList.remove('hide');
 })
 
 const expandSeries = (seriesContent, childScrollHeight) => {
@@ -76,7 +70,7 @@ const expandSeries = (seriesContent, childScrollHeight) => {
 
 
 // Contains menu hide logic
-seriesButtons.forEach(el => {
+seriesCollapsibles.forEach(el => {
 	el.addEventListener('click', e => {
 		el.classList.toggle('active');
 		const menubutton = $(el.parentElement, '.series-menu')
