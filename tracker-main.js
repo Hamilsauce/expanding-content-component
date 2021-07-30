@@ -32,6 +32,7 @@ const seriesButtons = $$(document, '.series-collapsible')
 const gameColl = $$(document, '.game-collapsible')
 const seriesMenuButton = $(document, ".series-menu-button");
 const seriesMenu = $(document, ".series-menu");
+const seriesMenus = $$(document, ".series-menu");
 const app = $(document, ".app");
 
 let appData;
@@ -42,9 +43,23 @@ let appJsonUrl = './data/app-data.json';
 const fetchJson = async (url) => {
 	const res = await fetch(url)
 	appData = await res.json();
+	// console.log(appData);
+	createGames(appData[0])
 };
 
 fetchJson(appJsonUrl)
+
+// APP CLICK LISTENER
+app.addEventListener('click', e => {
+	if (e.target.classList.contains('series-menu-button')) return
+
+	// seriesMenus.forEach(menu => {
+	// 	console.log('el', el.classList.contains('series-menu-button'));
+	// 	return el.classList.contains('series-menu-button')
+	// })
+	seriesMenus.forEach(m => m.classList.add('hide'))
+
+})
 
 seriesMenuButton.addEventListener('click', e => {
 	e.target.nextElementSibling.classList.toggle('hide')
@@ -182,11 +197,17 @@ const createSeries = () => {
 
 
 
+//  CREATE GAMES
+const createGames = (seriesData) => {
+	// seriesArray[0].games
+	seriesData.games
+		.forEach(game => {
+			// console.log('game', game);
+			const newGame = new Game($(document, '.game-list'), game)
+			// console.log('g l', $(document, '.game-list'));
+			$(document, '.game-list').appendChild(newGame.render())
+			$$(document, '.player-container')
+				.forEach((pl, i, pls) => {})
+		})
 
-seriesArray[0].games
-	.forEach(game => {
-		const newGame = new Game($(document, '.game-list'), game)
-		$(document, '.game-list').appendChild(newGame.render())
-		$$(document, '.player-container')
-			.forEach((pl, i, pls) => {})
-	})
+}
