@@ -7,6 +7,9 @@ import {
 import {
 	Game
 } from './components1/Game.js'
+import {
+	GameWC
+} from './components1/GameWC.js'
 
 //UTILS
 const $ = (targetEl, selector) => {
@@ -35,15 +38,16 @@ const seriesMenu = $(document, ".series-menu");
 const seriesMenus = $$(document, ".series-menu");
 const app = $(document, ".app");
 
-let appData;
+customElements.define('smp-game', GameWC);
 
+
+let appData;
 let seriesJsonUrl = './data/series-data.json';
 let appJsonUrl = './data/app-data.json';
 
 const fetchJson = async (url) => {
 	const res = await fetch(url)
 	appData = await res.json();
-	// console.log(appData);
 	createGames(appData[0])
 };
 
@@ -194,12 +198,21 @@ const createSeries = () => {
 //  CREATE GAMES
 const createGames = (seriesData) => {
 	// seriesArray[0].games
+	const gameList = $(document, '.game-list')
 	seriesData.games
 		.forEach(game => {
 			// console.log('game', game);
-			const newGame = new Game($(document, '.game-list'), game)
+			// const newGame = new Game($(document, '.game-list'), game)
+			const template = document.getElementById('smp-game');
+			// const newGame = document.createElement('smp-game')
+			const newGame = template.content.firstElementChild.cloneNode(true);
+			newGame.parent = gameList
+			newGame.props = game
+			newGame.querySelector('.game-collapsible').textContent = `Game ${newGame.props.id}`; 
+			
 			// console.log('g l', $(document, '.game-list'));
-			$(document, '.game-list').appendChild(newGame.render())
+			// $(document, '.game-list').appendChild(newGame)
+			gameList.appendChild(newGame)
 			$$(document, '.player-container')
 				.forEach((pl, i, pls) => {})
 		})

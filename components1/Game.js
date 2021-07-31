@@ -20,45 +20,17 @@ export class Game {
 		}
 	}
 
-	get data() {
-		// console.log(this._data);
-		return this._data;
-	}
-
-
+	get data() { return this._data }
 
 	playerSelected(e) {
 		this.root.addEventListener('playerSelected', e => {
 			this.data.selectedPlayerId =
-				this.data.selectedPlayerId == e.detail.playerId 
-				? null 
-				: e.detail.playerId;
-			// console.log(this.data.selectedPlayerId);
+				this.data.selectedPlayerId == e.detail.playerId ?
+				null :
+				e.detail.playerId;
 			this.components.players
-				.forEach(pl => {
-					pl.selectedPlayerId = this.data.selectedPlayerId
-				})
+				.forEach(pl => {pl.selectedPlayerId = this.data.selectedPlayerId})
 		})
-	}
-
-	template(props) {
-		return `
-			<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Game ${this.data.id}</div>
-			<div class="content game-content hide">
-				<div class="game-details">
-					<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-						Map: ${this.props.map}
-					</div>
-					<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-						${this.props.date}
-					</div>
-				</div>
-					<!-- PlayerList Component -->
-				<div class="player-list">
-					<!-- Player Component -->
-				</div>
-			</div>
-		`;
 	}
 
 	handleBtnClick(gameBtn) {
@@ -115,6 +87,26 @@ export class Game {
 		this.playerSelected()
 		return this.root;
 	}
+	
+		template(props) {
+			return `
+				<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Game ${this.data.id}</div>
+				<div class="content game-content hide">
+					<div class="game-details">
+						<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+							Map: ${this.props.map}
+						</div>
+						<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+							${this.props.date}
+						</div>
+					</div>
+						<!-- PlayerList Component -->
+					<div class="player-list">
+						<!-- Player Component -->
+					</div>
+				</div>
+			`;
+		}
 }
 
 {

@@ -153,6 +153,29 @@
 	</div>
 	<!-- <script src="app.js" type="module" charset="utf-8"></script> -->
 	<script src="tracker-main.js" type="module" charset="utf-8"></script>
+<template id="smp-game">
+	<div id="smp-game-container">
+		<div 
+			class="collapsible game-collapsible" 
+			data-game="${this.data.id}" 
+			data-series="${this.data.seriesId}">
+		</div>
+		<div class="content game-content hide">
+			<div class="game-details">
+				<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+					Map: ${this.props.map}
+				</div>
+				<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+					${this.props.date}
+				</div>
+			</div>
+			PlayerList Component
+			<div class="player-list">
+				Player Component
+			</div>
+		</div>
+	</div>
+</template>
 </body>
 
 </html>
@@ -243,7 +266,7 @@
   		</ul>
   	</div>
   </template>
-  <template id="game">
+  <template id="smp-game">
   	<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}">Game ${this.data.id}</div>
   	<div class="content game-content hide">
   		<div class="game-details">
