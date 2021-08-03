@@ -1,0 +1,19 @@
+{
+  "name": "mario-party-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tracker-main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hamilsauce/mario-party-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hamilsauce/mario-party-tracker/issues"
+  },
+  "homepage": "https://github.com/Hamilsauce/mario-party-tracker#readme"
+}

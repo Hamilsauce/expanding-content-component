@@ -2,12 +2,14 @@ import {
 	PlayerList
 } from './components1/PlayerList.js'
 import {
-	seriesArray
-} from './series-data.js'
-import {Game} from './components1/Game.js'
-// import seriesService from './services/series-service.js'
+	Game
+} from './components1/Game.js'
 import SeriesService from './services/series-service.js'
-import {$,$$, findRelatedElement} from './services/utils-service.js'
+import {
+	$,
+	$$,
+	findRelatedElement
+} from './services/utils-service.js'
 // import {
 // 	GameWC
 // } from './components1/GameWC.js'
@@ -22,25 +24,14 @@ const seriesMenu = $(document, ".series-menu");
 const seriesMenus = $$(document, ".series-menu");
 const app = $(document, ".app");
 
-// customElements.define('smp-game', GameWC);
 
+;
+(async () => {
+	const appJsonUrl = './data/app-data.json';
 
-let seriesJsonUrl = './data/series-data.json';
-let appJsonUrl = './data/app-data.json';
-
-console.log('serve return', await SeriesService.fetchSeriesJson(appJsonUrl));
-
-
-// const appData = seriesService.fetchSeriesJson(appJsonUrl);
- //let appData
-
-// const fetchJson = async (url) => {
-// 	const res = await fetch(url)
-// 	appData = await res.json();
-// 	createGames(appData[0])
-// };
-
-// fetchJson(appJsonUrl)
+	const appData = await SeriesService.fetchSeriesJson(appJsonUrl);
+	createGames(appData[0])
+})();
 
 // APP CLICK LISTENER
 app.addEventListener('click', e => {
@@ -106,7 +97,7 @@ $(document, '.delete-series-button')
 		content.remove()
 	});
 
-//TODO When a new game is added, recalculate series height!	
+//TODO When a new game is added, recalculate series height!
 $(document, '.add-game-button')
 	.addEventListener('click', e => {
 		const content = [...$$(document, '.series-content')]
@@ -146,7 +137,7 @@ $(document, '.edit-series-button')
 
 		let sel = window.getSelection();
 		if (sel.toString() == '') { //no text selection
-			window.setTimeout(function() {
+			window.setTimeout(function () {
 				let range = document.createRange(); //range object
 				range.selectNodeContents(title); //sets Range
 				sel.removeAllRanges(); //remove all ranges from selection
@@ -201,7 +192,7 @@ const createGames = (seriesData) => {
 			// console.log('g l', $(document, '.game-list'));
 			// $(document, '.game-list').appendChild(newGame)
 			newGame.querySelector('.collapsible').addEventListener('click', handleBtnClick, true)
-	
+
 			gameList.appendChild(newGame)
 			$$(document, '.player-container')
 				.forEach((pl, i, pls) => {})
@@ -217,8 +208,8 @@ const createGames2 = (seriesData) => {
 			const newGame = new Game($(document, '.game-list'), game)
 			// const template = document.getElementById('smp-game');
 			// const newGame = document.createElement('smp-game')
-		console.log('newGame2', newGame);
-		console.log('game2', game);
+			console.log('newGame2', newGame);
+			console.log('game2', game);
 			newGame.template = document.getElementById('smp-game').content.firstElementChild.cloneNode(true);
 			const collapsible = newGame.querySelector('.collapsible');
 			// collapsible.addEventListener('click', handleBtnClick, false);
@@ -249,34 +240,34 @@ const createGames2 = (seriesData) => {
 }
 
 const handleBtnClick = (e) => {
-		console.log('clicker');
+	console.log('clicker');
 	const gameBtn = e.target;
 	// gameBtn.addEventListener('click', e => {
-		const seriesContent = e.target.parentElement.parentElement.parentElement;
-		const gameContent = e.target.nextElementSibling;
-		gameBtn.classList.toggle('active');
-		gameContent.classList.toggle('hide');
+	const seriesContent = e.target.parentElement.parentElement.parentElement;
+	const gameContent = e.target.nextElementSibling;
+	gameBtn.classList.toggle('active');
+	gameContent.classList.toggle('hide');
 
-		const menubutton = seriesContent.querySelector('.series-menu');
-		menubutton.classList.add('hide')
+	const menubutton = seriesContent.querySelector('.series-menu');
+	menubutton.classList.add('hide')
 
-		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
-		let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
+	let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
+	let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
 
-		if (gameHeight) {
-			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
-			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
+	if (gameHeight) {
+		gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
+		gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
+	} else {
+		gameContent.style.maxHeight = gameContent.scrollHeight + "px";
+		gameContent.style.zIndex = 30;
+		seriesContent.style.zIndex = 30;
+
+		if (gameContent.scrollHeight) {
+			seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
 		} else {
-			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
-			gameContent.style.zIndex = 30;
-			seriesContent.style.zIndex = 30;
-
-			if (gameContent.scrollHeight) {
-				seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
-			} else {
-				seriesContent.style.maxHeight = `${seriesContent.scrollHeight}px`;
-			}
+			seriesContent.style.maxHeight = `${seriesContent.scrollHeight}px`;
 		}
+	}
 	// })
 
 }
