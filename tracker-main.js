@@ -7,9 +7,9 @@ import {
 import {
 	Game
 } from './components1/Game.js'
-import {
-	GameWC
-} from './components1/GameWC.js'
+// import {
+// 	GameWC
+// } from './components1/GameWC.js'
 
 //UTILS
 const $ = (targetEl, selector) => {
@@ -38,7 +38,7 @@ const seriesMenu = $(document, ".series-menu");
 const seriesMenus = $$(document, ".series-menu");
 const app = $(document, ".app");
 
-customElements.define('smp-game', GameWC);
+// customElements.define('smp-game', GameWC);
 
 
 let appData;
@@ -70,7 +70,7 @@ const expandSeries = (seriesContent, childScrollHeight) => {
 	} else {
 		seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
 	}
-}
+};
 
 
 // Contains menu hide logic
@@ -106,7 +106,7 @@ $(document, '.add-series-button')
 
 		gameContainer.innerText = 'new container'
 		seriesList.appendChild(gameContainer)
-	})
+	});
 
 $(document, '.delete-series-button')
 	.addEventListener('click', e => {
@@ -115,7 +115,7 @@ $(document, '.delete-series-button')
 				return e.target.dataset.series == cont.dataset.series
 			})
 		content.remove()
-	})
+	});
 
 //TODO When a new game is added, recalculate series height!	
 $(document, '.add-game-button')
@@ -132,7 +132,7 @@ $(document, '.add-game-button')
 		gameContainer.innerText = 'new container'
 		gameList.appendChild(gameContainer)
 		expandSeries(content)
-	})
+	});
 
 $(document, '.edit-series-button')
 	.addEventListener('click', e => {
@@ -164,7 +164,7 @@ $(document, '.edit-series-button')
 				sel.addRange(range); //add Range to a Selection.
 			}, 100);
 		}
-	})
+	});
 
 $(document, '.submit-series-name')
 	.addEventListener('click', e => {
@@ -184,7 +184,7 @@ $(document, '.submit-series-name')
 		let range = document.createRange(); //range object
 		range.detach()
 		let sel = window.getSelection();
-	})
+	});
 
 const createSeries = () => {
 	const seriesList = $(document, '.series-list')
@@ -192,7 +192,6 @@ const createSeries = () => {
 	const newSeriesCollapsible = document.createElement('button');
 	const newSeriesContent = document.createElement('div');
 }
-
 
 
 //  CREATE GAMES
@@ -208,13 +207,87 @@ const createGames = (seriesData) => {
 			const newGame = template.content.firstElementChild.cloneNode(true);
 			newGame.parent = gameList
 			newGame.props = game
-			newGame.querySelector('.game-collapsible').textContent = `Game ${newGame.props.id}`; 
-			
+			newGame.querySelector('.game-collapsible').textContent = `Game ${newGame.props.id}`;
+
 			// console.log('g l', $(document, '.game-list'));
 			// $(document, '.game-list').appendChild(newGame)
+			newGame.querySelector('.collapsible').addEventListener('click', handleBtnClick, true)
+	
 			gameList.appendChild(newGame)
 			$$(document, '.player-container')
 				.forEach((pl, i, pls) => {})
 		})
+}
+
+
+//  CREATE GAMES
+const createGames2 = (seriesData) => {
+	const gameList = $(document, '.game-list')
+	seriesArray[0].games
+		.forEach(game => {
+			const newGame = new Game($(document, '.game-list'), game)
+			// const template = document.getElementById('smp-game');
+			// const newGame = document.createElement('smp-game')
+		console.log('newGame2', newGame);
+		console.log('game2', game);
+			newGame.template = document.getElementById('smp-game').content.firstElementChild.cloneNode(true);
+			const collapsible = newGame.querySelector('.collapsible');
+			// collapsible.addEventListener('click', handleBtnClick, false);
+
+
+			newGame.parent = gameList;
+			newGame.props = game;
+			console.log('ng tem0', newGame.template);
+			newGame.id = game.id;
+			newGame.mapName = game.map;
+			newGame.setAttribute('map-name', game.map)
+			newGame.dataset.shit = 'true';
+
+			newGame.querySelector('.game-collapsible').textContent = `Game ${newGame.id}`;
+			newGame.querySelector('.game-map-name').textContent = `Game ${newGame.mapName}`;
+			console.log('ngame', newGame);
+
+			game.playerRanks.forEach(player => {
+				newGame.createPlayerElement(newGame.parent, player)
+			})
+			// console.log('g l', $(document, '.game-list'));
+			// $(document, '.game-list').appendChild(newGame)
+			// querySelector('.collapsible').addEventListener('click', handleBtnClick, true)
+			gameList.appendChild(newGame)
+			$$(document, '.player-container')
+				.forEach((pl, i, pls) => {})
+		})
+}
+
+const handleBtnClick = (e) => {
+		console.log('clicker');
+	const gameBtn = e.target;
+	// gameBtn.addEventListener('click', e => {
+		const seriesContent = e.target.parentElement.parentElement.parentElement;
+		const gameContent = e.target.nextElementSibling;
+		gameBtn.classList.toggle('active');
+		gameContent.classList.toggle('hide');
+
+		const menubutton = seriesContent.querySelector('.series-menu');
+		menubutton.classList.add('hide')
+
+		let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
+		let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))
+
+		if (gameHeight) {
+			gameContent.style.maxHeight = 0; // 1) set it zero to reset series height
+			gameContent.style.maxHeight = null; // 2) Set it null so it passes if condition
+		} else {
+			gameContent.style.maxHeight = gameContent.scrollHeight + "px";
+			gameContent.style.zIndex = 30;
+			seriesContent.style.zIndex = 30;
+
+			if (gameContent.scrollHeight) {
+				seriesContent.style.maxHeight = `${parseInt(seriesContent.style.maxHeight) + parseInt(gameContent.scrollHeight)}px`;
+			} else {
+				seriesContent.style.maxHeight = `${seriesContent.scrollHeight}px`;
+			}
+		}
+	// })
 
 }

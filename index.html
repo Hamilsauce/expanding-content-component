@@ -13,8 +13,10 @@
 <body>
 	<!-- App Component -->
 	<div class="app">
+		
 		<header class="app-header">
-			<h2 class="header-title">Mario Tracker</h2>
+		<smp-game></smp-game>
+		<h2 class="header-title">Mario Tracker</h2>
 			<div class="add-series-container">
 				<div class="add-series-button">+ Series</div>
 				<div class="add-series-content hide">
@@ -153,29 +155,36 @@
 	</div>
 	<!-- <script src="app.js" type="module" charset="utf-8"></script> -->
 	<script src="tracker-main.js" type="module" charset="utf-8"></script>
-<template id="smp-game">
-	<div id="smp-game-container">
-		<div 
-			class="collapsible game-collapsible" 
-			data-game="${this.data.id}" 
-			data-series="${this.data.seriesId}">
-		</div>
-		<div class="content game-content hide">
-			<div class="game-details">
-				<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-					Map: ${this.props.map}
+<!-- @game-template -->
+
+	<template id="smp-game">
+		<div class="smp-game-container" >
+			<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}"></div>
+			<div class="content game-content hide">
+				<div class="game-details">
+					<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+						Map: ${this.props.map}
+					</div>
+					<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
+						${this.props.date}
+					</div>
 				</div>
-				<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-					${this.props.date}
+				PlayerList Component
+				<div class="player-list">
+					Player Component
 				</div>
 			</div>
-			PlayerList Component
-			<div class="player-list">
-				Player Component
-			</div>
 		</div>
-	</div>
-</template>
+	</template>
+<!-- @player-template -->
+	<template id="smp-player">
+		<div class="smp-player-container">
+			<div class="player-name">Player: ${props.name}</div>
+			<div class="player-character-name">Character: ${props.character}</div>
+			<div class="player-rank">Rank: ${props.rank}</div>
+			<div class="player-stars">Stars: ${props.stars}</div>
+		</div>
+	</template>
 </body>
 
 </html>

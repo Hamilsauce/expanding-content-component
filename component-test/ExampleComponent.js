@@ -5,7 +5,7 @@ export default class ExampleComponent {
 	}
 
 	get title() {
-		return titleValue;
+		return this.titleValue;
 	}
 
 	init(container) {
@@ -18,9 +18,9 @@ export default class ExampleComponent {
 		this.container.innerHTML = ExampleComponent.markup(this);
 		this.pageElement = this.container.querySelector('.sub-component-example');
 		this.clickMeButton = this.container.querySelector('.click-me');
-		new AnotherExampleComponent(this.pageElement);
+		// new AnotherExampleComponent(this.pageElement);
 
-		this.addEventListeners();
+		// this.addEventListeners();
 	}
 
 	static markup({ title }) {

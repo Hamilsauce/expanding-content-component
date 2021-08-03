@@ -1,48 +1,32 @@
-import {
-	Player
-} from './Player.js'
-export class GameWC extends HTMLElement {
-	constructor(parent, props) {
+export class GameListWC extends HTMLElement {
+	constructor() {
 		super();
-		const template = document.getElementById('smp-game');
+		const template = document.getElementById('smp-game-list');
 		this.root = template.content.firstElementChild.cloneNode(true);
 		this.attachShadow({ mode: 'open' });
-		console.log('rooy', this.root);
-		this.props = props;
-		this.parent = parent;
-		this._data = {
-			id: this.props.id,
-			id: 5,
-			seriesId: this.parent.dataset.series,
-			players: this.props.playerRanks,
-			isExpanded: false,
-			selectedPlayerId: null
-		}
-		this.data;
-		const collapsible = this.root.querySelector('.collapsible');
-		collapsible.textContent = `Game ${this.id}`
-
-		// const shadowRoot = this.attachShadow({ mode: 'open' }).appendChild(root.cloneNode(true));
+		this._data;
+		console.log(this);
 		this.shadowRoot.appendChild(this.root);
-		collapsible.addEventListener('click', this.handleBtnClick, false);
-
-		// this.data.players.forEach(player => this.createPlayerElement(this.root, player))
+		this.root.addEventListener('click', this.handleBtnClick, false);
+		this.root.style.backgroundColor = 'blue';
+	
+		this.data.games.forEach(game => {
+		console.log(game);
+			const newGame = document.createElement('div');
+			newGame.classList.add('smp-game-container');
+		
+			const header = document.createElement('div');
+			newGame.classList.add('smp-game-header');
+			newGame.appendChild(header)
+			this.root.appendChild(newGame)
+			// this.createPlayerElement(this.root, player)
+		})
 		this.bindData()
-		console.log('after binddata', this);
 		//.bind(this)
 	}
-
-	get data() {
-		// console.log(this.data);
-		return this._data
-	}
-	set data(d) {
-		// console.log(this.data);
-		return this._data = d;
-	}
+	get poop() { return this.getAttribute('poop') }
 
 	bindData() {
-		console.log('poop');
 		const collapsible = this.root.querySelector('.game-collapsible');
 		const gameMapElement = this.root.querySelector('.game-map-name');
 		const gameDateElement = this.root.querySelector('.game-date');
@@ -52,24 +36,67 @@ export class GameWC extends HTMLElement {
 		gameDateElement.textContent = this.date
 	}
 
+	get data() { return this._data };
+	set data(newData) { this._data = newData };
+
 	get mapName() { return this.getAttribute('map') };
 	get winner() { return this.getAttribute('winner') };
 	get date() { return this.getAttribute('date') };
 	get id() { return this.getAttribute('id') };
 
+	// playerSelected(e) {
+	// 	this.root.addEventListener('playerSelected', e => {
+	// 		this.data.selectedPlayerId =
+	// 			this.data.selectedPlayerId == e.detail.playerId ?
+	// 			null :
+	// 			e.detail.playerId;
+	// 		this.components.players
+	// 			.forEach(pl => { pl.selectedPlayerId = this.data.selectedPlayerId })
+	// 	})
+	// }
 
 
+	createGame(gameData) {
+		// seriesArray[0].games
+		// const gameList = $(document, '.game-list')
 
-	playerSelected(e) {
-		this.root.addEventListener('playerSelected', e => {
-			this.data.selectedPlayerId =
-				this.data.selectedPlayerId == e.detail.playerId ?
-				null :
-				e.detail.playerId;
-			this.components.players
-				.forEach(pl => { pl.selectedPlayerId = this.data.selectedPlayerId })
-		})
+		const template = document.getElementById('smp-game-list');
+		const gameTemplate = template.content.firstElementChild.cloneNode(true);
+		const collapsible = gameTemplate.querySelector('.collapsible');
+
+		gameTemplate.data = gameData;
+
+		seriesData.games
+			.forEach(game => {
+				// const newGame = new Game($(document, '.game-list'), game)
+
+				// collapsible.addEventListener('click', handleBtnClick, false);
+
+
+				newGame.parent = gameList;
+				newGame.props = game;
+				console.log('ng props', newGame.props);
+				newGame.id = game.id;
+				newGame.mapName = game.map;
+				newGame.setAttribute('map-name', game.map)
+				newGame.dataset.shit = 'true';
+
+				newGame.querySelector('.game-collapsible').textContent = `Game ${newGame.id}`;
+				newGame.querySelector('.game-map-name').textContent = `Game ${newGame.mapName}`;
+				console.log('ngame', newGame);
+
+				game.playerRanks.forEach(player => {
+					// newGame.createPlayerElement(newGame.parent, player)
+				})
+				// console.log('g l', $(document, '.game-list'));
+				// $(document, '.game-list').appendChild(newGame)
+				gameList.appendChild(newGame)
+				$$(document, '.player-container')
+					.forEach((pl, i, pls) => {})
+			})
 	}
+
+
 
 	handleBtnClick(e) {
 		const gameBtn = e.target;
@@ -112,8 +139,8 @@ export class GameWC extends HTMLElement {
 
 	render() {
 		this.root.classList.add(this.className)
-		this.root.id = this.data.id;
-		this.root.series = this.data.seriesId;
+		this.root.dataset.id = this.data.id;
+		this.root.dataset.series = this.data.seriesId;
 		this.root.insertAdjacentHTML('beforeend', this.template(this.props))
 
 		const list = this.root.querySelector('.player-list')
@@ -125,7 +152,7 @@ export class GameWC extends HTMLElement {
 			})
 
 		this.handleBtnClick(gameBtn)
-		this.playerSelected()
+		// this.playerSelected()
 
 		return this.root;
 	}
@@ -161,6 +188,6 @@ export class GameWC extends HTMLElement {
 	// there can be other element methods and properties
 
 }
-customElements.define('smp-game', GameWC);
+customElements.define('smp-game-list', GameListWC);
 // console.log('win',window.customElements.get('smp-game')); 
-{ GameWC }
+{ GameListWC }
