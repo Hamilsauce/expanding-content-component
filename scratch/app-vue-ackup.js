@@ -1,25 +1,32 @@
-import { store } from './store/index.js'
-import { workHistory } from './data/work-data.js'
-import { exportAsJson, exportAsCsv } from './services/fileSaver.js';
-import deleteCardModal from './components/deleteCardModal.js'
-import modalDimmer from './components/modalDimmer.js'
-import appNav from './components/appNav.js'
-import appHeader from './components/appHeader.js'
-import cardView from './components/cardView.js'
-import addShiftView from './components/addShiftView.js'
-import weekGroup from './components/weekGroup.js'
-import chartOverlay from './components/chartOverlay.js'
-import card from './components/card.js'
+import {
+	store
+} from './store/index.js';
+import {
+	workHistory
+} from './data/work-data.js';
+import {
+	exportAsJson,
+	exportAsCsv
+} from './services/fileSaver.js';
+import deleteCardModal from './components/deleteCardModal.js';
+import modalDimmer from './components/modalDimmer.js';
+import appNav from './components/appNav.js';
+import appHeader from './components/appHeader.js';
+import cardView from './components/cardView.js';
+import addShiftView from './components/addShiftView.js';
+import weekGroup from './components/weekGroup.js';
+import chartOverlay from './components/chartOverlay.js';
+import card from './components/card.js';
 
-const CardView = Vue.component('card-view', cardView)
+const CardView = Vue.component('card-view', cardView);
 const AddShiftView = Vue.component('add-shift-view', addShiftView);
 const DeleteCardModal = Vue.component('delete-card-modal', deleteCardModal);
 const AppNav = Vue.component('app-nav', appNav);
 const AppHeader = Vue.component('app-header', appHeader);
 const ModalDimmer = Vue.component('modal-dimmer', modalDimmer);
-const Card = Vue.component('card', card)
-const WeekGroup = Vue.component('week-group', weekGroup)
-const ChartOverlay = Vue.component('chart-overlay', chartOverlay)
+const Card = Vue.component('card', card);
+const WeekGroup = Vue.component('week-group', weekGroup);
+const ChartOverlay = Vue.component('chart-overlay', chartOverlay);
 
 const router = new VueRouter({
 	routes: [{
@@ -41,17 +48,33 @@ const EventBus = new Vue();
 
 const app = new Vue({
 	router: router,
-	data() { return { workData: workHistory, } },
+	data() {
+		return {
+			workData: workHistory,
+		}
+	},
 	computed: {
-		workHistory() { return store.getters.workHistory },
-		showNav() { return store.getters.showNav },
-		showDeleteModal() { return store.getters.showDeleteModal }
+		workHistory() {
+			return store.getters.workHistory
+		},
+		showNav() {
+			return store.getters.showNav
+		},
+		showDeleteModal() {
+			return store.getters.showDeleteModal
+		}
 	},
-	methods: { 
-		handleExportAsJson() { exportAsJson(this.workHistory) },
-		handleExportAsCsv() { exportAsCsv(this.workHistory) },
+	methods: {
+		handleExportAsJson() {
+			exportAsJson(this.workHistory)
+		},
+		handleExportAsCsv() {
+			exportAsCsv(this.workHistory)
+		},
 	},
-	created() { store.dispatch('fetchLocalStorageData') }
+	created() {
+		store.dispatch('fetchLocalStorageData')
+	}
 }).$mount('#app')
 
 

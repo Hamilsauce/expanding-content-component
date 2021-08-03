@@ -8,15 +8,26 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="add-series.css" type="text/css" media="all" />
+	<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/plugin/weekOfYear.js"></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/plugin/weekday.js"></script>
+	<script>
+		dayjs.extend(window.dayjs_plugin_weekOfYear)
+		dayjs.extend(window.dayjs_plugin_weekday)
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"></script>
+	<script src="./vue/vuex2.0.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.2.1/vue-router.js'></script>
+
 </head>
 
 <body>
 	<!-- App Component -->
 	<div class="app">
-		
+
 		<header class="app-header">
-		<smp-game></smp-game>
-		<h2 class="header-title">Mario Tracker</h2>
+			<smp-game></smp-game>
+			<h2 class="header-title">Mario Tracker</h2>
 			<div class="add-series-container">
 				<div class="add-series-button">+ Series</div>
 				<div class="add-series-content hide">
@@ -155,10 +166,10 @@
 	</div>
 	<!-- <script src="app.js" type="module" charset="utf-8"></script> -->
 	<script src="tracker-main.js" type="module" charset="utf-8"></script>
-<!-- @game-template -->
+	<!-- @game-template -->
 
 	<template id="smp-game">
-		<div class="smp-game-container" >
+		<div class="smp-game-container">
 			<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}"></div>
 			<div class="content game-content hide">
 				<div class="game-details">
@@ -176,7 +187,7 @@
 			</div>
 		</div>
 	</template>
-<!-- @player-template -->
+	<!-- @player-template -->
 	<template id="smp-player">
 		<div class="smp-player-container">
 			<div class="player-name">Player: ${props.name}</div>
