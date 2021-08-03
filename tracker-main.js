@@ -4,31 +4,15 @@ import {
 import {
 	seriesArray
 } from './series-data.js'
-import {
-	Game
-} from './components1/Game.js'
+import {Game} from './components1/Game.js'
+// import seriesService from './services/series-service.js'
+import SeriesService from './services/series-service.js'
+import {$,$$, findRelatedElement} from './services/utils-service.js'
 // import {
 // 	GameWC
 // } from './components1/GameWC.js'
 
-//UTILS
-const $ = (targetEl, selector) => {
-	const selectedEl = targetEl.querySelector(selector)
-	return selectedEl;
-}
-const $$ = (targetEl, selector) => {
-	const selectedEls = targetEl.querySelectorAll(selector)
-	return selectedEls;
-}
-
-const findRelatedElement = (el, className) => {
-	const relatedEl = [...$(document, `.${className}`)]
-		.find(rel => {
-			return el.dataset.series == relatedEl.dataset.series
-		})
-}
-
-// END UTILS
+console.log('sercice', SeriesService);
 
 const seriesContainers = $$(document, '.series-content')
 const seriesCollapsibles = $$(document, '.series-collapsible')
@@ -41,17 +25,22 @@ const app = $(document, ".app");
 // customElements.define('smp-game', GameWC);
 
 
-let appData;
 let seriesJsonUrl = './data/series-data.json';
 let appJsonUrl = './data/app-data.json';
 
-const fetchJson = async (url) => {
-	const res = await fetch(url)
-	appData = await res.json();
-	createGames(appData[0])
-};
+console.log('serve return', await SeriesService.fetchSeriesJson(appJsonUrl));
 
-fetchJson(appJsonUrl)
+
+// const appData = seriesService.fetchSeriesJson(appJsonUrl);
+ //let appData
+
+// const fetchJson = async (url) => {
+// 	const res = await fetch(url)
+// 	appData = await res.json();
+// 	createGames(appData[0])
+// };
+
+// fetchJson(appJsonUrl)
 
 // APP CLICK LISTENER
 app.addEventListener('click', e => {
@@ -200,7 +189,7 @@ const createGames = (seriesData) => {
 	const gameList = $(document, '.game-list')
 	seriesData.games
 		.forEach(game => {
-			// console.log('game', game);
+			console.log('game', game);
 			// const newGame = new Game($(document, '.game-list'), game)
 			const template = document.getElementById('smp-game');
 			// const newGame = document.createElement('smp-game')
