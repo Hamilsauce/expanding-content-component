@@ -350,3 +350,7 @@ border-right: 1px solid white;
 	/* padding: 20px; */
 	transition: opacity 0.0ease-in-out, height 0.4s;
 }
+
+.json-output {
+	user-select: text;
+}

@@ -1,11 +1,16 @@
 // export default aclass SeriesService {
 export default class SeriesService {
-	constructor() {}
+	constructor() {
+		this.url = './data/series-data.json';
+	}
 
 	static async fetchSeriesJson(url) {
+		// let result;
 		const res = await fetch(url)
-		const parsedData = await res.json();
-		return parsedData;
+		this.seriesJson = await res.json()
+		this.parsedData = JSON.parse(this.seriesJson)
+	console.log('seried this', this);
+		return this.parsedData;
 	}
 }
 

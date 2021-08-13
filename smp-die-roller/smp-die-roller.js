@@ -7,6 +7,20 @@ let selectedChar;
 let totalRollsCount;
 const charSelect = ham.qs('#character-select');
 
+const updateDie = async () => {
+	const response = await fetch("http://localhost:3000/series",
+	{
+		method: 'POST',
+		headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+		body: `{ "Id": 78912, "Customer": "Jason Sweet", "Quantity": 1, "Price": 18.00 }`,
+	});
+	response.json().then(data => { console.log(data); });
+};
+
+
+
+
+
 const handleLocalStorage = (action, key, data) => {
 	if (action === 'set') localStorage.setItem('smpCharacterData', JSON.stringify(data))
 	else return JSON.parse(localStorage.getItem(key))

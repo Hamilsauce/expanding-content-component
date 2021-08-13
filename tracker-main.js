@@ -1,20 +1,85 @@
 import {
 	PlayerList
-} from './components1/PlayerList.js'
+} from './components1/PlayerList.js';
 import {
 	Game
-} from './components1/Game.js'
-import SeriesService from './services/series-service.js'
+} from './components1/Game.js';
+import SeriesService from './services/series-service.js';
+import CharacterService from './services/CharacterService.js';
 import {
 	$,
 	$$,
 	findRelatedElement
-} from './services/utils-service.js'
+} from './services/utils-service.js';
 // import {
 // 	GameWC
 // } from './components1/GameWC.js'
 
-console.log('sercice', SeriesService);
+// console.log('sercice', CharacterService);
+
+var firebaseConfig = {
+	apiKey: "AIzaSyAjMD_N45O3uweJ3UvDCd5h1adkTwGebQs",
+	authDomain: "mario-party-tracker.firebaseapp.com",
+	databaseURL: "https://mario-party-tracker-default-rtdb.firebaseio.com",
+	projectId: "mario-party-tracker",
+	storageBucket: "mario-party-tracker.appspot.com",
+	messagingSenderId: "691666648206",
+	appId: "1:691666648206:web:0fd103d1ec7b6066221ddf",
+	measurementId: "G-3XQKWC630M"
+};
+// Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
+// const db = firebase.database().ref()
+// console.log('fb', db)
+
+
+// const setHistory = async () => {
+// const snapshot = await firebase.database().ref('/gameHistory/').once('value');
+// 	this.gameHistory = Object.values(snapshot.val())
+// 		.sort((a, b) => {
+// 			if (a.id > b.id) return -1;
+// 			else if (a.id < b.id) return 1;
+// 			else return 0;
+// 		});
+// 	sessionStorage.setItem('gameHistory', JSON.stringify(this.gameHistory));
+// }
+
+
+// const getHistory = async () => {
+// 	const snapshot = await firebase.database().ref('/gameHistory/').once('value');
+// 	this.gameHistory = Object.values(snapshot.val())
+// 		.sort((a, b) => {
+// 			if (a.id > b.id) return -1;
+// 			else if (a.id < b.id) return 1;
+// 			else return 0;
+// 		});
+// 	sessionStorage.setItem('gameHistory', JSON.stringify(this.gameHistory));
+// }
+
+const startData = JSON.parse(CharacterService.fetchCharacterLocal());
+const output = $(document, ".json-output");
+output.textContent = CharacterService.fetchCharacterLocal()
+
+const outputData = startData
+	.reduce((newObject, char) => {
+		let key = char.name.replace(/ /g, "").toLowerCase();
+		newObject[key] = char;
+		return newObject
+	}, {});
+
+
+
+console.log('outputdata', JSON.stringify(outputData, null, 2));
+
+const writeSeedData = (dataObject) => {
+	firebase.database.ref("/" + 'characters').set(data);
+}
+
+// writeSeedData(outputData)
+
+console.log('fb', firebase);
+
 
 const seriesContainers = $$(document, '.series-content')
 const seriesCollapsibles = $$(document, '.series-collapsible')
@@ -137,7 +202,7 @@ $(document, '.edit-series-button')
 
 		let sel = window.getSelection();
 		if (sel.toString() == '') { //no text selection
-			window.setTimeout(function () {
+			window.setTimeout(function() {
 				let range = document.createRange(); //range object
 				range.selectNodeContents(title); //sets Range
 				sel.removeAllRanges(); //remove all ranges from selection
@@ -186,7 +251,8 @@ const createGames = (seriesData) => {
 			// const newGame = document.createElement('smp-game')
 			const newGame = template.content.firstElementChild.cloneNode(true);
 			newGame.parent = gameList
-			newGame.props = game
+			newGame.props = game;
+
 			newGame.querySelector('.game-collapsible').textContent = `Game ${newGame.props.id}`;
 
 			// console.log('g l', $(document, '.game-list'));

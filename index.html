@@ -18,15 +18,19 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"></script>
 	<script src="./vue/vuex2.0.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.2.1/vue-router.js'></script>
-
 </head>
 
 <body>
 	<!-- App Component -->
-	<div class="app">
-
+	<!-- 	<div id="app">
+		<smp-series v-for="series in seriesList" :seriesData="series"></smp-series>
+<div class="suxk">
+	
+</div>
+</div> -->
+	<div class="app" id="app">
 		<header class="app-header">
-			<smp-game></smp-game>
+			<!-- <smp-game></smp-game> -->
 			<h2 class="header-title">Mario Tracker</h2>
 			<div class="add-series-container">
 				<div class="add-series-button">+ Series</div>
@@ -46,64 +50,8 @@
 		<div class="series-list active-series-list">
 			<div class="series-list-title">Active Series</div>
 			<!-- Series Component -->
-			<div class="series-container" data-series="1">
-				<div class="collapsible series-collapsible" data-series="1">
-					<div class="title-container">
-						<div class="series-title" data-series="false">Series 1</div>
-						<div class="submit-series-name hide">
-							ok
-						</div>
-					</div>
-				</div>
-				<div class="series-content content" data-series="1">
-					<header class="series-header">
-						<div class="series-players-button">03/21/2021</div>
-						<div class="game-count-display">Games: 2</div>
-						<!-- Menu Component -->
-						<div class="series-menu-container">
-							<div class="series-menu-button">Menu</div>
-							<ul class="series-menu hide" data-series="1">
-								<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-								<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-								<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-								<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
-							</ul>
-						</div>
-					</header>
-					<!-- GameList Component -->
-					<div class="game-list" data-series="1"></div>
-				</div>
-			</div>
-			<!-- - -->
-			<div class="series-container">
-				<button class="collapsible series-collapsible">Open Series</button>
-				<div class="series-content content">
-					<div class="series-header">series header</div>
-					<div class="game-list">
-						<div class="game-container">
-							<button class="collapsible game-collapsible">Open Game</button>
-							<div class="content internal-content game-content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-									et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-									aliquip ex ea commodo consequat.</p>
-							</div>
-						</div>
-						<div class="game-container">
-							<button class="collapsible game-collapsible">Open Game</button>
-							<div class="content internal-content game-content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-									et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-									aliquip ex ea commodo consequat.</p>
-							</div>
-						</div>
-					</div>
-					<div class="add-game-button">Add Game</div>
-				</div>
-			</div>
-		</div>
-		<div class="series-list archived-series-list">
-			<div class="series-list-title">Archived Series</div>
 			<!-- Series Component -->
+			<smp-series v-for="series in series" :series="series"></smp-series>
 			<div class="series-container" data-series="1">
 				<div class="collapsible series-collapsible" data-series="1">
 					<div class="title-container">
@@ -130,54 +78,37 @@
 					</header>
 					<!-- GameList Component -->
 					<div class="game-list" data-series="1">
-						<!-- Game Component -->
-						<!-- </div> -->
+						<!-- <smp-game v-for="game in games" :game="game"></smp-game> -->
 					</div>
-				</div>
-			</div>
-			<!-- - -->
-			<div class="series-container">
-				<button class="collapsible series-collapsible">Open Series</button>
-				<div class="series-content content">
-					<div class="series-header">series header</div>
-					<div class="game-list">
-						<div class="game-container">
-							<button class="collapsible game-collapsible">Open Game</button>
-							<div class="content internal-content game-content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-									et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-									aliquip ex ea commodo consequat.</p>
-							</div>
-						</div>
-						<div class="game-container">
-							<button class="collapsible game-collapsible">Open Game</button>
-							<div class="content internal-content game-content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-									et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-									aliquip ex ea commodo consequat.</p>
-							</div>
-						</div>
-					</div>
-					<div class="add-game-button">Add Game</div>
 				</div>
 			</div>
 		</div>
-		<!-- - -->
+	</div>
+	<div class="json-output">
 	</div>
 	<!-- <script src="app.js" type="module" charset="utf-8"></script> -->
-	<script src="tracker-main.js" type="module" charset="utf-8"></script>
+	<!-- <script src="tracker-main.js" type="module" charset="utf-8"></script> -->
+	<!-- @player-template -->
+	<template id="smp-player-template">
+		<div class="smp-player-container">
+			<div class="player-name">Player: {{1}}</div>
+			<div class="player-character-name">Character: ${props.character}</div>
+			<div class="player-rank">Rank: ${props.rank}</div>
+			<div class="player-stars">Stars: ${props.stars}</div>
+		</div>
+	</template>
 	<!-- @game-template -->
-
-	<template id="smp-game">
+	<template id="smp-game-template">
 		<div class="smp-game-container">
-			<div class="collapsible game-collapsible" data-game="${this.data.id}" data-series="${this.data.seriesId}"></div>
-			<div class="content game-content hide">
+			<div class="collapsible game-collapsible" @click="handleCollapsibleClicked" :class="{ active: !collapsed }">
+				Game {{ game.id }}
+			</div>
+			<div class="content game-content" :class="{ hide: collapsed }" ref="gameContent">
 				<div class="game-details">
-					<div class="game-map-name" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-						Map: ${this.props.map}
+					<div class="game-map-name">
+						{{game}}
 					</div>
-					<div class="game-date" data-game="${this.data.id}" data-series="${this.data.seriesId}">
-						${this.props.date}
+					<div class="game-date">
 					</div>
 				</div>
 				PlayerList Component
@@ -187,15 +118,77 @@
 			</div>
 		</div>
 	</template>
-	<!-- @player-template -->
-	<template id="smp-player">
-		<div class="smp-player-container">
-			<div class="player-name">Player: ${props.name}</div>
-			<div class="player-character-name">Character: ${props.character}</div>
-			<div class="player-rank">Rank: ${props.rank}</div>
-			<div class="player-stars">Stars: ${props.stars}</div>
+	<!-- @series-template -->
+	<template id="smp-series-template">
+		<div class="series-container" @gameCollapsibleClicked="handleGameCollapsibleClicked" data-series="1">
+			<div @click="handleSeriesCollapsibleClicked" :class="{ active: !collapsed }" class="collapsible series-collapsible" data-series="1">
+				<div class="title-container">
+					<div class="series-title" data-series="false">Series {{seriesData.id}}</div>
+					<div class="submit-series-name hide">
+						ok
+					</div>
+				</div>
+			</div>
+			<div class="series-content content" :style="styleObject" ref="seriesContent" data-series="1">
+				<header class="series-header">
+					<div class="series-players-button">poo</div>
+					<div class="game-count-display">Games: 2</div>
+					<!-- Menu Component -->
+					<div class="series-menu-container">
+						<div class="series-menu-button">Menu</div>
+						<ul class="series-menu hide" data-series="1">
+							<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
+							<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
+							<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
+							<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+						</ul>
+					</div>
+				</header>
+				<!-- GameList Component -->
+				<div class="game-list" data-series="1">
+					<smp-game @gameCollapsibleClicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
+				</div>
+			</div>
 		</div>
 	</template>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<!-- <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script> -->
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<!-- <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-analytics.js"></script> -->
+<!-- <script>
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	var firebaseConfig = {
+		apiKey: "AIzaSyAjMD_N45O3uweJ3UvDCd5h1adkTwGebQs",
+		authDomain: "mario-party-tracker.firebaseapp.com",
+		databaseURL: "https://mario-party-tracker-default-rtdb.firebaseio.com",
+		projectId: "mario-party-tracker",
+		storageBucket: "mario-party-tracker.appspot.com",
+		messagingSenderId: "691666648206",
+		appId: "1:691666648206:web:0fd103d1ec7b6066221ddf",
+		measurementId: "G-3XQKWC630M"
+	};
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+	firebase.analytics();
+	console.log('index fb', firebase.database().ref())
+</script> -->
+	<!-- <script>
+		firebase.
+	</script> -->
+	
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script> -->
+
+  <!-- Add Firebase products that you want to use -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script> -->
+
+	<!-- <script src="tracker-main.js" type="module" charset="utf-8"></script> -->
+	<script src="new-app.js" type="module" charset="utf-8"></script>
 </body>
 
 </html>

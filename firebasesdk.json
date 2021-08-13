@@ -1,0 +1,12 @@
+{
+	"type": "service_account",
+	"project_id": "mario-party-tracker",
+	"private_key_id": "633e3c32f74463859b1697c55a575ef27a801f2b",
+	"private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDG7WRai97iW7MA\nQSvAv3NEwa72kdlNIzxtbliYdNFOhXpuOc38kh2s9EnhWsTlMF0TgJXrjY5fyja/\nnxzoqkfgcF0PMc5fRaUDdfgA9qyZk4MIcQXYsRykmnPODHO5tUlji1IORhGeK8Ie\nAd64dFIaPCg3HN/vo+LGRl4rKRcL+VOJq4ReB7tTigF7YDuIO+3cSxPwGCeRcrzU\n8ka64k2JhTLAeH636wfqCrY1vfdVbd5sO5qZaionbLG/XDdXt8Kyl2/pmtbZ7ATT\npAZSyWk7RnpcsGPWJh2boEn4eewaPC/2hp+lAarlQZtEGuZg2HPP2DZYNaGX6dvo\nSklMCWABAgMBAAECggEAVAK+roTCoOskKhfb3/+asS9w8j3/PRYD950x+lTfbl9t\nqK5t4Vxd/wR+TRd17urhbBKSfhPezHKMc5nBbjs3tsANdRTOOKsjeNYx4kpK82L6\nZC7DTtPhqlx2Ss80cnnu4ATfJxsNZrTJOr4EbvblE6JTQ49EvaKDa8QdEfI9AvdO\nk1EnUxtmkaEaaysT4A987Y5l4hVlj4y+HnnDyUHIE33q+oVeXjNAAehavuyPyKJW\nuKdlg9Yv5DY8eRYTrOPYuVOi1jfVH2O3Au25S+yhlddsYHpaaSnyP5g5vHdZ5q+d\na2JYO04nYSIgMlsiCo8aBL9hxJ/pLciuVE8tAbnMrwKBgQDvLzU2a8oCIBDWydVd\nVxJfu9MITU2QG+WxEZeER0YLaQ8AaitZX5TvIFQbtd7rj8Aiz47PUREcyEtsMZeW\ncPWkRbs3RxK9oVLb2CtX3GY4hBwAr2TwRpKW2k7snn18v1Lmd+/nHVlAKqIvC7x3\n+5MEJQ4Un/RVofBD7FwMLSLt4wKBgQDU6aUredqEeYIS0E+Cc2AW9j9ACKu6zmSm\n/S2cYrJ+0ZsoT7QNDjcZpru+qEwp6zPJHb6XzGBcnLAnkaN0AoGZQpnftA7DCa/X\nK41cbaEDXIIIWrRtqzgqlagE5dc2SArY92bfZiq5qR9zImAaCOVw0MJd4LJFRZAJ\n4ZVsVcrfywKBgBxAajukXbcEjJiiPHaK+1uddt7LKrcz5FyW5Fu2g3qDjUcSQ06K\nMLBSFD01rUALubki5Q5t1+Sbb/U2ol4dt5YQun1cAsWtUXkwPmZhXR2d1STrkrOi\n0lvJK3tdeRsMCkG4tviIies/XerKqxdM+t+JdPFQt26J8zRCrdiuWCrbAoGAdjBs\n+8FcyAUba44vVN7vDFANtGIb0ksYHIqWcyVmqHd6hdoYvNaTR64CskeCYBKsYIwe\nbO2K4F4qewyhi5iIkKcj+8ZcG3CZJ/yJMDG7G76SgEi5t9dACoOhDXb5DKzZOK+9\nb22rcfyr9KG0bz9Y/lMkUjCVRVbkKlgLNmQ5hhkCgYBsPxBWccHl1kJ0bjm55eXU\nP8IQp0dP2VPoPZZhsYv+plpPeCgILNwvwUlNprKvttADwppGO4T+KexkHmfHen1v\nrX+IRhrnBgL/4ZFzeDGGGd51gqFETw4w47AgM65Tpq/S42g44sI2Llk1XZBDG7v0\nUOb4TPNc2xeKH14ctBx0JQ==\n-----END PRIVATE KEY-----\n",
+	"client_email": "firebase-adminsdk-pc5b2@mario-party-tracker.iam.gserviceaccount.com",
+	"client_id": "117352911915071810393",
+	"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+	"token_uri": "https://oauth2.googleapis.com/token",
+	"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+	"client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-pc5b2%40mario-party-tracker.iam.gserviceaccount.com"
+}
