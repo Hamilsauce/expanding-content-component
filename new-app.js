@@ -42,7 +42,7 @@ const addSeries = async () => {
 };
 
 
-addSeries()
+// addSeries()
 
 
 const EventBus = new Vue();
@@ -74,11 +74,14 @@ const app = new Vue({
 	},
 	methods: {
 		async init() {
-			this.characterData = await CharacterService.fetchCharacterJson(this.characterDataUrl);
-			this.seriesList = await SeriesService.fetchSeriesJson(this.seriesDataUrl);
+			const appData = await SeriesService.fetchSeriesJson(this.seriesDataUrl);
+			// this.characterData = await CharacterService.fetchCharacterJson(this.characterDataUrl);
+			this.seriesList = appData.series;
+			this.characterData = appData.series;
 
+			console.log('app data ', appData);
 			console.log('chard', this.characterData);
-			console.log('ser data', this.seriesList);
+			// console.log('series data', this.seriesList.series);
 
 		},
 		handleExportAsCsv() {

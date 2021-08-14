@@ -20,15 +20,17 @@ export default {
 		},
 		handleGameCollapsibleClicked(data) {
 			// console.log('contentElement', this.contentElement);
-			console.log('data', data);
+			console.log('heard gsme click in series');
 			// console.log('gameScrollHeight', gameScrollHeight);
-			this.childScrollHeight = data
+			this.gameHeight = data
 
 
-			if (gameScrollHeight) {
-				this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(gameScrollHeight)}px`;
+			this.expandSeries(this.seriesContent,data)
+
+			if (this.gameHeight) {
+				this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
 			} else {
-				this.seriesContent.style.maxHeight = `${this.seriesContent.scrollHeight}px`;
+				this.seriesContent.style.maxHeight = `${this.seriesContent.style.maxHeight}px`;
 			}
 		},
 
@@ -86,10 +88,10 @@ export default {
 					zIndex: 0
 				}
 			} else {
-				if (this.childScrollHeight) {
+				if (this.gameHeight) {
 					return {
-						maxHeight: 'f' ,
-						maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.childScrollHeight) || 0}px`,
+						maxHeight: '100%',
+						// maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight) || 0}px`,
 						zIndex: 30
 					}
 				} else {

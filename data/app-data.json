@@ -483,20 +483,6 @@
 			"gameTitle": "Super Mario Party",
 			"active": true,
 			"archived": false
-    },
-		{
-			"Id": 78912,
-			"Customer": "Jason Sweet",
-			"Quantity": 1,
-			"Price": 18,
-			"id": 6
-    },
-		{
-			"Id": 78912,
-			"Customer": "Jason Sweet",
-			"Quantity": 1,
-			"Price": 18,
-			"id": 7
     }
   ],
 	"characters": {

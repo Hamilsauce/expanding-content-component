@@ -315,7 +315,7 @@ const handleBtnClick = (e) => {
 	gameContent.classList.toggle('hide');
 
 	const menubutton = seriesContent.querySelector('.series-menu');
-	menubutton.classList.add('hide')
+	// menubutton.classList.add('hide')
 
 	let gameHeight = parseInt(gameContent.style.maxHeight.replace('px', ''))
 	let seriesHeight = parseInt(seriesContent.style.maxHeight.replace('px', ''))

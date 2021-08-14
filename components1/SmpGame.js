@@ -50,13 +50,33 @@ export default {
 	},
 	methods: {
 
-		handleCollapsibleClicked() {
+		handleCollapsibleClicked(e) {
 			// e.stopPropagation();
 			this.collapsed = !this.collapsed
-			console.log('g comt', this.gameContent);
-			console.log('clicker', this.gameContent.scrollHeight);
-			this.$emit('gameCollapsibleClicked')
 
+			console.log('g comt', this.gameContent);
+			if (this.gameContent.style.maxHeight) {
+				// this.collapsed = false
+
+				this.gameContent.style.maxHeight = null;
+			} else {
+				// this.collapsed = false;
+				this.gameContent.style.maxHeight = this.gameContent.scrollHeight + "px";
+				
+				
+			}
+
+
+				const gameMaxHeight = null
+
+			if (!this.collapsed) {
+				gameMaxHeight = parseInt(this.gameContent.style.maxHeight.replace('px', ''));
+			} else {
+				
+			}
+
+			console.log('clicker', gameMaxHeight);
+			this.$emit('gameCollapsibleClicked', gameMaxHeight)
 			// const gameContent = e.target.nextElementSibling;
 			// gameBtn.classList.toggle('active');
 			// gameContent.classList.toggle('hide');
