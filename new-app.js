@@ -5,6 +5,7 @@ import { SeriesService, CharacterService } from './services/services.js';
 import { $, $$, findRelatedElement } from './services/utils-service.js';
 import { store } from './store/index.js';
 
+import {eventBus} from './services/EventBus.js';
 import SmpSeries from './components1/SmpSeries.js';
 import SmpGame from './components1/SmpGame.js';
 // import SmpSeriesList from './components1/SmpSeriesList.js';
@@ -45,8 +46,8 @@ const addSeries = async () => {
 // addSeries()
 
 
-const EventBus = new Vue();
-
+// const EventBus = new Vue();
+// console.log('ebus', eventBus);
 const app = new Vue({
 	// router: router,
 	data() {
@@ -73,6 +74,10 @@ const app = new Vue({
 		}
 	},
 	methods: {
+	handleGameCollapsibleClicked() {
+		console.log('geard game in app');
+	},
+
 		async init() {
 			const appData = await SeriesService.fetchSeriesJson(this.seriesDataUrl);
 			// this.characterData = await CharacterService.fetchCharacterJson(this.characterDataUrl);

@@ -28,7 +28,7 @@
 	
 </div>
 </div> -->
-	<div class="app" id="app">
+	<div class="app" id="app" >
 		<header class="app-header">
 			<!-- <smp-game></smp-game> -->
 			<h2 class="header-title">Mario Tracker</h2>
@@ -51,8 +51,8 @@
 			<div class="series-list-title">Active Series</div>
 			<!-- Series Component -->
 			<!-- Series Component -->
-			<smp-series v-for="series in series" :series="series"></smp-series>
 			<div class="series-container" data-series="1">
+			<smp-series  v-for="series in series" :series="series"></smp-series>
 				<div class="collapsible series-collapsible" data-series="1">
 					<div class="title-container">
 						<div class="series-title" data-series="false">Series 1</div>
@@ -61,7 +61,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="series-content content" data-series="1">
+				<div class="series-content content"  data-series="1">
 					<header class="series-header">
 						<div class="series-players-button">03/21/2021</div>
 						<div class="game-count-display">Games: 2</div>
@@ -120,7 +120,7 @@
 	</template>
 	<!-- @series-template -->
 	<template id="smp-series-template">
-		<div class="series-container" @gameCollapsibleClicked="handleGameCollapsibleClicked" data-series="1">
+		<div class="series-container" data-series="1">
 			<div @click="handleSeriesCollapsibleClicked" :class="{ active: !collapsed }" class="collapsible series-collapsible" data-series="1">
 				<div class="title-container">
 					<div class="series-title" data-series="false">Series {{seriesData.id}}</div>
@@ -147,7 +147,7 @@
 				</header>
 				<!-- GameList Component -->
 				<div class="game-list" data-series="1">
-					<smp-game @gameCollapsibleClicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
+					<smp-game  @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
 				</div>
 			</div>
 		</div>

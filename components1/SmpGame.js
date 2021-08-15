@@ -1,3 +1,4 @@
+import { eventBus } from '../services/EventBus.js';
 export default {
 	template: '#smp-game-template',
 	props: {
@@ -50,33 +51,26 @@ export default {
 	},
 	methods: {
 
-		handleCollapsibleClicked(e) {
-			// e.stopPropagation();
+		handleCollapsibleClicked() {
 			this.collapsed = !this.collapsed
-
-			console.log('g comt', this.gameContent);
-			if (this.gameContent.style.maxHeight) {
-				// this.collapsed = false
-
+			// eventBus.$emit('gameCollapsibleClicked')
+			if (this.collapsed) {
 				this.gameContent.style.maxHeight = null;
 			} else {
-				// this.collapsed = false;
 				this.gameContent.style.maxHeight = this.gameContent.scrollHeight + "px";
-				
-				
 			}
 
 
-				const gameMaxHeight = null
+			let gameMaxHeight = null
 
 			if (!this.collapsed) {
 				gameMaxHeight = parseInt(this.gameContent.style.maxHeight.replace('px', ''));
 			} else {
-				
+
 			}
 
-			console.log('clicker', gameMaxHeight);
-			this.$emit('gameCollapsibleClicked', gameMaxHeight)
+			console.log('clicker', this);
+			this.$emit('game-collapsible-clicked', gameMaxHeight)
 			// const gameContent = e.target.nextElementSibling;
 			// gameBtn.classList.toggle('active');
 			// gameContent.classList.toggle('hide');

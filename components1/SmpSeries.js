@@ -1,3 +1,4 @@
+import { eventBus } from '../services/EventBus.js';
 export default {
 	template: '#smp-series-template',
 	props: {
@@ -18,16 +19,16 @@ export default {
 		collapsibleClicked() {
 			console.log('slur');
 		},
-		handleGameCollapsibleClicked(data) {
+		handleGameCollapsibleClicked(gameHeight) {
 			// console.log('contentElement', this.contentElement);
-			console.log('heard gsme click in series');
+			console.log('heard gsme click in series', this);
 			// console.log('gameScrollHeight', gameScrollHeight);
-			this.gameHeight = data
+			this.gameHeight = gameHeight
 
 
-			this.expandSeries(this.seriesContent,data)
 
 			if (this.gameHeight) {
+				this.expandSeries(this.seriesContent, gameHeight)
 				this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
 			} else {
 				this.seriesContent.style.maxHeight = `${this.seriesContent.style.maxHeight}px`;
@@ -90,8 +91,8 @@ export default {
 			} else {
 				if (this.gameHeight) {
 					return {
-						maxHeight: '100%',
-						// maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight) || 0}px`,
+						// maxHeight: parseInt(this.seriesContent.scrollHeight) + "px",
+						maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight) || 0}px`,
 						zIndex: 30
 					}
 				} else {
@@ -114,6 +115,9 @@ export default {
 	mounted() {
 		console.log("series creat3d", this.seriesData);
 		console.log('moubt', this);
+	},
+	mounted() {
+		// eventBus.$on('gameCollapsibleClicked', this.handleGameCollapsibleClicked)
 	}
 
 }

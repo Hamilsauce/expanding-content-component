@@ -6,6 +6,7 @@ let selectedOption;
 let selectedChar;
 let totalRollsCount;
 const charSelect = ham.qs('#character-select');
+const DATA_PATH_LOCAL = '../data/app-data.json';
 
 const updateDie = async () => {
 	const response = await fetch("http://localhost:3000/series",
@@ -42,20 +43,21 @@ const createSelectOptions = chars => {
 
 ;
 (() => {
-	if (handleLocalStorage('get', 'smpCharacterData')) {
-		charData = handleLocalStorage('get', 'smpCharacterData')
+	// if (handleLocalStorage('get', 'smpCharacterData')) {
+	// 	charData = handleLocalStorage('get', 'smpCharacterData')
 
-		createSelectOptions(charData)
-	} else {
-		fetch('../data/character-data.json')
+	// 	createSelectOptions(charData)
+	// } else {
+		fetch(DATA_PATH_LOCAL)
 			.then(response => response.json())
 			.then(data => {
-				handleLocalStorage('set', 'smpCharacterData', data)
+				console.log(data);
+				handleLocalStorage('set', 'smpCharacterData', data.characters);
 				charData = handleLocalStorage('get', 'smpCharacterData')
-
+console.log(charData);
 				createSelectOptions(charData)
 			});
-	}
+	// }
 })()
 
 
