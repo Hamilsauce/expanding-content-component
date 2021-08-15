@@ -29,7 +29,7 @@ export default {
 
 			if (this.gameHeight) {
 				this.expandSeries(this.seriesContent, gameHeight)
-				this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
+				// this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
 			} else {
 				this.seriesContent.style.maxHeight = `${this.seriesContent.style.maxHeight}px`;
 			}
@@ -39,7 +39,7 @@ export default {
 			// console.log('poop', data);
 			this.collapsed = !this.collapsed;
 			console.log('childScrollHeight', this.childScrollHeight);
-
+this.expandSeries(this.seriesContent, null)
 			// el.classList.toggle('active');
 			// const menubutton = $(el.parentElement, '.series-menu')
 
@@ -68,8 +68,11 @@ export default {
 		expandSeries(seriesContent, childScrollHeight) {
 			seriesContent.style.zIndex = 30;
 			if (childScrollHeight) {
-				seriesContent.style.maxHeight = '100%';
+			console.log('expand series child scroll');
+				this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
+				// seriesContent.style.maxHeight = '100%';
 			} else {
+			console.log('expand series NO child scroll');
 				seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
 			}
 		}
@@ -92,6 +95,7 @@ export default {
 				if (this.gameHeight) {
 					return {
 						// maxHeight: parseInt(this.seriesContent.scrollHeight) + "px",
+						// maxHeight: '100%',
 						maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight) || 0}px`,
 						zIndex: 30
 					}
