@@ -6,27 +6,20 @@ export default {
 		return {
 			collapsed: true,
 			gameHeight: null,
-	 		newGame: {
-				id: 1,
-				map: 'Fruit Islands',
-				date: '03/21/2021',
-				winner: 'Jake',
+			newGame: {
+				id: null,
+				map: null,
+				date: null,
+				winner: null,
 				playerRanks: [
 					{
-						id: 1,
-						name: 'Jake',
-						rank: 1,
-						stars: 5,
-						character: 'Peach',
-						      },
-					{
-						id: 2,
-						name: 'Kit',
-						rank: 2,
-						stars: 0,
-						character: 'Mario',
-						      },
-						    ]
+						id: null,
+						name: null,
+						rank: null,
+						stars: null,
+						character: null,
+					},
+				]
 			},
 		}
 	},
@@ -36,6 +29,24 @@ export default {
 		},
 		handleMenuOptionClicked(action) {
 			console.log('mebu click heard innsrries', action);
+			if (action === 'add-game') {
+				this.games.push({
+					id: null,
+					map: null,
+					date: null,
+					winner: null,
+					playerRanks: [
+						{
+							id: null,
+							name: null,
+							rank: null,
+							stars: null,
+							character: null,
+						},
+					]
+				});
+				console.log('gsmes after push', this.games);
+			}
 		},
 
 		handleGameCollapsibleClicked(gameHeight) {
