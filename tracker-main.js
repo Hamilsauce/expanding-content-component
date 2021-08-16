@@ -195,6 +195,7 @@ $(document, '.edit-series-button')
 		}
 	});
 
+//TODO move to series comp
 $(document, '.submit-series-name')
 	.addEventListener('click', e => {
 		e.stopPropagation()

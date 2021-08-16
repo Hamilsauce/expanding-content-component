@@ -228,12 +228,14 @@ border-right: 1px solid white;
 
 .series-menu-container {
 	position: relative;
+	z-index: 500;
 	/* background: white; */
 }
 
 .series-menu-button {
 	/* width: 100%; */
 	z-index: 31;
+	z-index: 500;
 	/* text-align: right; */
 	/* background: white; */
 }
@@ -254,7 +256,7 @@ border-right: 1px solid white;
 	border: 1px solid #E5E5E5;
 	box-shadow: 0px 3px 5px 0px #000000B0;
 	opacity: 1;
-	/* z-index: 31; */
+	z-index: 500;
 	transition: opacity 0.07s ease-out, height 0.4s;
 	/* height: fit-content; */
 }
@@ -263,7 +265,7 @@ border-right: 1px solid white;
 	/* content: '-'; */
 }
 
-.series-menu.hide {
+.hide {
 	opacity: 0;
 	height: 0;
 	overflow: hidden;

@@ -1,12 +1,9 @@
-import eventBus  from '../services/EventBus.js';
+import eventBus from '../services/EventBus.js';
 export default {
 	template: '#smp-game-template',
-	props: {
-		gameData: Object,
-	},
+	props: { gameData: Object },
 	data() {
 		return {
-			isExpanded: false,
 			selectedPlayerId: null,
 			collapsed: true,
 		}
@@ -16,28 +13,20 @@ export default {
 		players() { return this.gameData.playerRanks },
 		gameContent() { return this.$refs.gameContent },
 		styleObject() {
-			if (this.collapsed) {
-				return {
-					maxHeight: null,
-					zIndex: 0
+			if (this.collapsed) return {
+				maxHeight: null,
+				zIndex: 0
+			}
+			else {
+				if (this.gameContent.scrollHeight) return {
+					maxHeight: 'fit-content',
+					zIndex: 30
 				}
-			} else {
-				if (this.gameContent.scrollHeight) {
-					console.log('maxheight game', this.gameContent.style.maxHeight);
-					return {
-						maxHeight: 'fit-content',
-						zIndex: 30
-					}
-				} else {
-					return {
-						maxHeight: this.gameContent.scrollHeight + "px"
-					}
-				}
+				else return { maxHeight: this.gameContent.scrollHeight + "px" }
 			}
 		}
 	},
 	methods: {
-
 		handleCollapsibleClicked() {
 			this.collapsed = !this.collapsed
 			if (this.collapsed) this.gameContent.style.maxHeight = null;
@@ -50,10 +39,7 @@ export default {
 		}
 	},
 	watch: {
-		game(newVal) {
-			console.log('gsme watch');
-			console.log(newVal);
-		}
+		// game(newVal) { console.log(newVal) }
 	},
 	filters: {}
 };
