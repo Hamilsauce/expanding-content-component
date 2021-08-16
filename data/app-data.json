@@ -9,11 +9,17 @@
 					"id": 1,
 					"name": "Jake",
 					"wins": 4
-        },
+      },
+
 				{
 					"id": 2,
 					"name": "Kit",
 					"wins": 1
+        },
+				{
+					"id": 3,
+					"name": "CJ",
+					"wins": 2
         }
       ],
 			"games": [
