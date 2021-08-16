@@ -25,8 +25,8 @@
 	<!-- 	<div id="app">
 		<smp-series v-for="series in seriesList" :seriesData="series"></smp-series>
 <div class="suxk">
-	
-</div>
+
+</div>origin
 </div> -->
 	<div class="app" id="app" @click="handleMenuBlur">
 		<header class="app-header">
@@ -49,49 +49,19 @@
 		<!-- Series List Component -->
 		<div class="series-list active-series-list">
 			<div class="series-list-title">Active Series</div>
-			<!-- Series Component -->
-			<!-- Series Component -->
-			<div class="series-container" data-series="1">
+			<div class="series-container">
+				<!-- Series Component -->
 				<smp-series v-for="series in series" :series="series"></smp-series>
-				<div class="collapsible series-collapsible" data-series="1">
-					<div class="title-container">
-						<div class="series-title" data-series="false">Series 1</div>
-						<div class="submit-series-name hide">
-							ok
-						</div>
-					</div>
-				</div>
-				<div class="series-content content" data-series="1">
-					<header class="series-header">
-						<div class="series-players-button">03/21/2021</div>
-						<div class="game-count-display">Games: 2</div>
-						<!-- Menu Component -->
-						<div class="series-menu-container">
-							<div class="series-menu-button">Menu</div>
-							<ul class="series-menu hide" data-series="1">
-								<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-								<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-								<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-								<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
-							</ul>
-						</div>
-					</header>
-					<!-- GameList Component -->
-					<div class="game-list" data-series="1">
-						<!-- <smp-game v-for="game in games" :game="game"></smp-game> -->
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
-	<div class="json-output">
-	</div>
+	<div class="json-output"></div>
 	<!-- <script src="app.js" type="module" charset="utf-8"></script> -->
 	<!-- <script src="tracker-main.js" type="module" charset="utf-8"></script> -->
 	<!-- @player-template -->
 	<template id="smp-player-template">
 		<div class="smp-player-container">
-			<div class="player-name">Player: {{1}}</div>
+			<div class="player-name">Player: {{}}</div>
 			<div class="player-character-name">Character: ${props.character}</div>
 			<div class="player-rank">Rank: ${props.rank}</div>
 			<div class="player-stars">Stars: ${props.stars}</div>
@@ -100,12 +70,12 @@
 	<!-- @menu-template -->
 	<template id="smp-series-menu-template">
 		<div class="series-menu-container">
-			<div class="series-menu-button" @click="handleSeriesMenuButtonClicked">Menu</div>
+			<div class="series-menu-button" @click.stop="seriesMenuToggleClicked">Menu</div>
 			<ul class="series-menu" ref="menu-body" :class="classObject">
-				<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-				<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-				<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-				<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+				<li class="series-menu-item add-game-button" @click="addGameClicked">Add Game</li>
+				<li class="series-menu-item delete-series-button" @click="deleteSeriesClicked">Delete Series</li>
+				<li class="series-menu-item edit-series-button" @click="editSeriesClicked">Edit Series Name</li>
+				<li class="series-menu-item archive-series-button">Archive Series</li>
 			</ul>
 		</div>
 	</template>
@@ -132,25 +102,27 @@
 	</template>
 	<!-- @series-template -->
 	<template id="smp-series-template">
-		<div class="series-container" data-series="1">
-			<div @click="handleSeriesCollapsibleClicked" :class="{ active: !collapsed }" class="collapsible series-collapsible" data-series="1">
+		<div class="series-container">
+			<div class="collapsible series-collapsible" @click="handleSeriesCollapsibleClicked"
+				:class="{ active: !collapsed }">
 				<div class="title-container">
-					<div class="series-title" data-series="false">Series {{seriesData.id}}</div>
+					<div class="series-title">Series {{seriesData.id}}</div>
 					<div class="submit-series-name hide">
 						ok
 					</div>
 				</div>
 			</div>
-			<div class="series-content content" :style="styleObject" ref="seriesContent" data-series="1">
+			<div class="series-content content" :style="styleObject" ref="seriesContent">
 				<header class="series-header">
-					<div class="series-players-button">poo</div>
-					<div class="game-count-display">Games: 2</div>
+					<div class="series-players-button" @click="handlePlayersClicked">{{ seriesData.players.length }} Players</div>
+					<div class="game-count-display">Games: {{ games.length }}</div>
 					<!-- Menu Component -->
-					<smp-series-menu></smp-series-menu>
+					<smp-series-menu @series-menu-option-clicked="handleMenuOptionClicked"></smp-series-menu>
 				</header>
 				<!-- GameList Component -->
-				<div class="game-list" data-series="1">
-					<smp-game @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
+				<div class="game-list">
+					<smp-game @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game">
+					</smp-game>
 				</div>
 			</div>
 		</div>
@@ -213,7 +185,7 @@
   	</div>
   </template>
   <template id="collapsible">
-  	<div class="collapsible series-collapsible" data-series="1">
+  	<div class="collapsible series-collapsible">
   		<div class="title-container">
   			<div class="series-title" data-series="false">Series 1</div>
   			<div class="submit-series-name hide">
@@ -241,8 +213,8 @@
   	</header>
   </template>
   <template id="series">
-  	<div class="series-container" data-series="1">
-  		<div class="collapsible series-collapsible" data-series="1">
+  	<div class="series-container">
+  		<div class="collapsible series-collapsible">
   			<div class="title-container">
   				<div class="series-title" data-series="false">Series 1</div>
   				<div class="submit-series-name hide">
@@ -250,32 +222,32 @@
   				</div>
   			</div>
   		</div>
-  		<div class="series-content content" data-series="1">
+  		<div class="series-content content">
   			<header class="series-header">
   				<div class="series-players-button">03/21/2021</div>
   				<div class="game-count-display">Games: 2</div>
   				<div class="series-menu-container">
   					<div class="series-menu-button">Menu</div>
-  					<ul class="series-menu hide" data-series="1">
-  						<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-  						<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-  						<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-  						<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+  					<ul class="series-menu hide">
+  						<li class="series-menu-item add-game-button">Add Game</li>
+  						<li class="series-menu-item delete-series-button">Delete Series</li>
+  						<li class="series-menu-item edit-series-button">Edit Series Name</li>
+  						<li class="series-menu-item archive-series-button">Archive Series</li>
   					</ul>
   				</div>
   			</header>
-  			<div class="game-list" data-series="1"></div>
+  			<div class="game-list"></div>
   		</div>
   	</div>
   </template>
   <template id="series-menu">
   	<div class="series-menu-container">
   		<div class="series-menu-button">Menu</div>
-  		<ul class="series-menu hide" data-series="1">
-  			<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-  			<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-  			<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-  			<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+  		<ul class="series-menu hide">
+  			<li class="series-menu-item add-game-button">Add Game</li>
+  			<li class="series-menu-item delete-series-button">Delete Series</li>
+  			<li class="series-menu-item edit-series-button">Edit Series Name</li>
+  			<li class="series-menu-item archive-series-button">Archive Series</li>
   		</ul>
   	</div>
   </template>
