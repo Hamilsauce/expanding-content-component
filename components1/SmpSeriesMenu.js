@@ -10,15 +10,17 @@ export default {
 	},
 	methods: {
 		handleBlur() { this.showMenu = false },
+
 		seriesMenuToggleClicked() { this.showMenu = !this.showMenu },
+	
 		handleMenuOptionClicked(action) { this.$emit('series-menu-option-clicked', action) },
+
 		editSeriesClicked() {
 			this.handleMenuOptionClicked('edit-series')
 		},
 		
 		deleteSeriesClicked() {
 			this.handleMenuOptionClicked('delete-series')
-
 		},
 		
 		addGameClicked() {

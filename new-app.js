@@ -5,7 +5,7 @@ import { SeriesService, CharacterService } from './services/services.js';
 import { $, $$, findRelatedElement } from './services/utils-service.js';
 import { store } from './store/index.js';
 
-import eventBus  from './services/EventBus.js';
+import eventBus from './services/EventBus.js';
 import SmpSeries from './components1/SmpSeries.js';
 import SmpSeriesMenu from './components1/SmpSeriesMenu.js';
 import SmpGame from './components1/SmpGame.js';
@@ -48,8 +48,6 @@ const addSeries = async () => {
 // addSeries()
 
 
-// const EventBus = new Vue();
-// console.log('ebus', eventBus);
 const app = new Vue({
 	// router: router,
 	data() {
@@ -61,12 +59,7 @@ const app = new Vue({
 		}
 	},
 	computed: {
-		s1Games() {
-			return seriesList[0].games;
-		},
-		series() {
-			return this.seriesList;
-		},
+		series() { return this.seriesList },
 		charData() {},
 		showNav() {
 			// return store.getters.showNav
@@ -82,14 +75,11 @@ const app = new Vue({
 			this.characterData = appData.series;
 		},
 		handleMenuBlur(e) {
-			console.log('ckick app', e);
 			if (e.target.classList.contains('series-menu-button')) return;
-			// seriesMenus.forEach(m => m.classList.add('hide'));
-			eventBus.$emit('blur-menu');
+			else eventBus.$emit('blur-menu');
 		},
 	},
 	created() {
 		this.init();
-		console.log('tjis', this);
 	}
 }).$mount('#app')
