@@ -1,4 +1,4 @@
-import { eventBus } from '../services/EventBus.js';
+import eventBus from '../services/EventBus.js';
 export default {
 	template: '#smp-series-template',
 	props: {
@@ -39,7 +39,7 @@ export default {
 			// console.log('poop', data);
 			this.collapsed = !this.collapsed;
 			console.log('childScrollHeight', this.childScrollHeight);
-this.expandSeries(this.seriesContent, null)
+			this.expandSeries(this.seriesContent, null)
 			// el.classList.toggle('active');
 			// const menubutton = $(el.parentElement, '.series-menu')
 
@@ -68,11 +68,11 @@ this.expandSeries(this.seriesContent, null)
 		expandSeries(seriesContent, childScrollHeight) {
 			seriesContent.style.zIndex = 30;
 			if (childScrollHeight) {
-			console.log('expand series child scroll');
+				console.log('expand series child scroll');
 				this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
 				// seriesContent.style.maxHeight = '100%';
 			} else {
-			console.log('expand series NO child scroll');
+				console.log('expand series NO child scroll');
 				seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
 			}
 		}

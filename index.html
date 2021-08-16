@@ -28,7 +28,7 @@
 	
 </div>
 </div> -->
-	<div class="app" id="app" >
+	<div class="app" id="app" @click="handleMenuBlur">
 		<header class="app-header">
 			<!-- <smp-game></smp-game> -->
 			<h2 class="header-title">Mario Tracker</h2>
@@ -52,7 +52,7 @@
 			<!-- Series Component -->
 			<!-- Series Component -->
 			<div class="series-container" data-series="1">
-			<smp-series  v-for="series in series" :series="series"></smp-series>
+				<smp-series v-for="series in series" :series="series"></smp-series>
 				<div class="collapsible series-collapsible" data-series="1">
 					<div class="title-container">
 						<div class="series-title" data-series="false">Series 1</div>
@@ -61,7 +61,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="series-content content"  data-series="1">
+				<div class="series-content content" data-series="1">
 					<header class="series-header">
 						<div class="series-players-button">03/21/2021</div>
 						<div class="game-count-display">Games: 2</div>
@@ -95,6 +95,18 @@
 			<div class="player-character-name">Character: ${props.character}</div>
 			<div class="player-rank">Rank: ${props.rank}</div>
 			<div class="player-stars">Stars: ${props.stars}</div>
+		</div>
+	</template>
+	<!-- @menu-template -->
+	<template id="smp-series-menu-template">
+		<div class="series-menu-container">
+			<div class="series-menu-button" @click="handleSeriesMenuButtonClicked">Menu</div>
+			<ul class="series-menu" ref="menu-body" :class="classObject">
+				<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
+				<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
+				<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
+				<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
+			</ul>
 		</div>
 	</template>
 	<!-- @game-template -->
@@ -134,19 +146,11 @@
 					<div class="series-players-button">poo</div>
 					<div class="game-count-display">Games: 2</div>
 					<!-- Menu Component -->
-					<div class="series-menu-container">
-						<div class="series-menu-button">Menu</div>
-						<ul class="series-menu hide" data-series="1">
-							<li class="series-menu-item add-game-button" data-series="1">Add Game</li>
-							<li class="series-menu-item delete-series-button" data-series="1">Delete Series</li>
-							<li class="series-menu-item edit-series-button" data-series="1">Edit Series Name</li>
-							<li class="series-menu-item archive-series-button" data-series="1">Archive Series</li>
-						</ul>
-					</div>
+					<smp-series-menu></smp-series-menu>
 				</header>
 				<!-- GameList Component -->
 				<div class="game-list" data-series="1">
-					<smp-game  @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
+					<smp-game @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
 				</div>
 			</div>
 		</div>
@@ -155,8 +159,8 @@
 	<!-- <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script> -->
 	<!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<!-- <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-analytics.js"></script> -->
-<!-- <script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-analytics.js"></script> -->
+	<!-- <script>
 	// Your web app's Firebase configuration
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 	var firebaseConfig = {
@@ -177,16 +181,12 @@
 	<!-- <script>
 		firebase.
 	</script> -->
-	
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
-
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script> -->
-
-  <!-- Add Firebase products that you want to use -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script> -->
-
+	<!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script> -->
+	<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+	<!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script> -->
+	<!-- Add Firebase products that you want to use -->
+	<!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script> -->
+	<!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script> -->
 	<!-- <script src="tracker-main.js" type="module" charset="utf-8"></script> -->
 	<script src="new-app.js" type="module" charset="utf-8"></script>
 </body>
