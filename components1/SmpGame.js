@@ -12,17 +12,22 @@ export default {
 		game() { return this.gameData },
 		players() { return this.gameData.playerRanks },
 		gameContent() { return this.$refs.gameContent },
+		hideClasses() {
+			if (this.editTitleMode) return { hide: false }
+			else return { hide: true };
+		},
 		styleObject() {
 			if (this.collapsed) return {
 				maxHeight: null,
 				zIndex: 0
 			}
 			else {
-				if (this.gameContent.scrollHeight) return {
-					maxHeight: 'fit-content',
+				if (this.gameContent.style.maxHeight) return {
+					maxHeight: '100%',
 					zIndex: 30
 				}
-				else return { maxHeight: this.gameContent.scrollHeight + "px" }
+				else return { maxHeight: '100%' }
+				// else return { maxHeight: this.gameContent.scrollHeight + "px" }
 			}
 		}
 	},

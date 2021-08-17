@@ -61,11 +61,17 @@
 	<!-- @player-template -->
 	<template id="smp-player-template">
 		<div class="player-container">
-			<div class="player-name">Player: {{player.name}}</div>
-			<div class="player-character-name">Character: {{player.character}}</div>
-			<div>
-				<div class="player-rank">Rank: {{player.rank}}</div>
-				<div class="player-stars">Stars: {{player.stars}}</div>
+			<div class="player-rank">
+				{{player.rank}}
+			</div>
+			<div class="player-name">
+				{{player.name}}
+			</div>
+			<div class="player-character-name">
+				{{player.character}}
+			</div>
+			<div class="player-stars">
+				{{player.stars}}
 			</div>
 		</div>
 	</template>
@@ -87,7 +93,7 @@
 			<div class="collapsible game-collapsible" @click="handleCollapsibleClicked" :class="{ active: !collapsed }">
 				Game {{ game.id }}
 			</div>
-			<div class="content game-content" :class="{ hide: collapsed }" ref="gameContent">
+			<div class="content game-content" :style="styleObject" :class="{ hide: collapsed }" ref="gameContent">
 				<div class="game-details">
 					<div class="game-map-name">
 						{{game.map}}
@@ -97,7 +103,15 @@
 					</div>
 				</div>
 				<div class="player-list">
-					<smp-player v-for="player in players" :player-data="player"></smp-player>
+					<div class="player-list-headers">
+						<div class="player-list-header">Rank</div>
+						<div class="player-list-header">Name</div>
+						<div class="player-list-header">Character</div>
+						<div class="player-list-header">Stars</div>
+					</div>
+					<div class="player-list-body">
+						<smp-player class="player" v-for="player in players" :player-data="player"></smp-player>
+					</div>
 				</div>
 			</div>
 		</div>
