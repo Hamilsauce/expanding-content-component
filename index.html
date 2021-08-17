@@ -61,10 +61,10 @@
 	<!-- @player-template -->
 	<template id="smp-player-template">
 		<div class="smp-player-container">
-			<div class="player-name">Player: {{}}</div>
-			<div class="player-character-name">Character: ${props.character}</div>
-			<div class="player-rank">Rank: ${props.rank}</div>
-			<div class="player-stars">Stars: ${props.stars}</div>
+			<div class="player-name">Player: {{player.name}}</div>
+			<div class="player-character-name">Character: {{player.character}}<div>
+			<div class="player-rank">Rank: {{player.rank}}</div>
+			<div class="player-stars">Stars: {{player.stars}}</div>
 		</div>
 	</template>
 	<!-- @menu-template -->
@@ -88,14 +88,16 @@
 			<div class="content game-content" :class="{ hide: collapsed }" ref="gameContent">
 				<div class="game-details">
 					<div class="game-map-name">
-						{{game}}
+						{{game.map}}
 					</div>
 					<div class="game-date">
+						{{game.date}}
 					</div>
 				</div>
 				PlayerList Component
 				<div class="player-list">
-					Player Component
+import eventBus from '../services/EventBus.js';
+					<!-- <smp-player v-for="player in players" :player-data="player"></smp-player> -->
 				</div>
 			</div>
 		</div>

@@ -9,11 +9,13 @@ import eventBus from './services/EventBus.js';
 import SmpSeries from './components1/SmpSeries.js';
 import SmpSeriesMenu from './components1/SmpSeriesMenu.js';
 import SmpGame from './components1/SmpGame.js';
+import SmpPlayer from './components1/SmpPlayer.js';
 // import SmpSeriesList from './components1/SmpSeriesList.js';
 // import Series from './components/Series.js';
 
 const smpGame = Vue.component('smp-game', SmpGame);
 const smpSeries = Vue.component('smp-series', SmpSeries);
+// const smpPlayer = Vue.component('smp-player', SmpPlayer);
 const smpSeriesMenu = Vue.component('smp-series-menu', SmpSeriesMenu);
 // const smpSeriesList = Vue.component('smp-series-list', SmpSeriesList);
 // const CardView = Vue.component('card-view', cardView)

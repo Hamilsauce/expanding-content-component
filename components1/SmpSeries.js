@@ -31,7 +31,7 @@ export default {
 			console.log('mebu click heard innsrries', action);
 			if (action === 'add-game') {
 				this.games.push({
-					id: null,
+					id: this.games.length + 1,
 					map: null,
 					date: null,
 					winner: null,
@@ -79,14 +79,20 @@ export default {
 			} else {
 				if (this.gameHeight != null) {
 					return {
-						maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight) || 0}px`,
+						maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight) || 40}px`,
 						zIndex: 500
 					}
 				} else return { maxHeight: parseInt(this.seriesContent.scrollHeight) + "px" }
 			}
 		}
 	},
-	watch: { styleObject(newVal) { console.log('series style obk', newVal) } },
+	watch: {
+		styleObject(newVal) { console.log('series style obk', newVal) },
+		games(newVal) {
+			const gameHeight = '40px'
+			this.seriesContent.style.maxHeight =`${parseInt(this.seriesContent.style.maxHeight) + parseInt(gameHeight) || 40}px`;
+		}
+	},
 	filters: {},
 	created() {},
 	mounted() {},
