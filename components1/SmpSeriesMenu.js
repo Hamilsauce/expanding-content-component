@@ -15,8 +15,8 @@ export default {
 	
 		handleMenuOptionClicked(action) { this.$emit('series-menu-option-clicked', action) },
 
-		editSeriesClicked() {
-			this.handleMenuOptionClicked('edit-series')
+		editSeriesTitleClicked(e) {
+			this.handleMenuOptionClicked('edit-series-title', e)
 		},
 		
 		deleteSeriesClicked() {

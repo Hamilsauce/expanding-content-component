@@ -1,6 +1,5 @@
 // import difrom './components1/PlayerList.js';
-import { PlayerList } from './components1/PlayerList.js';
-import { Game } from './components1/Game.js';
+// import { PlayerList } from './components1/PlayerList.js';
 import { SeriesService, CharacterService } from './services/services.js';
 import { $, $$, findRelatedElement } from './services/utils-service.js';
 import { store } from './store/index.js';
@@ -10,16 +9,11 @@ import SmpSeries from './components1/SmpSeries.js';
 import SmpSeriesMenu from './components1/SmpSeriesMenu.js';
 import SmpGame from './components1/SmpGame.js';
 import SmpPlayer from './components1/SmpPlayer.js';
-// import SmpSeriesList from './components1/SmpSeriesList.js';
-// import Series from './components/Series.js';
 
 const smpGame = Vue.component('smp-game', SmpGame);
 const smpSeries = Vue.component('smp-series', SmpSeries);
-// const smpPlayer = Vue.component('smp-player', SmpPlayer);
+const smpPlayer = Vue.component('smp-player', SmpPlayer);
 const smpSeriesMenu = Vue.component('smp-series-menu', SmpSeriesMenu);
-// const smpSeriesList = Vue.component('smp-series-list', SmpSeriesList);
-// const CardView = Vue.component('card-view', cardView)
-
 
 // const router = new VueRouter({
 // 	routes: [{
@@ -46,9 +40,7 @@ const addSeries = async () => {
 	response.json().then(data => { console.log(data); });
 };
 
-
 // addSeries()
-
 
 const app = new Vue({
 	// router: router,
