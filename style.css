@@ -360,10 +360,17 @@ body {}
 .player-list {
 	display: flex;
 	flex-direction: column;
+	gap: 5px;
+}
+
+.player-list-body {
+	display: flex;
+	flex-direction: column;
 	/* margin-bottom: 10px; */
 	width: 100%;
 	/* overflow-x: scroll; */
 	padding: 0px;
+	gap: 8px;
 	text-align: center;
 	transition: opacity 0.0 ease-in-out, height 0.4s;
 }
@@ -373,18 +380,18 @@ body {}
 	flex-direction: row;
 	gap: 5px;
 	justify-content: space-between;
-align-items: center;
- text-align: center;
+/* align-items: center; */
 	width: 100%;
 	padding: 0;
 	font-weight: bold;
-	border-bottom: 1px solid #BCBCBC;
+	border-bottom: 2px solid #B6B6B6;
 	/* transition: opacity 0.0 ease-in-out, height 0.4s; */
 }
 
 .player-list-header {
-	padding: 5px 0px 0 0px;
+	padding: 5px 0px 0px 0px;
 	width: 100%;
+ text-align: center;
 	/* padding: 20px; */
 	/* transition: opacity 0.0 ease-in-out, height 0.4s; */
 }
