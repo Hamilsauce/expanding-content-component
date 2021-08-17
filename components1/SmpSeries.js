@@ -5,7 +5,7 @@ export default {
 	data() {
 		return {
 			collapsed: true,
-			gameHeight: null,
+			gameHeight: '0px',
 			newGame: {
 				id: null,
 				map: null,
@@ -57,12 +57,12 @@ export default {
 
 		handleSeriesCollapsibleClicked() {
 			this.collapsed = !this.collapsed;
-			this.expandSeries(this.seriesContent, null)
+			this.expandSeries(this.seriesContent, null);
 		},
 
 		expandSeries(seriesContent, childScrollHeight) {
 			seriesContent.style.zIndex = 30;
-			if (childScrollHeight) this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
+			if (childScrollHeight != null) this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight)}px`;
 			else seriesContent.style.maxHeight = seriesContent.scrollHeight + "px";
 		}
 	},
@@ -77,7 +77,7 @@ export default {
 					zIndex: 500
 				}
 			} else {
-				if (this.gameHeight) {
+				if (this.gameHeight != null) {
 					return {
 						maxHeight: `${parseInt(this.seriesContent.style.maxHeight) + parseInt(this.gameHeight) || 0}px`,
 						zIndex: 500
