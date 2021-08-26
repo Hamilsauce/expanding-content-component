@@ -1,5 +1,3 @@
-import eventBus from '../services/EventBus.js';
-
 export default {
 	template: '#smp-player-template',
 	props: { playerData: Object },

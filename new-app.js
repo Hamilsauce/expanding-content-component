@@ -7,6 +7,7 @@ import { store } from './store/index.js';
 import eventBus from './services/EventBus.js';
 import SmpSeries from './components1/SmpSeries.js';
 import SmpSeriesMenu from './components1/SmpSeriesMenu.js';
+import SmpAddGameModal from './components1/SmpAddGameModal.js';
 import SmpGame from './components1/SmpGame.js';
 import SmpPlayer from './components1/SmpPlayer.js';
 
@@ -14,6 +15,7 @@ const smpGame = Vue.component('smp-game', SmpGame);
 const smpSeries = Vue.component('smp-series', SmpSeries);
 const smpPlayer = Vue.component('smp-player', SmpPlayer);
 const smpSeriesMenu = Vue.component('smp-series-menu', SmpSeriesMenu);
+const smpAddGameModal = Vue.component('smp-add-game-modal', SmpAddGameModal);
 
 // const router = new VueRouter({
 // 	routes: [{
@@ -31,49 +33,60 @@ const smpSeriesMenu = Vue.component('smp-series-menu', SmpSeriesMenu);
 //   ]
 // });
 const addSeries = async () => {
-	const response = await fetch("http://localhost:3000/",
-	{
-		method: 'POST',
-		headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-		body: `{ "Id": 78912, "Customer": "Jason Sweet", "Quantity": 1, "Price": 18.00 }`,
-	});
-	response.json().then(data => { console.log(data); });
+  const response = await fetch("http://localhost:3000/",
+  {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: `{ "Id": 78912, "Customer": "Jason Sweet", "Quantity": 1, "Price": 18.00 }`,
+  });
+  response.json().then(data => { console.log(data); });
 };
-
 // addSeries()
 
 const app = new Vue({
-	// router: router,
-	data() {
-		return {
-			seriesDataUrl: './data/app-data.json',
-			characterDataUrl: './data/character-data.json',
-			seriesList: null,
-			characterData: null
-		}
-	},
-	computed: {
-		series() { return this.seriesList },
-		charData() {},
-		showNav() {
-			// return store.getters.showNav
-		},
-		showDeleteModal() {
-			// return store.getters.showDeleteModal
-		}
-	},
-	methods: {
-		async init() {
-			const appData = await SeriesService.fetchSeriesJson(this.seriesDataUrl);
-			this.seriesList = appData.series;
-			this.characterData = appData.series;
-		},
-		handleMenuBlur(e) {
-			if (e.target.classList.contains('series-menu-button')) return;
-			else eventBus.$emit('blur-menu');
-		},
-	},
-	created() {
-		this.init();
-	}
+  // router: router,
+  data() {
+    return {
+      seriesDataUrl: './data/app-data.json',
+      characterDataUrl: './data/character-data.json',
+      seriesList: null,
+      characterData: null,
+      showAddGameModal: false
+    }
+  },
+  computed: {
+    series() { return this.seriesList },
+    charData() {},
+    showNav() {
+      // return store.getters.showNav
+    },
+    showDeleteModal() {
+      // return store.getters.showDeleteModal
+    }
+  },
+  methods: {
+    async init() {
+      const appData = await SeriesService.fetchSeriesJson(this.seriesDataUrl);
+      this.seriesList = appData.series;
+      this.characterData = appData.series;
+    },
+
+    handleDeleteSeries(seriesId) {
+      this.seriesList = this.seriesList.filter(_ => _.id != seriesId)
+    },
+
+    handleAddGame(seriesId) {
+      console.log('sid', seriesId);
+      this.showAddGameModal = true;
+    },
+
+    handleMenuBlur(e) {
+      if (e.target.classList.contains('series-menu-button')) return;
+      else eventBus.$emit('blur-menu');
+    },
+  },
+  created() {
+    this.init();
+    console.log('this', this);
+  }
 }).$mount('#app')

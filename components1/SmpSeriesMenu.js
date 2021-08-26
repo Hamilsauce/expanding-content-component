@@ -1,7 +1,7 @@
 import eventBus from '../services/EventBus.js';
 export default {
 	template: '#smp-series-menu-template',
-	props: {},
+	props: {seriesId: Number},
 	data() {
 		return { showMenu: false }
 	},
@@ -13,7 +13,9 @@ export default {
 
 		seriesMenuToggleClicked() { this.showMenu = !this.showMenu },
 	
-		handleMenuOptionClicked(action) { this.$emit('series-menu-option-clicked', action) },
+		handleMenuOptionClicked(action) { 
+		  console.log('poo', action)
+		  this.$emit('series-menu-option-clicked', action) },
 
 		editSeriesTitleClicked(e) {
 			this.handleMenuOptionClicked('edit-series-title', e)
@@ -29,7 +31,9 @@ export default {
 	},
 	watch: {},
 	filters: {},
-	mounted() { eventBus.$on('blur-menu', this.handleBlur) }
+	mounted() {
+	 // console.log('series menu', this)
+	  eventBus.$on('blur-menu', this.handleBlur) }
 };
 
 

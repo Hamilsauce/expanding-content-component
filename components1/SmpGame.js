@@ -12,6 +12,7 @@ export default {
 		game() { return this.gameData },
 		players() { return this.gameData.playerRanks },
 		gameContent() { return this.$refs.gameContent },
+		gameRoot() { return this.$refs.gameRoot },
 		hideClasses() {
 			if (this.editTitleMode) return { hide: false }
 			else return { hide: true };

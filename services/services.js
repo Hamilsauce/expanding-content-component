@@ -4,7 +4,7 @@ export class CharacterService {
 	static async fetchCharacterJson(url) {
 		const res = await fetch(url)
 
-		return await res.json();
+		return await res.json().characters;
 	}
 }
 
