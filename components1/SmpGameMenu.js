@@ -15,8 +15,8 @@ export default {
 	},
 	watch: {
 		game(newVal, oldVal) {
-			console.log('gsme watch');
-			console.log(newVal, oldVal);
+		// 	console.log('gsme watch');
+		// 	console.log(newVal, oldVal);
 		}
 	},
 	filters: {}

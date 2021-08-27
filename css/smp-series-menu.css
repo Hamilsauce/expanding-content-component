@@ -1,0 +1,78 @@
+
+.series-menu-container {
+  position: relative;
+  z-index: 50;
+}
+
+.series-menu-button {
+  z-index: 50;
+}
+
+.series-menu {
+  position: absolute;
+  display: grid;
+  grid-gap: 1px;
+  width: 175px;
+  top: 0;
+  /* left: 0; */
+  right: 0;
+  padding: 3px 2px;
+  list-style: none;
+  background: #00000099;
+  /* background: #FFFFFF; */
+  border-radius: 4px;
+  border: 1px solid #E5E5E5;
+  box-shadow: 0px 3px 5px 0px #000000B0;
+  opacity: 1;
+  z-index: 50;
+  transition: 0.2s;
+  /* height: fit-content; */
+}
+
+
+ .hide {display: none;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border: 0px solid #E5E5E5;
+  grid-gap: 0px;
+  
+
+}
+ 
+ 
+.series-menu li {
+  padding: 10px 12px;
+  font-size: 0.8em;
+  border-radius: 2.5px;
+  border: 1px solid#00000099;
+  background: #FFFFFF;
+  z-index: 31;
+}
+
+.series-menu li:hover {
+  border: 1px solid #000000B3;
+  box-shadow: 0px 0px 1px 1px inset #FFFFFFE6;
+}
+
+.series-menu li:active {
+  border: 1px solid #000000B3;
+  box-shadow: 0px 0px 8px 0px inset #00000059;
+}
+
+.add-game-button {}
+
+.add-series-button {
+  display: block;
+  color: green;
+  font-size: 1.2em;
+  font-weight: 300;
+  text-align: center;
+  justify-content: center;
+  padding: 0px 10px;
+  width: fit-content;
+  /* height: 40px; */
+  /* border: 1px solid #42445A; */
+}

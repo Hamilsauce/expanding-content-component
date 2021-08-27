@@ -20,8 +20,10 @@ body {}
   display: flex;
   flex-direction: column;
   padding: 0px 0px;
+  max-height: fit-content;
   justify-content: space-around;
   align-items: space-around;
+  transition: 0.5s;
 }
 
 
@@ -38,18 +40,6 @@ body {}
 
 }
 
-.add-series-button {
-  display: block;
-  color: green;
-  font-size: 1.2em;
-  font-weight: 300;
-  text-align: center;
-  justify-content: center;
-  padding: 0px 10px;
-  width: fit-content;
-  /* height: 40px; */
-  /* border: 1px solid #42445A; */
-}
 
 .collapsible {
   display: flex;
@@ -170,28 +160,6 @@ body {}
   flex-direction: row;
 }
 
-.game-content {
-  max-height: 0;
-  padding: 5px;
-  background-color: #F1F1F1;
-  border: 1px solid #E5E5E5;
-  border-radius: 0px 0px 2px 5px;
-  transition: 0.5s;
-}
-
-/* .game-content.hide {transition: 0.5s;
-  overflow: hidden;
-  padding: 0px 10px 0px 10px;
-  border: 1px solid #E5E5E500;
-}
- */
-.game-details {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  padding: 5px 0px;
-}
 
 .series-container {
   z-index: 30;
@@ -217,186 +185,15 @@ body {}
   /* background: #E6E6E690; */
 }
 
-.series-menu-container {
-  position: relative;
-  z-index: 50;
-  /* background: white; */
-}
-
-.series-menu-button {
-  /* width: 100%; */
-  z-index: 31;
-  z-index: 50;
-  /* text-align: right; */
-  /* background: white; */
-}
-
-.series-menu {
-  position: absolute;
-  display: grid;
-  grid-gap: 1px;
-  width: 175px;
-  top: 0;
-  /* left: 0; */
-  right: 0;
-  padding: 3px 2px;
-  list-style: none;
-  background: #00000099;
-  /* background: #FFFFFF; */
-  border-radius: 4px;
-  border: 1px solid #E5E5E5;
-  box-shadow: 0px 3px 5px 0px #000000B0;
-  opacity: 1;
-  z-index: 50;
-  transition: opacity 0.07s ease-out, height 0.4s;
-  /* height: fit-content; */
-}
-
-.series-menu li:before {
-  /* content: '-'; */
-}
-
-/* .hide {display: none;
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  border: 0px solid #E5E5E5;
-  grid-gap: 0px;
-  
-
-}
- */
-.series-menu li {
-  padding: 10px 12px;
-  font-size: 0.8em;
-  border-radius: 2.5px;
-  border: 1px solid#00000099;
-  background: #FFFFFF;
-  z-index: 31;
-}
-
-.series-menu li:hover {
-  border: 1px solid #000000B3;
-  box-shadow: 0px 0px 1px 1px inset #FFFFFFE6;
-}
-
-.series-menu li:active {
-  border: 1px solid #000000B3;
-  box-shadow: 0px 0px 8px 0px inset #00000059;
-}
-
 
 .game-list {
   margin-bottom: 5px;
-  /* height: fit-content; */
-  max-height: 0;
+  max-height: 0px;
   padding: 0px 2px 0px 5px;
   transition: 0.5s;
   z-index: 0;
 }
 
-.smp-game-container {
-
-  /* height: fit-content; */
-  /* max-height: 0; */
-  transition: 0.5s;
-  z-index: 0;
-}
-
-.game-collapsible {
-  padding: 15px 10px 5px 10px;
-  background: #FFFFFF00;
-  /* background: #EAEAEA; */
-  color: #585858;
-}
-
-.game-collapsible:after {
-  color: #585858;
-}
-
-.add-game-button {
-  /* margin: auto 0px auto auto; */
-  /* padding: 5px; */
-  /* text-align: right; */
-}
-
-.player-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  height: 100%;
-  /* padding: 5px; */
-  width: 100%;
-  /* overflow-x: scroll; */
-  text-align: center;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  padding: 0;
-  gap: 5px;
-}
-
-.player-container div {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  /* padding: 5px; */
-
-
-}
-
-
-.player-container.active {
-  font-weight: 500;
-  background: #C2B684;
-}
-
-.player-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.player-list-body {
-  display: flex;
-  flex-direction: column;
-  /* margin-bottom: 10px; */
-  width: 100%;
-  /* overflow-x: scroll; */
-  padding: 0px;
-  gap: 8px;
-  text-align: center;
-  transition: opacity 0.0 ease-in-out, height 0.4s;
-}
-
-.player-list-headers {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  justify-content: space-between;
-  /* align-items: center; */
-  width: 100%;
-  padding: 0;
-  font-weight: bold;
-  border-bottom: 2px solid #B6B6B6;
-  /* transition: opacity 0.0 ease-in-out, height 0.4s; */
-}
-
-.player-list-header {
-  padding: 5px 0px 0px 0px;
-  width: 100%;
-  text-align: center;
-  /* padding: 20px; */
-  /* transition: opacity 0.0 ease-in-out, height 0.4s; */
-}
 
 .json-output {
   user-select: text;

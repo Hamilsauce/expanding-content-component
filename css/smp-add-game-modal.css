@@ -25,7 +25,7 @@
   justify-content: space-between;
   align-items: flex-end;
   height: 40px;
-  padding: 0 0 0px 0;
+  padding: 0 10px 8px 10px;
   color: white;
   background: #5c7178;
   border-top: 1px solid white;
@@ -35,23 +35,29 @@
 }
 
 .add-game-header div {
-  padding-top: 10px;
-  padding-bottom: 5px;
+  /* padding-top: 10px; */
+  /* padding-bottom: 5px; */
 }
 
 .add-game-back {
-  width: 55px;
-  padding: 0 10px 5px 10px;
+  background: url('../assets/back-arrow.svg') center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  padding: 5px 0px 5px 0px;
 }
 
 .add-game-title {
   font-size: 1.1em;
   font-weight: 600;
+  text-align: center;
 }
 
 .add-game-right-pad {
-  width: 55px;
-  padding: 0 10px 5px 10px;
+  width: 20px;
+  height: 20px;
+  padding: 0 10px 0px 10px;
 }
 
 .add-game-form-container {}

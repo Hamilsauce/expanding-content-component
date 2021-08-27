@@ -51,7 +51,8 @@ const app = new Vue({
       characterDataUrl: './data/character-data.json',
       seriesList: null,
       characterData: null,
-      showAddGameModal: false,
+      showAddGameModal: true,
+      // showAddGameModal: false,
       selectedSeries: null
     }
   },
@@ -68,7 +69,7 @@ const app = new Vue({
   methods: {
     async init() {
       const appData = await SeriesService.fetchSeriesJson(this.seriesDataUrl);
-      console.log('appData', appData);
+      // console.log('appData', appData);
       this.seriesList = appData.series;
       this.characterData = appData.series;
     },
@@ -79,19 +80,16 @@ const app = new Vue({
 
     handleAddGame(seriesId) {
       this.selectedSeries = this.serieList.find(_ => _.id === seriesId)
-      console.log('selected seies', this.selectedSeries)
       this.showAddGameModal = true;
     },
 
     toggleAddGameModal(seriesId) {
       this.showAddGameModal = !this.showAddGameModal;
       this.selectedSeries = this.seriesList.find(_ => _.id === seriesId)
-      console.log('selected seies', this.selectedSeries)
     },
     
     addNewGame({seriesId, game}) {
       this.showAddGameModal = !this.showAddGameModal;
-      console.log('new fame', [seriesId, game]);
       this.selectedSeries.games.push(game)
     },
 
@@ -102,6 +100,6 @@ const app = new Vue({
   },
   created() {
     this.init();
-    console.log('this', this);
+    // console.log('this', this);
   }
 }).$mount('#app')

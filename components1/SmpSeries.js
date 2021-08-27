@@ -22,11 +22,11 @@ export default {
   methods: {
 
     handlePlayersClicked() {
-      console.log('Add player list when clicked');
+      // console.log('Add player list when clicked');
     },
 
     mapSeriesActions(action) {
-      console.log('e, act', [action]);
+      // console.log('e, act', [action]);
       if (action === 'add-game') {
         this.$emit('add-game', this.seriesData.id)
         // this.showAddGameModal = true;
@@ -128,7 +128,7 @@ export default {
     }
   },
   watch: {
-    styleObject(newVal) { console.log('series style obk', newVal) },
+    // styleObject(newVal) { console.log('series style obk', newVal) },
     games(newVal) {
       const gameHeight = '40px'
       this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(gameHeight) || 40}px`;
