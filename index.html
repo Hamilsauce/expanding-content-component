@@ -24,8 +24,8 @@
 </head>
 
 <body>
-  <div class="app" id="app" @delete-series="handleDeleteSeries">
-    <smp-add-game-modal :showAddGameModal="showAddGameModal"></smp-add-game-modal>
+  <div class="app" id="app" @delete-series="handleDeleteSeries" @click="handleMenuBlur">
+    <smp-add-game-modal @new-game-created="addNewGame" :show-add-game-modal="showAddGameModal" @hide-add-game-modal="toggleAddGameModal" :selected="selectedSeries"></smp-add-game-modal>
     <header class="app-header">
       <h2 class="header-title">Mario Tracker</h2>
       <div class="add-series-container">
@@ -46,7 +46,7 @@
     <div class="series-list active-series-list">
       <div class="series-list-title">Active Series</div>
       <div class="series-container">
-        <smp-series @add-game="handleAddGame" v-for="series in series" :series="series"></smp-series>
+        <smp-series @add-game="toggleAddGameModal" v-for="series in series" :series="series"></smp-series>
       </div>
     </div>
   </div>
@@ -82,8 +82,8 @@
   </template>
   <!-- @menu-template -->
   <template id="smp-add-game-template">
-    <div class="add-game-modal-container" :class="{hide: !showModal}">
-      <div class="add-game-modal" :class="{hide: !showModal}">
+    <div class="add-game-modal-container" :class="{hide: !showAddGameModal}">
+      <div class="add-game-modal">
         <header class="add-game-header">
           <!-- <div class="add-game-top-bar"></div> -->
           <div class="add-game-back" @click.stop="handleBackClicked">Back</div>
@@ -91,27 +91,35 @@
           <div class="add-game-right-pad"></div>
         </header>
         <div class="add-game-form-container">
-          <form class="add-game-form" @click.prevent="handleFormSubmit">
+          <form class="add-game-form" @submit.prevent="handleFormSubmit">
+            <div class="input-group">
+              <label for="name-input">Name</label>
+              <input type="text" name="name-input" class="map-input" id="map-input" v-model="newGameName" />
+            </div>
+            <div class="input-group">
+              <label for="map-select">Map</label>
+              <select v-model="newGame.map" name="map-select" class="map-select" id="map-select">
+                <option value="Whomp's World">Whomp's World</option>
+                <option value="King Bomb's World">King Bomb's World</option>
+                <option value="Fruit Islands">Fruit Islands</option>
+                <option value="Kamek's World">Kamek's World</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="date-input">Date</label>
+              <input v-model="newGame.date" type="date" name="date-input" class="date-input" id="date-input" value="" />
+            </div>
             <div class="input-group">
               <label for="map-input">Map Name</label>
               <input type="text" name="map-input" class="map-input" id="map-input" value="" />
             </div>
-            <div class="input-group">
-              <label for="add-game-input">Map Name</label>
-              <input type="text" name="map-input" class="map-input" id="map-input" value="" />
-            </div>
-            <div class="input-group">
-              <label for="map-input">Map Name</label>
-              <input type="text" name="map-input" class="map-input" id="map-input" value="" />
-            </div>
-            <div class="input-group">
-              <label for="map-input">Map Name</label>
-              <input type="text" name="map-input" class="map-input" id="map-input" value="" />
+            <div class="button-actions">
+              <input type="submit" name="add-game-submit" class="add-game-submit" id="add-game-submit" value="Add" />
             </div>
           </form>
         </div>
       </div>
-      <div class="add-game-dimmer" :class="{hide: !showModal}" @click.stop="handleDimmerClicked"></div>
+      <div class="add-game-dimmer" @click.stop="handleDimmerClicked"></div>
     </div>
   </template>
   <!-- @game-template -->
@@ -160,7 +168,7 @@
           <div class="game-count-display">Games: {{ games.length }}</div>
           <smp-series-menu :seriesId="seriesData.id" @series-menu-option-clicked="mapSeriesActions"></smp-series-menu>
         </header>
-        <div class="game-list">
+        <div class="game-list" :style="styleObject">
           <smp-game @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
         </div>
       </div>

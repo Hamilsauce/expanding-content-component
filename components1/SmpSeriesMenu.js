@@ -14,7 +14,7 @@ export default {
 		seriesMenuToggleClicked() { this.showMenu = !this.showMenu },
 	
 		handleMenuOptionClicked(action) { 
-		  console.log('poo', action)
+		  this.showMenu = false 
 		  this.$emit('series-menu-option-clicked', action) },
 
 		editSeriesTitleClicked(e) {
