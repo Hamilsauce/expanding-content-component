@@ -8,7 +8,7 @@
 
 
 .game-content {
-  /* max-height: fit-content; */
+  max-height: fit-content;
   padding: 5px;
   background-color: #F1F1F1;
   border: 1px solid #E5E5E5;
@@ -17,8 +17,8 @@
 }
 
 .game-content.hide {
-  /* max-height: 0px; */
-  /* transition: 0.5s; */
+  max-height: 0px;
+  transition: 0.5s;
   overflow: hidden;
   padding: 0px 10px 0px 10px;
   border: 1px solid #E5E5E500;

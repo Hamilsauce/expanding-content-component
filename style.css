@@ -146,7 +146,7 @@ body {}
 }
 
 .content {
-  /* padding: 0px 2px 0px 5px; */
+  padding: 0px 2px 0px 5px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -165,7 +165,7 @@ body {}
   z-index: 30;
   margin-bottom: 5px;
   padding: 5px;
-  /* height: fit-content; */
+  height: fit-content;
 }
 
 .series-container.active {

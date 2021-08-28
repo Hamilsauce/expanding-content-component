@@ -106,9 +106,6 @@ const expandSeries = (seriesContent, childScrollHeight) => {
 seriesCollapsibles.forEach(el => {
 	el.addEventListener('click', e => {
 		el.classList.toggle('active');
-		// const menubutton = $(el.parentElement, '.series-menu')
-		// menubutton.classList.add('hide')
-
 		let content = el.nextElementSibling;
 		if (content.style.maxHeight) {
 			const childContents = [...$$(content, '.content')];
