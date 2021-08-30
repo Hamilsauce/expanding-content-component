@@ -9,7 +9,6 @@ export default class SeriesService {
 		const res = await fetch(url)
 		this.seriesJson = await res.json()
 		this.parsedData = JSON.parse(this.seriesJson)
-	console.log('seried this', this);
 		return this.parsedData;
 	}
 }

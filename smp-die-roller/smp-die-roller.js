@@ -51,11 +51,9 @@ const createSelectOptions = chars => {
 		fetch(DATA_PATH_LOCAL)
 			.then(response => response.json())
 			.then(data => {
-				console.log(data);
 				handleLocalStorage('set', 'smpCharacterData', data.characters);
 				charData = handleLocalStorage('get', 'smpCharacterData')
-console.log(charData);
-				createSelectOptions(charData)
+				createSelectOptions(Object.values(charData))
 			});
 	// }
 })()
@@ -115,7 +113,7 @@ const rollDie = dieSides => {
 
 charSelect.addEventListener('change', e => {
 	selectedOption = e.target.selectedOptions[0]
-	selectedChar = charData.find(_ => _.id === +selectedOption.dataset.id)
+	selectedChar = Object.values(charData).find(_ => _.id === +selectedOption.dataset.id)
 	totalRollsCount = selectedChar.die.reduce((sum, curr) => {
 		return sum += +curr.timesRolled
 	}, 0);
@@ -130,10 +128,10 @@ charSelect.addEventListener('change', e => {
 
 let chart;
 ham.qs('.app').addEventListener('charSelectionChange', e => {
-	console.log('detail', e.detail.char);
+// 	console.log('detail', e.detail.char);
 	updateCharacterDisplay(e.detail.char)
 	chart = createChart('bar', selectedChar.die)
-	console.log('chart after changr', chart);
+// 	console.log('chart after changr', chart);
 	ham.qs('.roll-result').textContent = ' '
 })
 
@@ -153,8 +151,6 @@ ham.qs('.roll-submit-button').addEventListener('click', e => {
 	
 	// updateCharacterDisplay(selectedChar)
 	const rolledSideEl = children.find((c, i) => +c.dataset.id == roll[1]);
-	console.log(rolledSideEl);
-	console.log('chart after roll', chart);
 	
 	updateChart(chart, selectedChar.die)
 	ham.qs('.roll-result').textContent = roll[0].value
