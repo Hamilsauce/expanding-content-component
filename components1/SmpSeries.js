@@ -1,4 +1,3 @@
-// import { $, $$, findRelatedElement } from '../services/utils-service.js';
 import Ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js';
 import eventBus from '../services/EventBus.js';
 export default {
@@ -25,12 +24,11 @@ export default {
       this.contentWrapper.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + parseInt(childMaxHeight)}px`;
       this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + parseInt(childMaxHeight)}px`;
     },
-    
+
     handleSeriesCollapsibleClicked() {
       this.seriesCollapsed = !this.seriesCollapsed;
       this.seriesCollapsible.classList.toggle("active");
 
-      // if (this.seriesContent.style.maxHeight) {
       if (this.seriesCollapsed) {
         const childContents = [...this.seriesContent.querySelectorAll('.content-wrapper')];
         const childColls = [...this.seriesContent.querySelectorAll('.collapsible')];
@@ -43,22 +41,15 @@ export default {
       };
     },
 
-    handlePlayersClicked() {
-      // console.log('Add player list when clicked');
-    },
+    handlePlayersClicked() {},
 
     mapSeriesActions(action) {
       console.log('e, act', [action]);
-      if (action === 'add-game') {
-        this.$emit('add-game', this.series.id)
-        // this.showAddGameModal = true;
-      }
+      if (action === 'add-game') this.$emit('add-game', this.series.id)
+      else if (action === 'delete-series') this.$emit('delete-series', this.series.id)
       else if (action === 'edit-series-title') {
         this.editSeriesName()
         this.editTitleMode = true;
-      }
-      else if (action === 'delete-series') {
-        this.$emit('delete-series', this.series.id)
       }
     },
 
@@ -71,19 +62,20 @@ export default {
 
     editSeriesName() {
       const title = Ham.qs('.series-title', this.seriesCollapsible)
-      const submitButton = $('.submit-series-name', this.seriesCollapsible)
+      const submitButton = Ham.qs('.submit-series-name', this.seriesCollapsible)
 
       title.contentEditable = true;
       this.editTitleMode = true
       title.focus();
+
       //TODO Move this Select all text to more gloval spot
       let sel = window.getSelection();
-      if (sel.toString() == '') { //no text selection
+      if (sel.toString() == '') {
         window.setTimeout(() => {
-          let range = document.createRange(); //range object
-          range.selectNodeContents(title); //sets Range
-          sel.removeAllRanges(); //remove all ranges from selection
-          sel.addRange(range); //add Range to a Selection.
+          let range = document.createRange();
+          range.selectNodeContents(title);
+          sel.removeAllRanges();
+          sel.addRange(range);
         }, 100);
       }
     },
@@ -91,28 +83,15 @@ export default {
   },
   computed: {
     series() { return this.seriesData },
+    games() { return this.series.games },
+    seriesCollapsible() { return this.$refs.seriesCollapsible },
+    collapsibleEditClass() { return this.editTitleMode ? { editing: true } : { editing: false } },
     seriesContent() { return this.$refs.seriesContent },
     contentWrapper() { return this.$refs.contentWrapper },
-    seriesCollapsible() { return this.$refs.seriesCollapsible },
-    games() { return this.series.games },
-    collapsibleEditClass() { return this.editTitleMode ? { editing: true } : { editing: false } },
     titleButtonHideClass() { return this.editTitleMode ? { hide: false } : { hide: true } },
     styleObject() {}
   },
-  watch: {
-    // styleObject(newVal) { console.log('series style obk', newVal) },
-    games(newVal) {
-      console.log('games', newVal);
-      const gameHeight = '40px'
-      this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.style.maxHeight) + parseInt(gameHeight) || 40}px`;
-    }
-  },
   filters: {},
-  created() {
-    console.log('create', this);
-  },
-  mounted() {
-    console.log('mount', this);
-
-  }
+  created() {},
+  mounted() {}
 }

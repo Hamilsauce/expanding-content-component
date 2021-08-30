@@ -4,7 +4,6 @@
   margin: 0;
   padding: 0;
   user-select: none;
-  /* z-index: 0; */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -12,17 +11,14 @@
   -ms-user-select: none;
 }
 
-body {}
-
-
 .app {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 0px 0px;
-  height: fit-content;
   justify-content: space-around;
   align-items: space-around;
+  padding: 0px 0px;
+  height: fit-content;
   transition: 0.5s;
 }
 
@@ -33,64 +29,41 @@ body {}
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* height: 50px; */
   margin-bottom: 10px;
   padding: 5px 0px;
   overflow: hidden;
-  overflow: visible;
-
 }
-
 
 .collapsible {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: #5C7178;
-  text-align: right;
-
-  /* background-color: #777; */
-  color: white;
-  cursor: pointer;
-  padding: 15px;
   width: 100%;
-  border: none;
+  padding: 15px;
+  background: #5C7178;
+  color: white;
   text-align: left;
-  outline: none;
   font-size: 15px;
+  border: none;
   border-bottom: 1px solid #E5E5E530;
-  /* border-bottom: 1px solid #E5E5E530; */
+  outline: none;
+  cursor: pointer;
 }
 
 .collapsible.editing {
   padding: 10px;
 }
 
-.active,
-.collapsible:hover {
-  /* background-color: #555555; */
-  /* background: #5c7178; */
-}
-
 .collapsible:after {
   content: '\002B';
+  margin-left: 5px;
   color: white;
   font-weight: bold;
   float: right;
-  margin-left: 5px;
 }
 
 .collapsible.active:after {
   content: "\2212";
-}
-
-.series-collapsible {
-  /* justify-content: space-around; */
-  /* position: relative; */
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
-  /* padding: 5px; */
 }
 
 .title-container {
@@ -100,40 +73,32 @@ body {}
 }
 
 .series-title {
-  font-size: 1.2em;
-  /* background: #FFFFFF00; */
   width: fit-content;
   max-width: 185px;
+  font-size: 1.2em;
   border: 0px solid #FFFFFF00;
   white-space: nowrap;
-
-
 }
 
 .series-title.editing {
   display: flex;
   justify-content: space-around;
   width: 185px;
-  background: #FFFFFF99;
-  outline: none;
-  border-radius: 3px 0px 0px 3px;
-  color: black;
   padding: 5px;
+  color: black;
+  background: #FFFFFF99;
+  border-radius: 3px 0px 0px 3px;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   border-left: 1px solid white;
-  /* text-decoration: underline; */
-
+  outline: none;
 }
 
 .submit-series-name {
-  /* position: absolute; */
-  /* top: 25%; */
   padding: 7px 15px;
   font-weight: 500;
   background: white;
   color: #808080;
-  /* color: white; */
   border-radius: 3px 35px 35px 3px;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
@@ -149,33 +114,20 @@ body {}
 .content {
   padding: 0px 2px 0px 5px;
   max-height: 0;
-  /* overflow: hidden; */
-  overflow: scroll;
   transition: max-height 0.2s ease-out;
   background-color: #FFFFFF;
   transition: 0.5s;
 }
-
-
-
 
 .form-container {
   display: flex;
   flex-direction: row;
 }
 
-
 .series-container {
   z-index: 30;
   margin-bottom: 5px;
   padding: 5px;
-  /* height: fit-content; */
-}
-
-.series-container.active {
-  /* display: flex; */
-  /* flex-direction: row; */
-
 }
 
 .series-header {
@@ -186,18 +138,14 @@ body {}
   margin: 0px 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #EDEDED;
-  /* background: #E6E6E690; */
 }
-
 
 .game-list {
   margin-bottom: 5px;
-  /* max-height: 0px; */
   padding: 0px 2px 0px 5px;
   transition: 0.5s;
   z-index: 0;
 }
-
 
 .json-output {
   user-select: text;
