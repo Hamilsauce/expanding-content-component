@@ -1,6 +1,6 @@
 
 .smp-game-container {
-  height: fit-content;
+  /* height: fit-content; */
   /* transition: 0.5s; */
   z-index: 0;
 }
@@ -8,22 +8,22 @@
 
 
 .game-content {
-  max-height: fit-content;
-  padding: 5px;
+  /* max-height: fit-content; */
+  /* padding: 5px; */
   background-color: #F1F1F1;
   border: 1px solid #E5E5E5;
   border-radius: 0px 0px 2px 5px;
   /* transition: 0.5s; */
 }
 
-.game-content.hide {
-  max-height: 0px;
+/* .game-content.hide {max-height: 0px;
+  
   transition: 0.5s;
   overflow: hidden;
   padding: 0px 10px 0px 10px;
   border: 1px solid #E5E5E500;
 }
-
+ */
 .game-details {
   display: flex;
   flex-direction: row;
@@ -34,12 +34,12 @@
 
 
 
-.game-collapsible {
+/* .game-collapsible {
   padding: 15px 10px 5px 10px;
   background: #FFFFFF00;
   color: #585858;
 }
-
+ */
 .game-collapsible:after {
   color: #585858;
 }

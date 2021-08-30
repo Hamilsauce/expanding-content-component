@@ -1,0 +1,81 @@
+p {
+  margin: 0;
+}
+
+.collapsible {
+  background-color: #777;
+  background-color: #C5A814;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.series-collapsible.active {
+  background-color: #555;
+}
+
+.game-collapsible {
+  background-color: #8C5E97;
+}
+
+.game-collapsible.active {
+  background-color: #692F77;
+}
+
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+/* .series-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  padding: 10px 5px;
+}
+ */
+.content-wrapper {
+  max-height: 0;
+  background-color: #f1f1f1;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.series-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+  row-gap: 10px;
+  height: 100%;
+  width: 100%;
+  padding: 10px 5px;
+  transition: max-height 0.5s;
+  /* overflow: hidden; */
+}
+
+.game-content {
+  max-height: 0;
+  height: 100%;
+  padding: 10px 5px;
+  transition: max-height 0.0s;
+}
+
+.hide {
+  padding: 0px 10px 0px 10px;
+  border: 1px solid #E5E5E500;
+}

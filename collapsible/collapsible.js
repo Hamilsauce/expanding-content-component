@@ -53,5 +53,5 @@ gameColls.forEach((game, i) => {
 
     const gameClickEvent = new CustomEvent('game-clicked', { bubbles: true, detail: { childMaxHeight: content.style.maxHeight } })
     targ.dispatchEvent(gameClickEvent)
-  }, true);
+  });
 });

@@ -1,5 +1,6 @@
 // import difrom './components1/PlayerList.js';
 // import { PlayerList } from './components1/PlayerList.js';
+import Ham from 'https://hamilsauce.github.io/hamhelper/hamhelper1.0.0.js';
 import { SeriesService, CharacterService } from './services/services.js';
 import { $, $$, findRelatedElement } from './services/utils-service.js';
 import { store } from './store/index.js';
@@ -51,7 +52,7 @@ const app = new Vue({
       characterDataUrl: './data/character-data.json',
       seriesList: null,
       characterData: null,
-      showAddGameModal: true,
+      showAddGameModal: false,
       // showAddGameModal: false,
       selectedSeries: null
     }
@@ -69,7 +70,7 @@ const app = new Vue({
   methods: {
     async init() {
       const appData = await SeriesService.fetchSeriesJson(this.seriesDataUrl);
-      // console.log('appData', appData);
+      console.log('appData', appData);
       this.seriesList = appData.series;
       this.characterData = appData.series;
     },
@@ -99,7 +100,8 @@ const app = new Vue({
     },
   },
   created() {
-    this.init();
+    this.init()
+    Ham.help()
     // console.log('this', this);
   }
 }).$mount('#app')

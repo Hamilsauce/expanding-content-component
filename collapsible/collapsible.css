@@ -4,7 +4,7 @@ p {
 
 .collapsible {
   background-color: #777;
-  background-color: #B39E33;
+  background-color: #C5A814;
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -15,16 +15,18 @@ p {
   font-size: 15px;
 }
 
-.game-collapsible {
-
-  background-color: #692F77;
-
-}
-
-.active {
-  /* .collapsible:hover { */
+.series-collapsible.active {
   background-color: #555;
 }
+
+.game-collapsible {
+  background-color: #8C5E97;
+}
+
+.game-collapsible.active {
+  background-color: #692F77;
+}
+
 
 .collapsible:after {
   content: '\002B';
@@ -39,16 +41,14 @@ p {
 }
 
 .content-wrapper {
-   display: flex;
-   flex-direction: column;
-   justify-content: start;
-   align-items: flex-start;
-   row-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
   padding: 10px 5px;
 }
 
 .content {
-  /* padding: 0 10px; */
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s;
@@ -61,15 +61,12 @@ p {
   justify-content: start;
   align-items: flex-start;
   row-gap: 10px;
-  /* padding: 10px; */
   overflow: hidden;
 }
 
 .game-content {
   transition: max-height 0.0s;
 }
-
-
 
 .hide {
   padding: 0px 10px 0px 10px;

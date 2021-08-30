@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./css/smp-player.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./css/smp-add-series.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./css/smp-game.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./css/collapsible.css" type="text/css" media="all" />
   <!-- libraries -->
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.21/plugin/weekOfYear.js"></script>
@@ -49,7 +50,7 @@
     <div class="series-list active-series-list">
       <div class="series-list-title">Active Series</div>
       <div class="series-container">
-        <smp-series @add-game="toggleAddGameModal" v-for="series in series" :series="series"></smp-series>
+        <smp-series @add-game="toggleAddGameModal" v-for="series in series" :series-data="series" ></smp-series>
       </div>
     </div>
   </div>
@@ -127,11 +128,12 @@
   </template>
   <!-- @game-template -->
   <template id="smp-game-template">
-    <div class="smp-game-container" :style="styleObject" ref="gameRoot">
-      <div class="collapsible game-collapsible" @click="handleCollapsibleClicked" :class="{ active: !collapsed }">
+    <div class="smp-game-container" ref="gameRoot">
+      <div ref="gameCollapsible" class="collapsible game-collapsible" @click="handleGameCollapsibleClicked">
         Game {{ game.id }}
       </div>
-      <div class="content game-content" ref="gameContent" :style="styleObject" :class="{ hide: collapsed }">
+      <div class="game-content-wrapper content-wrapper" ref="contentWrapper">
+      <div class="content game-content" ref="gameContent">
         <div class="game-details">
           <div class="game-map-name">
             {{game.map}}
@@ -152,27 +154,30 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
   </template>
   <!-- @series-template -->
   <template id="smp-series-template">
     <div class="series-container">
-      <div ref="seriesCollapsible" :class="collapsibleClasses" class="collapsible series-collapsible" @click="handleSeriesCollapsibleClicked">
+      <div ref="seriesCollapsible" class="collapsible series-collapsible" @click="handleSeriesCollapsibleClicked">
         <div class="title-container">
-          <div ref="seriesTitle" class="series-title" :class="collapsibleClasses">Series {{seriesData.id}}</div>
-          <div class="submit-series-name" @click.stop="submitSeriesTitleEdit" :class="hideClasses">
+          <div ref="seriesTitle" :class="collapsibleEditClass" class="series-title">Series {{seriesData.id}}</div>
+          <div class="submit-series-name" @click.stop="submitSeriesTitleEdit" :class="titleButtonHideClass">
             ok
           </div>
         </div>
       </div>
-      <div class="series-content content" :style="styleObject" ref="seriesContent">
-        <header class="series-header">
-          <div class="series-players-button" @click="handlePlayersClicked">{{ seriesData.players.length }} Players</div>
-          <div class="game-count-display">Games: {{ games.length }}</div>
-          <smp-series-menu :seriesId="seriesData.id" @series-menu-option-clicked="mapSeriesActions"></smp-series-menu>
-        </header>
-        <div class="game-list" :style="styleObject">
-          <smp-game @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
+      <div class="series-content-wrapper content-wrapper" ref="contentWrapper">
+        <div class="series-content content" ref="seriesContent">
+          <header class="series-header">
+            <div class="series-players-button" @click="handlePlayersClicked">{{ seriesData.players.length }} Players</div>
+            <div class="game-count-display">Games: {{ games.length }}</div>
+            <smp-series-menu :seriesId="seriesData.id" @series-menu-option-clicked="mapSeriesActions"></smp-series-menu>
+          </header>
+          <div class="game-list">
+            <smp-game :series-collapsed="seriesCollapsed" @game-collapsible-clicked="handleGameCollapsibleClicked" v-for="game in games" :game-data="game"></smp-game>
+          </div>
         </div>
       </div>
     </div>

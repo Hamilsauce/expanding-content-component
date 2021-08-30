@@ -1,51 +1,52 @@
-import eventBus from '../services/EventBus.js';
+// import eventBus from '../services/EventBus.js';
 export default {
-	template: '#smp-game-template',
-	props: { gameData: Object },
-	data() {
-		return {
-			selectedPlayerId: null,
-			collapsed: true,
-		}
-	},
-	computed: {
-		game() { return this.gameData },
-		players() { return this.gameData.playerRanks },
-		gameContent() { return this.$refs.gameContent },
-		gameRoot() { return this.$refs.gameRoot },
-		hideClasses() {
-			if (this.editTitleMode) return { hide: false }
-			else return { hide: true };
-		},
-		styleObject() {
-			if (this.collapsed) return {
-				maxHeight: null,
-				zIndex: 0
-			}
-			else {
-				if (this.gameContent.style.maxHeight) return {
-					maxHeight: '100%',
-					zIndex: 30
-				}
-				else return { maxHeight: '100%' }
-				// else return { maxHeight: this.gameContent.scrollHeight + "px" }
-			}
-		}
-	},
-	methods: {
-		handleCollapsibleClicked() {
-			this.collapsed = !this.collapsed
-			if (this.collapsed) this.gameContent.style.maxHeight = null;
-			else this.gameContent.style.maxHeight = this.gameContent.scrollHeight + "px";
+  template: '#smp-game-template',
+  props: { gameData: Object, seriesCollapsed: Boolean },
+  data() {
+    return {
+      selectedPlayerId: null,
+      collapsed: true,
+    }
+  },
+  computed: {
+    game() { return this.gameData },
+    players() { return this.gameData.playerRanks },
+    gameContent() { return this.$refs.gameContent },
+    contentWrapper() { return this.$refs.contentWrapper },
+    collapsible() { return this.$refs.gameCollapsible },
+    gameRoot() { return this.$refs.gameRoot },
+    classObject() {},
+    styleObject() {}
+  },
+  methods: {
+    calculateContentHeight() {
+      if (this.collapsed) this.contentWrapper.style.maxHeight = null;
+      else {
+        this.gameContent.style.maxHeight = this.gameContent.scrollHeight + "px";
+        this.contentWrapper.style.maxHeight = this.contentWrapper.scrollHeight + "px";
+      }
+    },
+    
+    handleGameCollapsibleClicked() {
+      this.collapsed = !this.collapsed
+      this.collapsible.classList.toggle("active");
 
-			let gameMaxHeight = null
-			if (!this.collapsed) gameMaxHeight = parseInt(this.gameContent.style.maxHeight.replace('px', ''));
+      this.calculateContentHeight();
+      this.$emit('game-collapsible-clicked', { childMaxHeight: this.contentWrapper.style.maxHeight })
+    },
+  },
+  watch: {
+    seriesCollapsed(newValue) {
+      // console.log('swries collapsed watchrr', [newValue, this.seriesCollapsed]);
+    if (newValue === true) {
+      this.collapsed = newValue;
+      this.calculateContentHeight();
+    }
+      // this.seriesCollapsed = newValue !== this ? newValue : this.seriesCollapsed;
+      // this.collapsed = newValue;
 
-			this.$emit('game-collapsible-clicked', gameMaxHeight)
-		}
-	},
-	watch: {
-		// game(newVal) { console.log(newVal) }
-	},
-	filters: {}
+    }
+    // // game(newVal) { console.log(newVal) }
+  },
+  filters: {}
 };

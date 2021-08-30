@@ -20,7 +20,7 @@ body {}
   display: flex;
   flex-direction: column;
   padding: 0px 0px;
-  max-height: fit-content;
+  height: fit-content;
   justify-content: space-around;
   align-items: space-around;
   transition: 0.5s;
@@ -37,6 +37,7 @@ body {}
   margin-bottom: 10px;
   padding: 5px 0px;
   overflow: hidden;
+  overflow: visible;
 
 }
 
@@ -148,11 +149,14 @@ body {}
 .content {
   padding: 0px 2px 0px 5px;
   max-height: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow: scroll;
   transition: max-height 0.2s ease-out;
   background-color: #FFFFFF;
   transition: 0.5s;
 }
+
+
 
 
 .form-container {
@@ -165,7 +169,7 @@ body {}
   z-index: 30;
   margin-bottom: 5px;
   padding: 5px;
-  height: fit-content;
+  /* height: fit-content; */
 }
 
 .series-container.active {
@@ -188,7 +192,7 @@ body {}
 
 .game-list {
   margin-bottom: 5px;
-  max-height: 0px;
+  /* max-height: 0px; */
   padding: 0px 2px 0px 5px;
   transition: 0.5s;
   z-index: 0;
