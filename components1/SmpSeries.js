@@ -20,15 +20,7 @@ export default {
     }
   },
   methods: {
-    handleGameCollapsibleClicked({ childMaxHeight }) {
-      this.contentWrapper.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + parseInt(childMaxHeight)}px`;
-      this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + parseInt(childMaxHeight)}px`;
-    },
-
-    handleSeriesCollapsibleClicked() {
-      this.seriesCollapsed = !this.seriesCollapsed;
-      this.seriesCollapsible.classList.toggle("active");
-
+    calculateContentHeight() {
       if (this.seriesCollapsed) {
         const childContents = [...this.seriesContent.querySelectorAll('.content-wrapper')];
         const childColls = [...this.seriesContent.querySelectorAll('.collapsible')];
@@ -38,7 +30,19 @@ export default {
       } else {
         this.contentWrapper.style.maxHeight = `${this.seriesContent.scrollHeight}px`
         this.seriesContent.style.maxHeight = `${this.seriesContent.scrollHeight}px`
-      };
+      }
+    },
+    
+    handleGameCollapsibleClicked({ childMaxHeight }) {
+      this.contentWrapper.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + parseInt(childMaxHeight)}px`;
+      this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + parseInt(childMaxHeight)}px`;
+    },
+
+    handleSeriesCollapsibleClicked() {
+      this.seriesCollapsed = !this.seriesCollapsed;
+      this.seriesCollapsible.classList.toggle("active");
+
+      this.calculateContentHeight();
     },
 
     handlePlayersClicked() {},
@@ -90,6 +94,12 @@ export default {
     contentWrapper() { return this.$refs.contentWrapper },
     titleButtonHideClass() { return this.editTitleMode ? { hide: false } : { hide: true } },
     styleObject() {}
+  },
+  watch: {
+    games(newVal, oldVal) {
+         this.contentWrapper.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + 55}px`;
+         this.seriesContent.style.maxHeight = `${parseInt(this.seriesContent.scrollHeight) + 55}px`;
+    }
   },
   filters: {},
   created() {},
