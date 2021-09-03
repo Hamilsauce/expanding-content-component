@@ -19,9 +19,6 @@ const updateDie = async () => {
 };
 
 
-
-
-
 const handleLocalStorage = (action, key, data) => {
 	if (action === 'set') localStorage.setItem('smpCharacterData', JSON.stringify(data))
 	else return JSON.parse(localStorage.getItem(key))
