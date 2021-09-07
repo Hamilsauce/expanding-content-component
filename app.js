@@ -11,12 +11,14 @@ import SmpSeriesMenu from './components1/SmpSeriesMenu.js';
 import SmpAddGameModal from './components1/SmpAddGameModal.js';
 import SmpGame from './components1/SmpGame.js';
 import SmpPlayer from './components1/SmpPlayer.js';
+import SmpAppHeader from './components1/SmpAppHeader.js';
 
 const smpGame = Vue.component('smp-game', SmpGame);
 const smpSeries = Vue.component('smp-series', SmpSeries);
 const smpPlayer = Vue.component('smp-player', SmpPlayer);
 const smpSeriesMenu = Vue.component('smp-series-menu', SmpSeriesMenu);
 const smpAddGameModal = Vue.component('smp-add-game-modal', SmpAddGameModal);
+const smpAppHeader = Vue.component('smp-app-header', SmpAppHeader);
 
 // const router = new VueRouter({
 // 	routes: [{
@@ -54,7 +56,8 @@ const app = new Vue({
       characterData: null,
       showAddGameModal: false,
       // showAddGameModal: false,
-      selectedSeries: null
+      selectedSeries: null,
+      title: 'SMPGUY'
     }
   },
   computed: {

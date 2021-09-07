@@ -1,0 +1,29 @@
+.content-wrapper {
+  max-height: 0;
+  /* background-color: #f1f1f1; */
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.series-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: 10px;
+  height: 100%;
+  width: 100%;
+  padding: 10px 5px;
+  transition: max-height 0.5s;
+}
+
+.game-content {
+  max-height: 0;
+  height: 100%;
+  padding: 10px 5px;
+  transition: max-height 0.0s;
+}
+
+.hide {
+  padding: 0px 10px 0px 10px;
+  border: 1px solid #E5E5E500;
+}

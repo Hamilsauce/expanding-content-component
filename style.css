@@ -15,14 +15,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: space-around;
   padding: 0px 0px;
-  height: fit-content;
+  min-height: 100vh;
+  color: #E6E6E6;
+  background: #3F74CB;
   transition: 0.5s;
 }
-
-
 
 .app-header {
   display: flex;
@@ -115,7 +115,7 @@
   padding: 0px 2px 0px 5px;
   max-height: 0;
   transition: max-height 0.2s ease-out;
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
   transition: 0.5s;
 }
 

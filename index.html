@@ -8,7 +8,9 @@
   <!-- css -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./css/smp-content.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./css/smp-add-game-modal.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./css/smp-app-header.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./css/smp-series-menu.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./css/smp-player.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./css/smp-add-series.css" type="text/css" media="all" />
@@ -30,32 +32,23 @@
 <body>
   <div class="app" id="app" @delete-series="handleDeleteSeries" @click="handleMenuBlur">
     <smp-add-game-modal @new-game-created="addNewGame" :show-add-game-modal="showAddGameModal" @hide-add-game-modal="toggleAddGameModal" :selected="selectedSeries"></smp-add-game-modal>
-    <header class="app-header">
-      <h2 class="header-title">Mario Tracker</h2>
-      <div class="add-series-container">
-        <div class="add-series-button">+ Series</div>
-        <div class="add-series-content hide">
-          <div class="add-series-title"></div>
-          <form class="add-series-form">
-            <div class="control-container">
-              <label for="player-name-input">Player</label>
-              <input type="text" class="player-name-input" name="player-name-input" id="player-name-input" value="" />
-            </div>
-            <button type="button">Add Player</button>
-          </form>
-        </div>
-      </div>
-    </header>
+    <smp-app-header :title="title"></smp-app-header>
     <!-- Series List -->
     <div class="series-list active-series-list">
       <div class="series-list-title">Active Series</div>
       <div class="series-container">
-        <smp-series @add-game="toggleAddGameModal" v-for="series in series" :series-data="series" ></smp-series>
+        <smp-series @add-game="toggleAddGameModal" v-for="series in series" :series-data="series"></smp-series>
       </div>
     </div>
   </div>
   <div class="json-output"></div>
   <!-- @player-template -->
+  <template id="smp-app-header-template">
+    <div class="app-header">
+      <h2>{{title}}</h2>
+    </div>
+  </template>
+  <!-- @app-header-template -->
   <template id="smp-player-template">
     <div class="player-container">
       <div class="player-rank">
@@ -133,27 +126,27 @@
         Game {{ game.id }}
       </div>
       <div class="game-content-wrapper content-wrapper" ref="contentWrapper">
-      <div class="content game-content" ref="gameContent">
-        <div class="game-details">
-          <div class="game-map-name">
-            {{game.map}}
+        <div class="content game-content" ref="gameContent">
+          <div class="game-details">
+            <div class="game-map-name">
+              {{game.map}}
+            </div>
+            <div class="game-date">
+              {{game.date}}
+            </div>
           </div>
-          <div class="game-date">
-            {{game.date}}
+          <div class="player-list">
+            <div class="player-list-headers">
+              <div class="player-list-header">Rank</div>
+              <div class="player-list-header">Name</div>
+              <div class="player-list-header">Character</div>
+              <div class="player-list-header">Stars</div>
+            </div>
+            <div class="player-list-body">
+              <smp-player class="player" v-for="player in players" :player-data="player"></smp-player>
+            </div>
           </div>
         </div>
-        <div class="player-list">
-          <div class="player-list-headers">
-            <div class="player-list-header">Rank</div>
-            <div class="player-list-header">Name</div>
-            <div class="player-list-header">Character</div>
-            <div class="player-list-header">Stars</div>
-          </div>
-          <div class="player-list-body">
-            <smp-player class="player" v-for="player in players" :player-data="player"></smp-player>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   </template>
@@ -215,7 +208,7 @@
   <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script> -->
   <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script> -->
   <!-- <script src="tracker-main.js" type="module" charset="utf-8"></script> -->
-  <script src="new-app.js" type="module" charset="utf-8"></script>
+  <script src="app.js" type="module"></script>
 </body>
 
 </html>
