@@ -91,7 +91,7 @@
           <form class="add-game-form" @submit.prevent="handleFormSubmit">
             <div class="input-group">
               <label for="name-input">Name</label>
-              <input type="text" name="name-input" class="map-input" id="map-input" v-model="newGameName" />
+              <input type="text" name="name-input" v-model="newGame.name"  class="name-input" id="name-input" v-model="newGameName" />
             </div>
             <div class="input-group">
               <label for="map-select">Map</label>
@@ -123,7 +123,7 @@
   <template id="smp-game-template">
     <div class="smp-game-container" ref="gameRoot">
       <div ref="gameCollapsible" class="collapsible game-collapsible" @click="handleGameCollapsibleClicked">
-        Game {{ game.id }}
+        {{ game.name || game.id }}
       </div>
       <div class="game-content-wrapper content-wrapper" ref="contentWrapper">
         <div class="content game-content" ref="gameContent">

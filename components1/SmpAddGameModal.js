@@ -5,6 +5,7 @@ export default {
     return {
       newGameName: null,
       newGame: {
+        name: null,
         date: null,
         id: null,
         map: null,
@@ -30,8 +31,8 @@ export default {
     handleFormSubmit() {
       this.newGame.playerRanks = this.newGame.playerRanks || this.selected.players;
       this.newGame.id = this.newGameId
-      this.$emit('new-game-created', { seriesId: this.series.id, game: this.newGame })
-
+      this.$emit('new-game-created', { seriesId: this.series.id, game: { ...this.newGame, id: this.newGameId, playerRanks: this.newGame.playerRanks || this.selected.players } })
+      this.newGame = {};
     },
     handleBackClicked() { this.$emit('hide-add-game-modal') },
     handleDimmerClicked() { this.$emit('hide-add-game-modal') },
