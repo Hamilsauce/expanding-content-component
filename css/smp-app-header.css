@@ -1,5 +1,12 @@
 .app-header {
-  
-  background: #304973;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  overflow: hidden;
+  background: #B24C4C;
   color: white;
 }

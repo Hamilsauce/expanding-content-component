@@ -9,6 +9,7 @@
 .add-game-modal {
   position: relative;
   top: 15%;
+  /* display: grid; */
   margin: auto;
   height: 400px;
   width: 320px;
@@ -64,8 +65,10 @@
 
 .add-game-form {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
+  /* flex-direction: column;
+  justify-content: space-between; */
   align-items: flex-end;
   gap: 10px;
   padding: 10px;
